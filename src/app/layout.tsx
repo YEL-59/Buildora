@@ -1,0 +1,39 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { SmoothScroll, Preloader } from "@/components/layout";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Builtex - Construction HTML Template in Next.js",
+  description:
+    "Builtex is a modern and premium Construction and Building Solutions Next.js & Tailwind CSS template.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/images/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className={inter.variable}>
+      <body className="font-sans antialiased text-[#28374D] bg-[#EFEFEF]">
+        <Preloader />
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
+    </html>
+  );
+}

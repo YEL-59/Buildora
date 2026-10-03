@@ -1,0 +1,398 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #12223B;
+    --primary-light: #1c3254;
+    --secondary: #F6F6F6;
+    --bg-light: #EFEFEF;
+    --text-slate: #28374D;
+    --text-muted: #64748b;
+    --accent: #FFDB5A;
+    --accent-hover: #f0cb46;
+    --white: #FFFFFF;
+    --divider: rgba(18, 34, 59, 0.1);
+    --dark-divider: rgba(255, 255, 255, 0.12);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  body {
+    font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-slate);
+    background-color: var(--bg-light);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+  }
+
+  ::selection {
+    color: var(--primary);
+    background-color: var(--accent);
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1400px !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Custom Utilities and Animations */
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 219, 90, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(255, 219, 90, 0);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+/* Image Animation Shine Sweep on Hover */
+.image-anime {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-anime::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 0%;
+  left: 50%;
+  top: 50%;
+  background-color: rgba(255, 255, 255, 0.35);
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.image-anime:hover::after,
+.group:hover .image-anime::after,
+.group:hover.image-anime::after {
+  height: 250%;
+  transition: all 650ms ease-in-out;
+  background-color: transparent;
+}
+
+/* Primary Button with Skew Effect (Same as HTML .btn-default) */
+.btn-default,
+.btn-builtex {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1em;
+  text-transform: capitalize;
+  color: #12223B;
+  background: #FFDB5A;
+  border-radius: 4px;
+  border: none;
+  padding: 17px 54px 17px 24px;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-default:hover,
+.btn-builtex:hover {
+  color: #FFFFFF;
+}
+
+.btn-default::before,
+.btn-builtex::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  width: 20px;
+  height: 20px;
+  background-image: url('/images/arrow-primary.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  transform: translateY(-50%);
+  transition: all 0.4s ease-in-out;
+  z-index: 2;
+}
+
+.btn-default:hover::before,
+.btn-builtex:hover::before {
+  background-image: url('/images/arrow-white.svg');
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.btn-default::after,
+.btn-builtex::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -15%;
+  right: 0;
+  width: 0;
+  height: 106%;
+  background: #12223B;
+  transform: skew(45deg);
+  transition: all 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.btn-default:hover::after,
+.btn-builtex:hover::after {
+  width: 100%;
+  transform: skew(0deg);
+  left: 0;
+}
+
+/* Highlighted Button variation */
+.btn-default.btn-highlighted,
+.btn-builtex-highlighted {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1em;
+  text-transform: capitalize;
+  color: #12223B;
+  background: #FFDB5A;
+  border-radius: 4px;
+  border: none;
+  padding: 17px 54px 17px 24px;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-default.btn-highlighted::before,
+.btn-builtex-highlighted::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  width: 20px;
+  height: 20px;
+  background-image: url('/images/arrow-primary.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  transform: translateY(-50%);
+  transition: all 0.4s ease-in-out;
+  z-index: 2;
+}
+
+.btn-default.btn-highlighted::after,
+.btn-builtex-highlighted::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -15%;
+  right: 0;
+  width: 0;
+  height: 106%;
+  background: #FFFFFF;
+  transform: skew(45deg);
+  transition: all 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.btn-default.btn-highlighted:hover,
+.btn-builtex-highlighted:hover {
+  color: #12223B;
+}
+
+.btn-default.btn-highlighted:hover::after,
+.btn-builtex-highlighted:hover::after {
+  width: 100%;
+  transform: skew(0deg);
+  left: 0;
+}
+
+.btn-default.btn-highlighted:hover::before,
+.btn-builtex-highlighted:hover::before {
+  background-image: url('/images/arrow-primary.svg');
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Read More Link Button */
+.readmore-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #12223B;
+  padding-right: 42px;
+  transition: all 0.3s ease-in-out;
+}
+
+.readmore-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  background-color: #FFDB5A;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background-image: url('/images/arrow-primary.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px;
+  transition: all 0.4s ease-in-out;
+}
+
+.readmore-btn:hover {
+  color: #FFDB5A;
+}
+
+.readmore-btn:hover::before {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.dark-section .readmore-btn {
+  color: #FFFFFF;
+}
+
+.dark-section .readmore-btn:hover {
+  color: #FFDB5A;
+}
+
+/* Image Hover Shine Effect */
+.image-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-shine::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 0%;
+  left: 50%;
+  top: 50%;
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: 10;
+  transition: all 0.6s ease;
+}
+
+.image-shine:hover::after {
+  height: 250%;
+}
+
+/* Section Title Pill Badge */
+.section-sub-title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  color: #12223B;
+  border: 1px solid rgba(18, 34, 59, 0.15);
+  border-radius: 9999px;
+  padding: 8px 18px 8px 30px;
+  margin-bottom: 16px;
+}
+
+.section-sub-title::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #FFDB5A;
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+}
+
+.dark-section .section-sub-title {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #12223B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFDB5A;
+  border-radius: 4px;
+}

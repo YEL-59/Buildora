@@ -1,0 +1,14 @@
+export { default as Hero } from "./Hero";
+export { default as AboutUs } from "./AboutUs";
+export { default as Services } from "./Services";
+export { default as OurExpertise } from "./OurExpertise";
+export { default as Approach } from "./Approach";
+export { default as CoreValues } from "./CoreValues";
+export { default as VideoBanner } from "./VideoBanner";
+export { default as Projects } from "./Projects";
+export { default as WhyChooseUs } from "./WhyChooseUs";
+export { default as Team } from "./Team";
+export { default as Testimonials } from "./Testimonials";
+export { default as Faq } from "./Faq";
+export { default as CtaSection } from "./CtaSection";
+export { default as Blog } from "./Blog";
