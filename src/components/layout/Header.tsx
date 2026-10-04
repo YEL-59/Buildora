@@ -47,11 +47,11 @@ export default function Header() {
           <Link href="/" className="inline-block flex-shrink-0">
             <Image
               src="/images/logo.svg"
-              alt="Builtex Logo"
-              width={160}
-              height={45}
+              alt="Buildora Logo"
+              width={210}
+              height={48}
               priority
-              className="h-10 sm:h-11 w-auto"
+              className="h-10 sm:h-12 w-auto"
             />
           </Link>
 

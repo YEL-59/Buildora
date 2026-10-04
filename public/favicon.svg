@@ -1,8 +1,72 @@
 <svg width="64" height="64" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="25" cy="25" r="25" fill="#FFDB5A"/>
-  <path d="M16.9386 23.9994L25.0002 15.9391L33.0614 23.9994H39L25.0002 10L11 23.9994H16.9386Z" fill="#12223B"/>
-  <path d="M33.7221 26.9009V35.068H16.1095V26.9009H11.9102V39.2673H37.9215V26.9009H33.7221Z" fill="#12223B"/>
-  <path d="M18.7378 16.3078H14.499V20.8571H18.7378V16.3078Z" fill="#12223B"/>
-  <path d="M28.5492 28.0062C28.9643 26.2541 27.8804 24.4974 26.1283 24.0824C24.3763 23.6674 22.6196 24.7512 22.2046 26.5033C21.7896 28.2553 22.8734 30.0121 24.6255 30.4271C26.3775 30.8421 28.1342 29.7582 28.5492 28.0062Z" fill="#12223B"/>
-  <path d="M37.9226 26.3913H25.9834V28.3845H37.9226V26.3913Z" fill="#12223B"/>
+<defs>
+  <linearGradient id="iconGold" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#FFF2A3" />
+    <stop offset="30%" stop-color="#FFDB5A" />
+    <stop offset="70%" stop-color="#F5C024" />
+    <stop offset="100%" stop-color="#E29E0B" />
+  </linearGradient>
+  <linearGradient id="iconNavy" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#1A2F4C" />
+    <stop offset="100%" stop-color="#0E1B2C" />
+  </linearGradient>
+  <linearGradient id="iconBevel" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.4" />
+    <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.05" />
+    <stop offset="100%" stop-color="#000000" stop-opacity="0.12" />
+  </linearGradient>
+</defs>
+<rect x="2" y="2" width="46" height="46" rx="13" fill="url(#iconGold)" />
+<rect x="2" y="2" width="46" height="46" rx="13" fill="url(#iconBevel)" />
+<rect x="2.5" y="2.5" width="45" height="45" rx="12.5" stroke="#FFFFFF" stroke-opacity="0.38" stroke-width="1" />
+
+<!-- TOWER CRANE -->
+<path d="M9.5 39V12.5H12.5V39H9.5Z" fill="url(#iconNavy)" />
+<line x1="9.5" y1="16.5" x2="12.5" y2="20" stroke="#FFDB5A" stroke-width="0.75" />
+<line x1="9.5" y1="20" x2="12.5" y2="16.5" stroke="#FFDB5A" stroke-width="0.75" />
+<line x1="9.5" y1="24" x2="12.5" y2="27.5" stroke="#FFDB5A" stroke-width="0.75" />
+<line x1="9.5" y1="27.5" x2="12.5" y2="24" stroke="#FFDB5A" stroke-width="0.75" />
+<line x1="9.5" y1="31.5" x2="12.5" y2="35" stroke="#FFDB5A" stroke-width="0.75" />
+<line x1="9.5" y1="35" x2="12.5" y2="31.5" stroke="#FFDB5A" stroke-width="0.75" />
+
+<path d="M9.5 12.5L11 7L12.5 12.5Z" fill="url(#iconNavy)" />
+<rect x="12.5" y="12.5" width="3.2" height="3.2" rx="0.6" fill="url(#iconNavy)" />
+<circle cx="14.1" cy="14.1" r="0.8" fill="#FFDB5A" />
+
+<path d="M5.5 10.5H41.5V12.2H5.5V10.5Z" fill="url(#iconNavy)" />
+<line x1="11" y1="7" x2="5.5" y2="10.5" stroke="#12223B" stroke-width="0.85" />
+<line x1="11" y1="7" x2="25" y2="10.5" stroke="#12223B" stroke-width="0.85" />
+<line x1="11" y1="7" x2="38" y2="10.5" stroke="#12223B" stroke-width="0.85" />
+<rect x="5" y="12.2" width="3.5" height="2.8" rx="0.5" fill="url(#iconNavy)" />
+
+<rect x="25.5" y="11.8" width="4.5" height="1.8" rx="0.5" fill="url(#iconNavy)" />
+<line x1="27.8" y1="13.6" x2="27.8" y2="16.2" stroke="#12223B" stroke-width="1.2" />
+
+<!-- PULLEY & HOOK -->
+<path d="M26 16.2H29.6L29 19.2H26.6L26 16.2Z" fill="url(#iconNavy)" />
+<circle cx="27.8" cy="17.4" r="0.8" fill="#FFDB5A" />
+<path d="M27.8 19.2V20.8C27.8 21.6 27.1 22.1 26.5 21.7C26.1 21.4 26.1 20.7 26.7 20.4" stroke="#12223B" stroke-width="1.3" stroke-linecap="round" fill="none" />
+
+<line x1="27.8" y1="21.3" x2="19.5" y2="24.4" stroke="#12223B" stroke-width="1.1" stroke-linecap="round" />
+<line x1="27.8" y1="21.3" x2="36" y2="24.4" stroke="#12223B" stroke-width="1.1" stroke-linecap="round" />
+
+<!-- STEEL GIRDER WITH 4 RIVETS -->
+<rect x="17.5" y="24" width="20.5" height="1.6" rx="0.4" fill="url(#iconNavy)" />
+<rect x="18.5" y="25.4" width="18.5" height="3.4" fill="url(#iconNavy)" />
+<rect x="17.5" y="28.6" width="20.5" height="1.6" rx="0.4" fill="url(#iconNavy)" />
+<circle cx="21" cy="27.1" r="1.0" fill="#FFDB5A" />
+<circle cx="25.5" cy="27.1" r="1.0" fill="#FFDB5A" />
+<circle cx="30" cy="27.1" r="1.0" fill="#FFDB5A" />
+<circle cx="34.5" cy="27.1" r="1.0" fill="#FFDB5A" />
+
+<!-- BUILDING FOUNDATION -->
+<rect x="21" y="31.2" width="2" height="3" fill="url(#iconNavy)" />
+<rect x="26.8" y="31.2" width="2" height="3" fill="url(#iconNavy)" />
+<rect x="32.5" y="31.2" width="2" height="3" fill="url(#iconNavy)" />
+<rect x="18" y="34" width="19.5" height="1.5" rx="0.3" fill="url(#iconNavy)" />
+<path d="M16 39V35.5H39.5V39H16Z" fill="url(#iconNavy)" />
+<rect x="18.5" y="36.5" width="2.4" height="2" fill="#FFDB5A" />
+<rect x="23.5" y="36.5" width="2.4" height="2" fill="#FFDB5A" />
+<rect x="28.5" y="36.5" width="2.4" height="2" fill="#FFDB5A" />
+<rect x="33.5" y="36.5" width="2.4" height="2" fill="#FFDB5A" />
 </svg>

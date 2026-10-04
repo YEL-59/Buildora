@@ -9,7 +9,7 @@ export default function Preloader() {
 
   useEffect(() => {
     // Check if preloader has already been shown in this session
-    const hasLoaded = sessionStorage.getItem("builtex_has_loaded");
+    const hasLoaded = sessionStorage.getItem("buildora_has_loaded");
 
     if (!hasLoaded) {
       setLoading(true);
@@ -17,7 +17,7 @@ export default function Preloader() {
 
       const timer = setTimeout(() => {
         setLoading(false);
-        sessionStorage.setItem("builtex_has_loaded", "true");
+        sessionStorage.setItem("buildora_has_loaded", "true");
 
         // Remove from DOM after fade-out transition completes
         setTimeout(() => {
@@ -44,7 +44,7 @@ export default function Preloader() {
         <div className="absolute inset-0 flex items-center justify-center">
           <Image
             src="/images/loader.svg"
-            alt="Builtex Loader"
+            alt="Buildora Loader"
             width={48}
             height={48}
             className="object-contain"

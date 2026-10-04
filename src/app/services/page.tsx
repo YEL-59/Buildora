@@ -12,7 +12,7 @@ import {
 } from "@/components/home";
 
 export const metadata: Metadata = {
-  title: "Our Services - Builtex Construction",
+  title: "Our Services - Buildora Construction",
   description:
     "Explore our full range of construction services including residential, commercial, industrial, renovation, remodeling, and structural engineering.",
 };

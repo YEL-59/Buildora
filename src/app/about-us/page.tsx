@@ -13,9 +13,9 @@ import {
 } from "@/components/home";
 
 export const metadata: Metadata = {
-  title: "About Us - Builtex Construction",
+  title: "About Us - Buildora Construction",
   description:
-    "Learn about Builtex - Building reliable structures with quality and precision. Discover our mission, core values, experienced team, and industry expertise.",
+    "Learn about Buildora - Building reliable structures with quality and precision. Discover our mission, core values, experienced team, and industry expertise.",
 };
 
 export default function AboutUsPage() {

@@ -10,9 +10,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Builtex - Construction HTML Template in Next.js",
+  title: "Buildora - Construction & Architectural Solutions",
   description:
-    "Builtex is a modern and premium Construction and Building Solutions Next.js & Tailwind CSS template.",
+    "Buildora is a premier Construction and Building Solutions company delivering modern architectural design, commercial builds, and residential projects with precision and quality.",
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },

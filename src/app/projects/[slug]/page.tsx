@@ -24,12 +24,12 @@ export async function generateMetadata({
 
   if (!project) {
     return {
-      title: "Project Not Found - Builtex",
+      title: "Project Not Found - Buildora",
     };
   }
 
   return {
-    title: `${project.title} - Builtex Construction`,
+    title: `${project.title} - Buildora Construction`,
     description: project.overview[0],
   };
 }

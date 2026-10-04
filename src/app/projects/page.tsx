@@ -3,7 +3,7 @@ import { Header, PageHeader, Footer } from "@/components/layout";
 import { PageProjects } from "@/components/projects";
 
 export const metadata: Metadata = {
-  title: "Our Projects - Builtex Construction & Architecture Next.js Template",
+  title: "Our Projects - Buildora Construction & Architecture",
   description:
     "Explore our featured landmark projects in residential, commercial, industrial, and infrastructure construction.",
 };

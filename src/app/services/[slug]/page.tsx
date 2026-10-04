@@ -24,12 +24,12 @@ export async function generateMetadata({
 
   if (!service) {
     return {
-      title: "Service Not Found - Builtex",
+      title: "Service Not Found - Buildora",
     };
   }
 
   return {
-    title: `${service.title} - Builtex Construction`,
+    title: `${service.title} - Buildora Construction`,
     description: service.description,
   };
 }

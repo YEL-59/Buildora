@@ -4,9 +4,9 @@ import { Header, PageHeader, Footer } from "@/components/layout";
 import { PageBlog } from "@/components/blog";
 
 export const metadata: Metadata = {
-  title: "Our Blog - Builtex Construction",
+  title: "Our Blog - Buildora Construction",
   description:
-    "Explore the latest construction updates, expert tips, industry trends, and practical building guides from Builtex.",
+    "Explore the latest construction updates, expert tips, industry trends, and practical building guides from Buildora.",
 };
 
 export default function BlogPage() {
