@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { servicesData } from "@/data/serviceData";
+import { FadeInUp } from "@/components/animations";
 
 export default function PageServices() {
   return (
@@ -10,9 +11,11 @@ export default function PageServices() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
         {/* 8 Services Grid (4 Columns on Desktop) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {servicesData.map((service) => (
-            <div
+          {servicesData.map((service, index) => (
+            <FadeInUp
               key={service.id}
+              delay={(index % 4) * 0.12}
+              duration={0.7}
               className="group flex flex-col transition-all"
             >
               {/* Service Image */}
@@ -41,7 +44,7 @@ export default function PageServices() {
                   {service.description}
                 </p>
               </div>
-            </div>
+            </FadeInUp>
           ))}
         </div>
       </div>

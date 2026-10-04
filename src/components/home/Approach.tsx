@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { FadeInUp, TextAnime } from "@/components/animations";
 
 export default function Approach() {
   const approachItems = [
@@ -33,105 +33,119 @@ export default function Approach() {
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-14">
           <div className="lg:col-span-7">
-            <div className="section-sub-title mb-4">Our Approach</div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-[#12223B] tracking-[-0.03em] leading-[1.12]">
+            <FadeInUp delay={0.1} direction="down">
+              <div className="section-sub-title mb-4">Our Approach</div>
+            </FadeInUp>
+            <TextAnime
+              as="h2"
+              className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-[#12223B] tracking-[-0.03em] leading-[1.12]"
+              delay={0.2}
+            >
               Building excellence through every step we take
-            </h2>
+            </TextAnime>
           </div>
           <div className="lg:col-span-5">
-            <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6]">
-              We believe every successful construction project begins with careful planning, open communication, and expert execution.
-            </p>
+            <FadeInUp delay={0.35}>
+              <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6]">
+                We believe every successful construction project begins with careful planning, open communication, and expert execution.
+              </p>
+            </FadeInUp>
           </div>
         </div>
 
         {/* 3 Approach Cards (White by default, Smooth Yellow Slide-up on Hover) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {approachItems.map((item) => (
-            <div
+          {approachItems.map((item, index) => (
+            <FadeInUp
               key={item.id}
-              className="relative rounded-[6px] bg-white p-8 sm:p-10 flex flex-col justify-between overflow-hidden group cursor-pointer transition-all duration-300"
+              delay={index * 0.15}
+              duration={0.7}
+              className="h-full"
             >
-              {/* Slide-up Yellow Accent Background */}
-              <div className="absolute inset-x-0 bottom-0 h-0 bg-[#FFDB5A] transition-all duration-500 ease-out group-hover:h-full pointer-events-none" />
+              <div className="relative rounded-[6px] bg-white p-8 sm:p-10 flex flex-col justify-between overflow-hidden group cursor-pointer transition-all duration-300 h-full">
+                {/* Slide-up Yellow Accent Background */}
+                <div className="absolute inset-x-0 bottom-0 h-0 bg-[#FFDB5A] transition-all duration-500 ease-out group-hover:h-full pointer-events-none" />
 
-              {/* Icon */}
-              <div className="relative z-10 mb-8">
-                <div className="w-12 h-12 flex items-center justify-start">
-                  <Image
-                    src={item.icon}
-                    alt={item.title}
-                    width={48}
-                    height={48}
-                    className="w-auto h-auto max-h-12 object-contain"
-                  />
+                {/* Icon */}
+                <div className="relative z-10 mb-8">
+                  <div className="w-12 h-12 flex items-center justify-start">
+                    <Image
+                      src={item.icon}
+                      alt={item.title}
+                      width={48}
+                      height={48}
+                      className="w-auto h-auto max-h-12 object-contain"
+                    />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 pt-6 border-t border-[#12223B]/10">
+                  <h3 className="text-xl sm:text-[22px] font-semibold text-[#12223B] mb-2.5">
+                    {item.title}
+                  </h3>
+                  <p className="text-[14px] sm:text-[15px] text-[#28374D] leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               </div>
-
-              {/* Content */}
-              <div className="relative z-10 pt-6 border-t border-[#12223B]/10">
-                <h3 className="text-xl sm:text-[22px] font-semibold text-[#12223B] mb-2.5">
-                  {item.title}
-                </h3>
-                <p className="text-[14px] sm:text-[15px] text-[#28374D] leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            </div>
+            </FadeInUp>
           ))}
         </div>
 
         {/* Bottom Contact Box */}
-        <div className="mt-10 rounded-[6px] border border-[#12223B]/10 bg-white/40 p-6 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-            {/* 4 Avatar Stack */}
-            <div className="flex items-center -space-x-2.5 flex-shrink-0">
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
-                <Image
-                  src="/images/author-1.jpg"
-                  alt="Team Member 1"
-                  fill
-                  className="object-cover"
-                />
+        <FadeInUp delay={0.3}>
+          <div className="mt-10 rounded-[6px] border border-[#12223B]/10 bg-white/40 p-6 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+              {/* 4 Avatar Stack */}
+              <div className="flex items-center -space-x-2.5 flex-shrink-0">
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
+                  <Image
+                    src="/images/author-1.jpg"
+                    alt="Team Member 1"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
+                  <Image
+                    src="/images/author-2.jpg"
+                    alt="Team Member 2"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
+                  <Image
+                    src="/images/author-3.jpg"
+                    alt="Team Member 3"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
+                  <Image
+                    src="/images/author-4.jpg"
+                    alt="Team Member 4"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
-                <Image
-                  src="/images/author-2.jpg"
-                  alt="Team Member 2"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
-                <Image
-                  src="/images/author-3.jpg"
-                  alt="Team Member 3"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
-                <Image
-                  src="/images/author-4.jpg"
-                  alt="Team Member 4"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+
+              <p className="text-[14px] sm:text-[15px] text-[#28374D]">
+                Have a construction project in mind? Our experienced team is here to answer your questions,
+              </p>
             </div>
 
-            <p className="text-[14px] sm:text-[15px] text-[#28374D]">
-              Have a construction project in mind? Our experienced team is here to answer your questions,
-            </p>
+            <Link
+              href="/contact"
+              className="btn-default flex-shrink-0 whitespace-nowrap"
+            >
+              Get In Touch
+            </Link>
           </div>
-
-          <Link
-            href="/contact"
-            className="btn-default flex-shrink-0 whitespace-nowrap"
-          >
-            Get In Touch
-          </Link>
-        </div>
+        </FadeInUp>
       </div>
     </section>
   );

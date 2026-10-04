@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { FadeInUp, TextAnime } from "@/components/animations";
 
 interface PageHeaderProps {
   title?: string;
@@ -39,31 +40,37 @@ export default function PageHeader({
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6">
         <div className="max-w-2xl">
-          <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-semibold text-white tracking-[-0.03em] leading-[1.1] mb-3 sm:mb-4">
+          <TextAnime
+            as="h1"
+            className="text-4xl sm:text-5xl lg:text-[56px] font-semibold text-white tracking-[-0.03em] leading-[1.1] mb-3 sm:mb-4"
+            delay={0.1}
+          >
             {title}
-          </h1>
+          </TextAnime>
 
-          <nav className="flex items-center gap-2 text-[15px] sm:text-[16px]">
-            <Link
-              href="/"
-              className="text-white hover:text-[#FFDB5A] transition-colors font-medium"
-            >
-              Home
-            </Link>
-            <span className="text-white/60">/</span>
-            {parentPage && (
-              <>
-                <Link
-                  href={parentPage.link}
-                  className="text-white hover:text-[#FFDB5A] transition-colors font-medium"
-                >
-                  {parentPage.name}
-                </Link>
-                <span className="text-white/60">/</span>
-              </>
-            )}
-            <span className="text-white font-medium">{breadcrumb}</span>
-          </nav>
+          <FadeInUp delay={0.25} direction="up">
+            <nav className="flex items-center gap-2 text-[15px] sm:text-[16px]">
+              <Link
+                href="/"
+                className="text-white hover:text-[#FFDB5A] transition-colors font-medium"
+              >
+                Home
+              </Link>
+              <span className="text-white/60">/</span>
+              {parentPage && (
+                <>
+                  <Link
+                    href={parentPage.link}
+                    className="text-white hover:text-[#FFDB5A] transition-colors font-medium"
+                  >
+                    {parentPage.name}
+                  </Link>
+                  <span className="text-white/60">/</span>
+                </>
+              )}
+              <span className="text-white font-medium">{breadcrumb}</span>
+            </nav>
+          </FadeInUp>
         </div>
       </div>
     </div>

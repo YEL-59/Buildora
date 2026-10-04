@@ -12,6 +12,7 @@ import {
   ClipboardCheck,
 } from "lucide-react";
 import { Project, projectsData } from "@/data/projectData";
+import { FadeInUp, TextAnime } from "@/components/animations";
 
 interface ProjectDetailsProps {
   project?: Project;
@@ -92,135 +93,148 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
           {/* Left Sidebar */}
           <aside className="lg:col-span-4 space-y-8 sticky top-28">
             {/* Project Information Box */}
-            <div className="rounded-[6px] overflow-hidden bg-white shadow-sm">
-              <div className="bg-[#FFDB5A] p-5 sm:p-6">
-                <h3 className="text-xl font-semibold text-[#12223B]">
-                  Project Information
-                </h3>
-              </div>
-              <div className="p-6 space-y-4 text-[15px]">
-                <div className="flex items-center justify-between border-b border-[#12223B]/10 pb-3">
-                  <span className="text-[#526071] font-medium">Project Type:</span>
-                  <span className="text-[#12223B] font-semibold">
-                    {currentProject.projectType}
-                  </span>
+            <FadeInUp delay={0.1} direction="up" distance={30}>
+              <div className="rounded-[6px] overflow-hidden bg-white shadow-sm">
+                <div className="bg-[#FFDB5A] p-5 sm:p-6">
+                  <h3 className="text-xl font-semibold text-[#12223B]">
+                    Project Information
+                  </h3>
                 </div>
+                <div className="p-6 space-y-4 text-[15px]">
+                  <div className="flex items-center justify-between border-b border-[#12223B]/10 pb-3">
+                    <span className="text-[#526071] font-medium">Project Type:</span>
+                    <span className="text-[#12223B] font-semibold">
+                      {currentProject.projectType}
+                    </span>
+                  </div>
 
-                <div className="flex items-center justify-between border-b border-[#12223B]/10 pb-3">
-                  <span className="text-[#526071] font-medium">Client Name:</span>
-                  <span className="text-[#12223B] font-semibold">
-                    {currentProject.clientName}
-                  </span>
-                </div>
+                  <div className="flex items-center justify-between border-b border-[#12223B]/10 pb-3">
+                    <span className="text-[#526071] font-medium">Client Name:</span>
+                    <span className="text-[#12223B] font-semibold">
+                      {currentProject.clientName}
+                    </span>
+                  </div>
 
-                <div className="flex items-center justify-between border-b border-[#12223B]/10 pb-3">
-                  <span className="text-[#526071] font-medium">Duration:</span>
-                  <span className="text-[#12223B] font-semibold">
-                    {currentProject.duration}
-                  </span>
-                </div>
+                  <div className="flex items-center justify-between border-b border-[#12223B]/10 pb-3">
+                    <span className="text-[#526071] font-medium">Duration:</span>
+                    <span className="text-[#12223B] font-semibold">
+                      {currentProject.duration}
+                    </span>
+                  </div>
 
-                <div className="flex items-center justify-between border-b border-[#12223B]/10 pb-3">
-                  <span className="text-[#526071] font-medium">Location:</span>
-                  <span className="text-[#12223B] font-semibold text-right max-w-[200px]">
-                    {currentProject.location}
-                  </span>
-                </div>
+                  <div className="flex items-center justify-between border-b border-[#12223B]/10 pb-3">
+                    <span className="text-[#526071] font-medium">Location:</span>
+                    <span className="text-[#12223B] font-semibold text-right max-w-[200px]">
+                      {currentProject.location}
+                    </span>
+                  </div>
 
-                {/* Share Project Social Icons */}
-                <div className="flex items-center justify-between pt-1">
-                  <span className="text-[#526071] font-medium">Share Project:</span>
-                  <div className="flex items-center gap-2">
-                    {["fb", "x", "in", "insta"].map((network) => (
-                      <span
-                        key={network}
-                        className="w-8 h-8 rounded-full bg-[#12223B] hover:bg-[#FFDB5A] text-white hover:text-[#12223B] flex items-center justify-center text-xs font-bold uppercase transition-colors cursor-pointer"
-                      >
-                        {network === "fb" && "f"}
-                        {network === "x" && "x"}
-                        {network === "in" && "in"}
-                        {network === "insta" && "ig"}
-                      </span>
-                    ))}
+                  {/* Share Project Social Icons */}
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="text-[#526071] font-medium">Share Project:</span>
+                    <div className="flex items-center gap-2">
+                      {["fb", "x", "in", "insta"].map((network) => (
+                        <span
+                          key={network}
+                          className="w-8 h-8 rounded-full bg-[#12223B] hover:bg-[#FFDB5A] text-white hover:text-[#12223B] flex items-center justify-center text-xs font-bold uppercase transition-colors cursor-pointer"
+                        >
+                          {network === "fb" && "f"}
+                          {network === "x" && "x"}
+                          {network === "in" && "in"}
+                          {network === "insta" && "ig"}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </FadeInUp>
 
             {/* Dark CTA Box Card */}
-            <div className="relative rounded-[6px] overflow-hidden p-8 sm:p-10 text-white min-h-[360px] flex flex-col justify-between group shadow-md">
-              {/* Background Image with Dark Navy Gradient */}
-              <Image
-                src="/images/service-image-1.jpg"
-                alt="Connect CTA"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-[#12223B]/85 pointer-events-none" />
+            <FadeInUp delay={0.2} direction="up" distance={30}>
+              <div className="relative rounded-[6px] overflow-hidden p-8 sm:p-10 text-white min-h-[360px] flex flex-col justify-between group shadow-md">
+                {/* Background Image with Dark Navy Gradient */}
+                <Image
+                  src="/images/service-image-1.jpg"
+                  alt="Connect CTA"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-[#12223B]/85 pointer-events-none" />
 
-              {/* Icon */}
-              <div className="relative z-10 w-12 h-12 rounded-[4px] bg-white/10 flex items-center justify-center border border-white/20 mb-6">
-                <Building2 className="w-6 h-6 text-[#FFDB5A]" />
-              </div>
+                {/* Icon */}
+                <div className="relative z-10 w-12 h-12 rounded-[4px] bg-white/10 flex items-center justify-center border border-white/20 mb-6">
+                  <Building2 className="w-6 h-6 text-[#FFDB5A]" />
+                </div>
 
-              {/* Title & Button */}
-              <div className="relative z-10 space-y-6">
-                <h4 className="text-xl sm:text-[22px] font-semibold text-white leading-snug">
-                  Let&apos;s Connect with Our Expert Construction Team and Start Building Today
-                </h4>
-                <Link
-                  href="/#contact"
-                  className="inline-flex items-center gap-3 text-sm font-semibold text-white group/btn hover:text-[#FFDB5A] transition-colors"
-                >
-                  <span>Contact Now</span>
-                  <span className="w-8 h-8 rounded-full bg-[#FFDB5A] text-[#12223B] flex items-center justify-center transition-transform group-hover/btn:translate-x-1">
-                    <ArrowUpRight className="w-4 h-4" />
-                  </span>
-                </Link>
+                {/* Title & Button */}
+                <div className="relative z-10 space-y-6">
+                  <h4 className="text-xl sm:text-[22px] font-semibold text-white leading-snug">
+                    Let&apos;s Connect with Our Expert Construction Team and Start Building Today
+                  </h4>
+                  <Link
+                    href="/#contact"
+                    className="inline-flex items-center gap-3 text-sm font-semibold text-white group/btn hover:text-[#FFDB5A] transition-colors"
+                  >
+                    <span>Contact Now</span>
+                    <span className="w-8 h-8 rounded-full bg-[#FFDB5A] text-[#12223B] flex items-center justify-center transition-transform group-hover/btn:translate-x-1">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </span>
+                  </Link>
+                </div>
               </div>
-            </div>
+            </FadeInUp>
           </aside>
 
           {/* Right Main Content Area */}
           <main className="lg:col-span-8 space-y-12">
             {/* Top Featured Image with image-anime shine sweep hover effect */}
-            <div className="image-anime relative w-full aspect-[1/0.52] rounded-[6px] overflow-hidden bg-gray-200">
-              <Image
-                src={currentProject.image}
-                alt={currentProject.title}
-                fill
-                priority
-                className="object-cover rounded-[6px] transition-transform duration-700 hover:scale-105"
-              />
-            </div>
+            <FadeInUp delay={0.1} direction="up" distance={30}>
+              <div className="image-anime relative w-full aspect-[1/0.52] rounded-[6px] overflow-hidden bg-gray-200">
+                <Image
+                  src={currentProject.image}
+                  alt={currentProject.title}
+                  fill
+                  priority
+                  className="object-cover rounded-[6px] transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+            </FadeInUp>
 
             {/* Project overview */}
             <div className="space-y-4">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#12223B] tracking-tight">
+              <TextAnime
+                as="h2"
+                className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#12223B] tracking-tight"
+              >
                 Project overview
-              </h2>
+              </TextAnime>
               {currentProject.overview.map((para, idx) => (
-                <p
-                  key={idx}
-                  className="text-[#28374D] text-[16px] sm:text-[17px] leading-[1.7]"
-                >
-                  {para}
-                </p>
+                <FadeInUp key={idx} delay={0.15 + idx * 0.1} direction="up" distance={20}>
+                  <p className="text-[#28374D] text-[16px] sm:text-[17px] leading-[1.7]">
+                    {para}
+                  </p>
+                </FadeInUp>
               ))}
             </div>
 
             {/* Challenges & solutions */}
             <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#12223B] tracking-tight mb-3">
+              <TextAnime
+                as="h2"
+                className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#12223B] tracking-tight mb-3"
+              >
                 Challenges & solutions
-              </h2>
-              <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6] mb-8">
-                Through efficient planning, regular quality inspections, and proactive communication, every milestone was completed successfully without compromising quality or safety.
-              </p>
+              </TextAnime>
+              <FadeInUp delay={0.1} direction="up" distance={20}>
+                <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6] mb-8">
+                  Through efficient planning, regular quality inspections, and proactive communication, every milestone was completed successfully without compromising quality or safety.
+                </p>
+              </FadeInUp>
 
               {/* 2-Column Grid: Left Text + Right Image */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                <div className="md:col-span-6 space-y-6">
+                <FadeInUp delay={0.15} direction="up" distance={30} className="md:col-span-6 space-y-6">
                   <div>
                     <h4 className="text-lg font-semibold text-[#12223B] mb-2">
                       Project Challenges:
@@ -238,10 +252,10 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                       {currentProject.solutions}
                     </p>
                   </div>
-                </div>
+                </FadeInUp>
 
                 {/* Right Image with image-anime shine sweep hover effect */}
-                <div className="md:col-span-6">
+                <FadeInUp delay={0.25} direction="up" distance={30} className="md:col-span-6">
                   <div className="image-anime relative w-full aspect-[4/3] rounded-[6px] overflow-hidden bg-gray-200">
                     <Image
                       src={currentProject.challengesImage || "/images/expertise-item-image-1.jpg"}
@@ -250,48 +264,52 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
                       className="object-cover rounded-[6px] transition-transform duration-700 hover:scale-105"
                     />
                   </div>
-                </div>
+                </FadeInUp>
               </div>
             </div>
 
             {/* Construction process */}
             <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#12223B] tracking-tight mb-3">
+              <TextAnime
+                as="h2"
+                className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#12223B] tracking-tight mb-3"
+              >
                 Construction process
-              </h2>
-              <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6] mb-8">
-                From initial consultation to final handover, our structured process ensures timely execution, seamless coordination, and exemplary build quality from concept to reality.
-              </p>
+              </TextAnime>
+              <FadeInUp delay={0.1} direction="up" distance={20}>
+                <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6] mb-8">
+                  From initial consultation to final handover, our structured process ensures timely execution, seamless coordination, and exemplary build quality from concept to reality.
+                </p>
+              </FadeInUp>
 
               {/* 3 Process Cards Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {constructionProcessCards.map((item) => {
+                {constructionProcessCards.map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <div
-                      key={item.id}
-                      className="bg-white rounded-[6px] p-6 sm:p-7 flex flex-col justify-between hover:shadow-md transition-all duration-300 group"
-                    >
-                      {/* Top Row: Icon + Number */}
-                      <div className="flex items-center justify-between mb-6">
-                        <div className="w-10 h-10 rounded-[4px] bg-[#FFDB5A]/20 flex items-center justify-center text-[#12223B] group-hover:bg-[#FFDB5A] transition-colors">
-                          <Icon className="w-5 h-5" />
+                    <FadeInUp key={item.id} delay={index * 0.12} direction="up" distance={30} className="h-full">
+                      <div className="bg-white rounded-[6px] p-6 sm:p-7 flex flex-col justify-between hover:shadow-md transition-all duration-300 group h-full">
+                        {/* Top Row: Icon + Number */}
+                        <div className="flex items-center justify-between mb-6">
+                          <div className="w-10 h-10 rounded-[4px] bg-[#FFDB5A]/20 flex items-center justify-center text-[#12223B] group-hover:bg-[#FFDB5A] transition-colors">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <span className="text-sm font-semibold text-[#526071]/60">
+                            {item.number}
+                          </span>
                         </div>
-                        <span className="text-sm font-semibold text-[#526071]/60">
-                          {item.number}
-                        </span>
-                      </div>
 
-                      {/* Content */}
-                      <div>
-                        <h4 className="text-lg font-semibold text-[#12223B] mb-2 group-hover:text-[#12223B] transition-colors">
-                          {item.title}
-                        </h4>
-                        <p className="text-xs sm:text-sm text-[#526071] leading-relaxed">
-                          {item.description}
-                        </p>
+                        {/* Content */}
+                        <div>
+                          <h4 className="text-lg font-semibold text-[#12223B] mb-2 group-hover:text-[#12223B] transition-colors">
+                            {item.title}
+                          </h4>
+                          <p className="text-xs sm:text-sm text-[#526071] leading-relaxed">
+                            {item.description}
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    </FadeInUp>
                   );
                 })}
               </div>
@@ -299,101 +317,112 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 
             {/* Contact our construction team */}
             <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#12223B] tracking-tight mb-3">
+              <TextAnime
+                as="h2"
+                className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#12223B] tracking-tight mb-3"
+              >
                 Contact our construction team
-              </h2>
-              <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6] mb-8">
-                Begin with us to bring your dreams to reality. Our team is ready to assist you in every step of construction and architectural development.
-              </p>
+              </TextAnime>
+              <FadeInUp delay={0.1} direction="up" distance={20}>
+                <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6] mb-8">
+                  Begin with us to bring your dreams to reality. Our team is ready to assist you in every step of construction and architectural development.
+                </p>
+              </FadeInUp>
 
               {/* Two CTA boxes */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
                 {/* Left Card: Team Avatars */}
-                <div className="bg-white rounded-[6px] p-6 sm:p-8 flex flex-col justify-between shadow-sm">
-                  {/* Avatar Stack */}
-                  <div className="flex items-center -space-x-3 mb-4">
-                    {["author-1.jpg", "author-2.jpg", "author-3.jpg", "author-4.jpg"].map(
-                      (img, idx) => (
-                        <div
-                          key={idx}
-                          className="relative w-11 h-11 rounded-full border-2 border-white overflow-hidden shadow-sm"
-                        >
-                          <Image
-                            src={`/images/${img}`}
-                            alt="Team member"
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      )
-                    )}
+                <FadeInUp delay={0.15} direction="up" distance={30} className="h-full">
+                  <div className="bg-white rounded-[6px] p-6 sm:p-8 flex flex-col justify-between shadow-sm h-full">
+                    {/* Avatar Stack */}
+                    <div className="flex items-center -space-x-3 mb-4">
+                      {["author-1.jpg", "author-2.jpg", "author-3.jpg", "author-4.jpg"].map(
+                        (img, idx) => (
+                          <div
+                            key={idx}
+                            className="relative w-11 h-11 rounded-full border-2 border-white overflow-hidden shadow-sm"
+                          >
+                            <Image
+                              src={`/images/${img}`}
+                              alt="Team member"
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        )
+                      )}
+                    </div>
+                    <h4 className="text-lg sm:text-[19px] font-semibold text-[#12223B] leading-snug">
+                      Professionals committed to building better spaces
+                    </h4>
                   </div>
-                  <h4 className="text-lg sm:text-[19px] font-semibold text-[#12223B] leading-snug">
-                    Professionals committed to building better spaces
-                  </h4>
-                </div>
+                </FadeInUp>
 
                 {/* Right Card: Dark Background CTA */}
-                <div className="relative rounded-[6px] overflow-hidden p-6 sm:p-8 text-white flex flex-col justify-between group shadow-sm min-h-[160px]">
-                  <Image
-                    src="/images/service-image-3.jpg"
-                    alt="CTA background"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-[#12223B]/85 pointer-events-none" />
+                <FadeInUp delay={0.25} direction="up" distance={30} className="h-full">
+                  <div className="relative rounded-[6px] overflow-hidden p-6 sm:p-8 text-white flex flex-col justify-between group shadow-sm min-h-[160px] h-full">
+                    <Image
+                      src="/images/service-image-3.jpg"
+                      alt="CTA background"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-[#12223B]/85 pointer-events-none" />
 
-                  <div className="relative z-10 space-y-4">
-                    <p className="text-sm sm:text-[15px] font-semibold text-white/90 leading-snug">
-                      We have been dedicated to quality craftsmanship since 1996.
-                    </p>
-                    <Link
-                      href="/#contact"
-                      className="inline-flex items-center gap-3 text-sm font-semibold text-white hover:text-[#FFDB5A] transition-colors group/btn"
-                    >
-                      <span>Request A Consultation</span>
-                      <span className="w-7 h-7 rounded-full bg-[#FFDB5A] text-[#12223B] flex items-center justify-center transition-transform group-hover/btn:translate-x-1">
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </span>
-                    </Link>
+                    <div className="relative z-10 space-y-4">
+                      <p className="text-sm sm:text-[15px] font-semibold text-white/90 leading-snug">
+                        We have been dedicated to quality craftsmanship since 1996.
+                      </p>
+                      <Link
+                        href="/#contact"
+                        className="inline-flex items-center gap-3 text-sm font-semibold text-white hover:text-[#FFDB5A] transition-colors group/btn"
+                      >
+                        <span>Request A Consultation</span>
+                        <span className="w-7 h-7 rounded-full bg-[#FFDB5A] text-[#12223B] flex items-center justify-center transition-transform group-hover/btn:translate-x-1">
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </span>
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                </FadeInUp>
               </div>
             </div>
 
             {/* Frequently asked questions */}
             <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#12223B] tracking-tight mb-6">
+              <TextAnime
+                as="h2"
+                className="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#12223B] tracking-tight mb-6"
+              >
                 Frequently asked questions
-              </h2>
+              </TextAnime>
 
               <div className="space-y-4">
-                {faqItems.map((item) => {
+                {faqItems.map((item, index) => {
                   const isOpen = activeFaq === item.id;
                   return (
-                    <div
-                      key={item.id}
-                      className="rounded-[6px] bg-white overflow-hidden shadow-sm transition-colors"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => toggleFaq(item.id)}
-                        className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-semibold text-[17px] text-[#12223B] hover:text-[#FFDB5A] transition-colors focus:outline-none cursor-pointer"
-                      >
-                        <span>{item.question}</span>
-                        <ChevronDown
-                          className={`w-5 h-5 text-[#12223B] flex-shrink-0 transition-transform duration-300 ${
-                            isOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
+                    <FadeInUp key={item.id} delay={index * 0.08} direction="up" distance={20}>
+                      <div className="rounded-[6px] bg-white overflow-hidden shadow-sm transition-colors">
+                        <button
+                          type="button"
+                          onClick={() => toggleFaq(item.id)}
+                          className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-semibold text-[17px] text-[#12223B] hover:text-[#FFDB5A] transition-colors focus:outline-none cursor-pointer"
+                        >
+                          <span>{item.question}</span>
+                          <ChevronDown
+                            className={`w-5 h-5 text-[#12223B] flex-shrink-0 transition-transform duration-300 ${
+                              isOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
 
-                      {isOpen && (
-                        <div className="px-5 sm:px-6 pb-6 pt-0 text-[#28374D] text-[15px] leading-relaxed border-t border-[#12223B]/5 pt-4">
-                          <p>{item.answer}</p>
-                        </div>
-                      )}
-                    </div>
+                        {isOpen && (
+                          <div className="px-5 sm:px-6 pb-6 pt-0 text-[#28374D] text-[15px] leading-relaxed border-t border-[#12223B]/5 pt-4">
+                            <p>{item.answer}</p>
+                          </div>
+                        )}
+                      </div>
+                    </FadeInUp>
                   );
                 })}
               </div>

@@ -11,6 +11,7 @@ import { Autoplay, EffectFade } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
+import { FadeInUp, TextAnime } from "@/components/animations";
 
 const heroSlides = [
   {
@@ -108,50 +109,60 @@ export default function Hero() {
           <div className="lg:col-span-9 xl:col-span-8 space-y-7">
             <div>
               {/* Badge */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white text-sm font-medium mb-6 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#FFDB5A] animate-pulse" />
-                Built With Trust
-              </div>
+              <FadeInUp delay={0.1} direction="down">
+                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white text-sm font-medium mb-6 shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-[#FFDB5A] animate-pulse" />
+                  Built With Trust
+                </div>
+              </FadeInUp>
 
               {/* Title */}
-              <h1 className="text-4xl sm:text-6xl xl:text-[76px] font-semibold text-white tracking-[-0.03em] leading-[1.08] mb-6 drop-shadow-sm">
+              <TextAnime
+                as="h1"
+                className="text-4xl sm:text-6xl xl:text-[76px] font-semibold text-white tracking-[-0.03em] leading-[1.08] mb-6 drop-shadow-sm"
+                delay={0.25}
+              >
                 Building excellence <br />
                 since day one
-              </h1>
+              </TextAnime>
 
               {/* Description */}
-              <p className="text-gray-200 text-base sm:text-lg font-normal leading-relaxed max-w-xl">
-                Our experienced team transforms ideas into exceptional
-                residential and commercial developments using premium materials,
-                innovative engineering.
-              </p>
+              <FadeInUp delay={0.45} duration={0.8}>
+                <p className="text-gray-200 text-base sm:text-lg font-normal leading-relaxed max-w-xl">
+                  Our experienced team transforms ideas into exceptional
+                  residential and commercial developments using premium materials,
+                  innovative engineering.
+                </p>
+              </FadeInUp>
             </div>
 
             {/* Buttons Row */}
-            <div className="flex flex-wrap items-center gap-6 pt-2">
-              {/* Get Started Button */}
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-[#FFDB5A] hover:bg-white text-[#12223B] font-semibold text-base px-7 py-4 rounded-lg transition-all duration-300 shadow-md group"
-              >
-                <span>Get Started</span>
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
+            <FadeInUp delay={0.6} duration={0.8}>
+              <div className="flex flex-wrap items-center gap-6 pt-2">
+                {/* Get Started Button */}
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 bg-[#FFDB5A] hover:bg-white text-[#12223B] font-semibold text-base px-7 py-4 rounded-lg transition-all duration-300 shadow-md group"
+                >
+                  <span>Get Started</span>
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
 
-              {/* Video Play Button */}
-              <button
-                type="button"
-                onClick={() => setIsVideoOpen(true)}
-                className="group flex items-center gap-3.5 text-white hover:text-[#FFDB5A] transition-colors focus:outline-none cursor-pointer"
-              >
-                <span className="w-12 h-12 rounded-full bg-[#FFDB5A] text-[#12223B] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <Play className="w-5 h-5 fill-current ml-0.5" />
-                </span>
-                <span className="text-base font-semibold tracking-wide">
-                  Explore Video
-                </span>
-              </button>
-            </div>
+                {/* Video Play Button */}
+                <button
+                  type="button"
+                  onClick={() => setIsVideoOpen(true)}
+                  className="group flex items-center gap-3.5 text-white hover:text-[#FFDB5A] transition-colors focus:outline-none cursor-pointer"
+                >
+                  <span className="w-12 h-12 rounded-full bg-[#FFDB5A] text-[#12223B] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <Play className="w-5 h-5 fill-current ml-0.5" />
+                  </span>
+                  <span className="text-base font-semibold tracking-wide">
+                    Explore Video
+                  </span>
+                </button>
+              </div>
+            </FadeInUp>
           </div>
         </div>
       </div>
@@ -160,55 +171,57 @@ export default function Hero() {
       <div className="container w-full mx-auto px-4 sm:px-6 relative z-10 pt-10 pb-4">
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
           {/* Satisfied Clients Box */}
-          <div className="flex items-center gap-4 bg-[#12223B]/70 backdrop-blur-md px-5 py-3.5 rounded-2xl border border-white/15 shadow-xl">
-            <div className="flex items-center -space-x-2.5">
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#12223B] shadow relative">
-                <Image
-                  src="/images/author-1.jpg"
-                  alt="Client 1"
-                  fill
-                  className="object-cover"
-                />
+          <FadeInUp delay={0.7} direction="up">
+            <div className="flex items-center gap-4 bg-[#12223B]/70 backdrop-blur-md px-5 py-3.5 rounded-2xl border border-white/15 shadow-xl">
+              <div className="flex items-center -space-x-2.5">
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#12223B] shadow relative">
+                  <Image
+                    src="/images/author-1.jpg"
+                    alt="Client 1"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#12223B] shadow relative">
+                  <Image
+                    src="/images/author-2.jpg"
+                    alt="Client 2"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#12223B] shadow relative">
+                  <Image
+                    src="/images/author-3.jpg"
+                    alt="Client 3"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#12223B] shadow relative">
+                  <Image
+                    src="/images/author-4.jpg"
+                    alt="Client 4"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="w-10 h-10 rounded-full bg-[#FFDB5A] text-[#12223B] border-2 border-[#12223B] flex items-center justify-center font-bold text-xs shadow">
+                  <Plus className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
               </div>
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#12223B] shadow relative">
-                <Image
-                  src="/images/author-2.jpg"
-                  alt="Client 2"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#12223B] shadow relative">
-                <Image
-                  src="/images/author-3.jpg"
-                  alt="Client 3"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#12223B] shadow relative">
-                <Image
-                  src="/images/author-4.jpg"
-                  alt="Client 4"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="w-10 h-10 rounded-full bg-[#FFDB5A] text-[#12223B] border-2 border-[#12223B] flex items-center justify-center font-bold text-xs shadow">
-                <Plus className="w-3.5 h-3.5 stroke-[3]" />
-              </div>
-            </div>
 
-            <div>
-              <p className="text-white font-medium text-sm sm:text-base">
-                <span className="font-semibold">{count15}+</span> Years of
-                Trusted Construction Excellence
-              </p>
+              <div>
+                <p className="text-white font-medium text-sm sm:text-base">
+                  <span className="font-semibold">{count15}+</span> Years of
+                  Trusted Construction Excellence
+                </p>
+              </div>
             </div>
-          </div>
+          </FadeInUp>
 
           {/* Bottom-Right Corner: Quality Construction Rotating Circle Badge */}
-          <div className="hidden md:flex items-center justify-center self-start md:self-end">
+          <FadeInUp delay={0.8} direction="zoom" className="hidden md:flex items-center justify-center self-start md:self-end">
             <div className="relative w-24 h-24 lg:w-28 lg:h-28 animate-spin-slow">
               <Image
                 src="/images/quality-construction-circle.svg"
@@ -217,7 +230,7 @@ export default function Hero() {
                 className="object-contain"
               />
             </div>
-          </div>
+          </FadeInUp>
         </div>
       </div>
 

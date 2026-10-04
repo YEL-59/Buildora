@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import { useCountUp } from "@/hooks/useCountUp";
+import { FadeInUp, TextAnime } from "@/components/animations";
 
 interface TestimonialItem {
   id: number;
@@ -94,20 +95,28 @@ export default function Testimonials() {
       <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="section-sub-title mb-4">Testimonials</div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-[#12223B] tracking-[-0.03em] leading-[1.12] mb-4">
+          <FadeInUp delay={0.1} direction="down">
+            <div className="section-sub-title mb-4">Testimonials</div>
+          </FadeInUp>
+          <TextAnime
+            as="h2"
+            className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-[#12223B] tracking-[-0.03em] leading-[1.12] mb-4"
+            delay={0.2}
+          >
             What our clients say about us
-          </h2>
-          <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6]">
-            Real experiences from clients who trusted us to deliver quality
-            construction with precision, reliability, and professionalism.
-          </p>
+          </TextAnime>
+          <FadeInUp delay={0.35}>
+            <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6]">
+              Real experiences from clients who trusted us to deliver quality
+              construction with precision, reliability, and professionalism.
+            </p>
+          </FadeInUp>
         </div>
 
         {/* Main Content: Left CTA Card + Right Swiper Slider */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Left Flat White CTA Card */}
-          <div className="lg:col-span-4 bg-white rounded-[8px] p-7 sm:p-8 flex flex-col justify-between shadow-none border-0 min-h-[500px]">
+          <FadeInUp direction="left" delay={0.2} duration={0.8} className="lg:col-span-4 bg-white rounded-[8px] p-7 sm:p-8 flex flex-col justify-between shadow-none border-0 min-h-[500px]">
             <div>
               {/* Overlapping Avatar Stack */}
               <div className="flex items-center -space-x-2.5 mb-7">
@@ -202,10 +211,10 @@ export default function Testimonials() {
                 Get A Free Quote
               </Link>
             </div>
-          </div>
+          </FadeInUp>
 
           {/* Right Swiper Carousel Slider */}
-          <div className="lg:col-span-8 relative flex flex-col justify-between overflow-hidden">
+          <FadeInUp direction="right" delay={0.3} duration={0.8} className="lg:col-span-8 relative flex flex-col justify-between overflow-hidden">
             <div className="relative w-full h-full min-h-[500px] overflow-hidden rounded-[8px]">
               <Swiper
                 modules={[Autoplay, Navigation]}
@@ -288,11 +297,11 @@ export default function Testimonials() {
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
-          </div>
+          </FadeInUp>
         </div>
 
         {/* Section Footer Banner (Centered Review Badge) */}
-        <div className="mt-16 text-center space-y-2">
+        <FadeInUp delay={0.4} className="mt-16 text-center space-y-2">
           {/* Top Row: Avatar + Phone icon + Text + Link */}
           <div className="inline-flex flex-wrap items-center justify-center gap-2.5 text-[#28374D] text-[15px]">
             <div className="flex items-center -space-x-1.5">
@@ -339,7 +348,7 @@ export default function Testimonials() {
               Over {countFooterReviews.toLocaleString()} Reviews
             </span>
           </div>
-        </div>
+        </FadeInUp>
       </div>
     </section>
   );

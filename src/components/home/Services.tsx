@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FadeInUp, TextAnime } from "@/components/animations";
 
 interface ServiceItem {
   id: number;
@@ -60,35 +61,45 @@ export default function Services() {
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-14">
           <div className="lg:col-span-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 text-white text-sm font-medium mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#FFDB5A]" />
-              Our Services
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-white tracking-[-0.03em] leading-[1.12]">
+            <FadeInUp delay={0.1} direction="down">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 text-white text-sm font-medium mb-4">
+                <span className="w-2 h-2 rounded-full bg-[#FFDB5A]" />
+                Our Services
+              </div>
+            </FadeInUp>
+            <TextAnime
+              as="h2"
+              className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-white tracking-[-0.03em] leading-[1.12]"
+              delay={0.2}
+            >
               Construction solutions built <br className="hidden sm:inline" />
               around your vision
-            </h2>
+            </TextAnime>
           </div>
 
           <div className="lg:col-span-6 space-y-4 lg:pl-10">
-            <p className="text-gray-300 text-[15px] leading-relaxed">
-              Our team of skilled professionals brings experience, precision,
-              and dedication to every project we undertake, ensuring quality
-              results and client satisfaction.
-            </p>
-            <div>
-              <Link href="/services" className="readmore-btn text-white">
-                Explore Services
-              </Link>
-            </div>
+            <FadeInUp delay={0.35}>
+              <p className="text-gray-300 text-[15px] leading-relaxed mb-4">
+                Our team of skilled professionals brings experience, precision,
+                and dedication to every project we undertake, ensuring quality
+                results and client satisfaction.
+              </p>
+              <div>
+                <Link href="/services" className="readmore-btn text-white">
+                  Explore Services
+                </Link>
+              </div>
+            </FadeInUp>
           </div>
         </div>
 
         {/* 4 Services Grid Overlapping the Split Background */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {servicesData.map((service) => (
-            <div
+          {servicesData.map((service, index) => (
+            <FadeInUp
               key={service.id}
+              delay={index * 0.12}
+              duration={0.7}
               className="group flex flex-col border-b border-[#12223B]/10 pb-7"
             >
               {/* Service Image (Square 1:1, Rounded, Hover Zoom & Shine Sweep) */}
@@ -110,12 +121,12 @@ export default function Services() {
                   {service.description}
                 </p>
               </div>
-            </div>
+            </FadeInUp>
           ))}
         </div>
 
         {/* Section Footer Banner */}
-        <div className="mt-8 text-center">
+        <FadeInUp delay={0.3} className="mt-8 text-center">
           <p className="text-[#28374D] text-sm sm:text-base font-normal">
             <span className="inline-block bg-[#FFDB5A] text-[#12223B] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mr-2">
               Free
@@ -128,7 +139,7 @@ export default function Services() {
               Request A Quote.
             </Link>
           </p>
-        </div>
+        </FadeInUp>
       </div>
     </section>
   );

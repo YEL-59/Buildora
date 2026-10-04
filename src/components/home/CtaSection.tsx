@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
+import { FadeInUp, TextAnime } from "@/components/animations";
 
 export default function CtaSection() {
   const [formData, setFormData] = useState({
@@ -38,13 +39,19 @@ export default function CtaSection() {
           {/* Left Form Area */}
           <div className="w-full lg:w-[68%] xl:w-[70%] pb-0 lg:pb-12">
             <div className="mb-6 lg:mb-8">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-xs sm:text-sm font-medium text-[#12223B] mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FFDB5A]"></span>
-                Get a Free Estimate
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-[#12223B] tracking-[-0.03em] leading-[1.15]">
+              <FadeInUp delay={0.1} direction="down">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-xs sm:text-sm font-medium text-[#12223B] mb-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FFDB5A]"></span>
+                  Get a Free Estimate
+                </div>
+              </FadeInUp>
+              <TextAnime
+                as="h2"
+                className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-[#12223B] tracking-[-0.03em] leading-[1.15]"
+                delay={0.2}
+              >
                 Request your construction quote today
-              </h2>
+              </TextAnime>
             </div>
 
             {submitted ? (
@@ -58,97 +65,101 @@ export default function CtaSection() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Row 1: 3 Inputs */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div>
-                    <input
-                      type="text"
-                      name="fname"
-                      required
-                      value={formData.fname}
-                      onChange={handleChange}
-                      placeholder="First Name"
-                      className="w-full h-[54px] px-5 rounded-[4px] bg-white border-0 text-[#12223B] placeholder-[#8C95A6] text-[15px] focus:outline-none focus:ring-1 focus:ring-[#12223B]/20 transition-all"
-                    />
+              <FadeInUp delay={0.35}>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Row 1: 3 Inputs */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                      <input
+                        type="text"
+                        name="fname"
+                        required
+                        value={formData.fname}
+                        onChange={handleChange}
+                        placeholder="First Name"
+                        className="w-full h-[54px] px-5 rounded-[4px] bg-white border-0 text-[#12223B] placeholder-[#8C95A6] text-[15px] focus:outline-none focus:ring-1 focus:ring-[#12223B]/20 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        type="text"
+                        name="lname"
+                        required
+                        value={formData.lname}
+                        onChange={handleChange}
+                        placeholder="Last Name"
+                        className="w-full h-[54px] px-5 rounded-[4px] bg-white border-0 text-[#12223B] placeholder-[#8C95A6] text-[15px] focus:outline-none focus:ring-1 focus:ring-[#12223B]/20 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="E-mail Address"
+                        className="w-full h-[54px] px-5 rounded-[4px] bg-white border-0 text-[#12223B] placeholder-[#8C95A6] text-[15px] focus:outline-none focus:ring-1 focus:ring-[#12223B]/20 transition-all"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <input
-                      type="text"
-                      name="lname"
-                      required
-                      value={formData.lname}
-                      onChange={handleChange}
-                      placeholder="Last Name"
-                      className="w-full h-[54px] px-5 rounded-[4px] bg-white border-0 text-[#12223B] placeholder-[#8C95A6] text-[15px] focus:outline-none focus:ring-1 focus:ring-[#12223B]/20 transition-all"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="E-mail Address"
-                      className="w-full h-[54px] px-5 rounded-[4px] bg-white border-0 text-[#12223B] placeholder-[#8C95A6] text-[15px] focus:outline-none focus:ring-1 focus:ring-[#12223B]/20 transition-all"
-                    />
-                  </div>
-                </div>
 
-                {/* Row 2: 2 Inputs + Submit Button */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="Phone No."
-                      className="w-full h-[54px] px-5 rounded-[4px] bg-white border-0 text-[#12223B] placeholder-[#8C95A6] text-[15px] focus:outline-none focus:ring-1 focus:ring-[#12223B]/20 transition-all"
-                    />
+                  {/* Row 2: 2 Inputs + Submit Button */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                      <input
+                        type="tel"
+                        name="phone"
+                        required
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="Phone No."
+                        className="w-full h-[54px] px-5 rounded-[4px] bg-white border-0 text-[#12223B] placeholder-[#8C95A6] text-[15px] focus:outline-none focus:ring-1 focus:ring-[#12223B]/20 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        type="text"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder="Write Message Here......."
+                        className="w-full h-[54px] px-5 rounded-[4px] bg-white border-0 text-[#12223B] placeholder-[#8C95A6] text-[15px] focus:outline-none focus:ring-1 focus:ring-[#12223B]/20 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <button
+                        type="submit"
+                        className="w-full h-[54px] rounded-[4px] bg-[#FFDB5A] hover:bg-[#12223B] text-[#12223B] hover:text-white font-semibold text-[15px] transition-colors duration-300 flex items-center justify-center cursor-pointer"
+                      >
+                        Submit Request
+                      </button>
+                    </div>
                   </div>
-                  <div>
-                    <input
-                      type="text"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Write Message Here......."
-                      className="w-full h-[54px] px-5 rounded-[4px] bg-white border-0 text-[#12223B] placeholder-[#8C95A6] text-[15px] focus:outline-none focus:ring-1 focus:ring-[#12223B]/20 transition-all"
-                    />
-                  </div>
-                  <div>
-                    <button
-                      type="submit"
-                      className="w-full h-[54px] rounded-[4px] bg-[#FFDB5A] hover:bg-[#12223B] text-[#12223B] hover:text-white font-semibold text-[15px] transition-colors duration-300 flex items-center justify-center cursor-pointer"
-                    >
-                      Submit Request
-                    </button>
-                  </div>
-                </div>
-              </form>
+                </form>
+              </FadeInUp>
             )}
           </div>
 
           {/* Right Standing Engineer Image */}
           <div className="w-full lg:w-[32%] xl:w-[30%] flex items-end justify-center lg:justify-end -mb-1">
-            <div className="relative w-full max-w-[340px] lg:max-w-none">
-              <Image
-                src="/images/cta-box-header-image.png"
-                alt="Construction Engineer"
-                width={380}
-                height={480}
-                priority
-                className="w-full h-auto object-contain object-bottom block"
-              />
-            </div>
+            <FadeInUp direction="up" delay={0.25} duration={0.9} distance={40} className="w-full max-w-[340px] lg:max-w-none">
+              <div className="relative w-full">
+                <Image
+                  src="/images/cta-box-header-image.png"
+                  alt="Construction Engineer"
+                  width={380}
+                  height={480}
+                  priority
+                  className="w-full h-auto object-contain object-bottom block"
+                />
+              </div>
+            </FadeInUp>
           </div>
         </div>
 
         {/* Bottom Feature Card Bar (No shadows, no borders) */}
-        <div className="rounded-[6px] overflow-hidden flex flex-col lg:flex-row items-stretch">
+        <FadeInUp delay={0.3} className="rounded-[6px] overflow-hidden flex flex-col lg:flex-row items-stretch">
           {/* Left Yellow Block */}
           <div className="w-full lg:w-[28%] xl:w-[26%] bg-[#FFDB5A] p-8 sm:p-10 flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/10 text-xs sm:text-[13px] font-medium text-[#12223B] mb-4 w-fit">
@@ -224,7 +235,7 @@ export default function CtaSection() {
               </div>
             </div>
           </div>
-        </div>
+        </FadeInUp>
       </div>
     </section>
   );

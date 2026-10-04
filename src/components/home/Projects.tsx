@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star, ArrowUpRight } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
+import { FadeInUp, TextAnime } from "@/components/animations";
 
 interface ProjectItem {
   id: number;
@@ -79,106 +80,120 @@ export default function Projects() {
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16">
           <div className="lg:col-span-6">
-            <div className="section-sub-title text-white">Our Projects</div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-white tracking-[-0.03em] leading-[1.12]">
+            <FadeInUp delay={0.1} direction="down">
+              <div className="section-sub-title text-white">Our Projects</div>
+            </FadeInUp>
+            <TextAnime
+              as="h2"
+              className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-white tracking-[-0.03em] leading-[1.12]"
+              delay={0.2}
+            >
               Creating landmark projects with superior quality
-            </h2>
+            </TextAnime>
           </div>
 
           <div className="lg:col-span-6 space-y-4">
-            <p className="text-gray-300 text-base leading-relaxed">
-              Our team of skilled professionals brings experience, precision,
-              and dedication to every project we undertake, ensuring quality
-              results and client satisfaction.
-            </p>
-            <div>
-              <Link href="/projects" className="readmore-btn text-white">
-                View All Projects
-              </Link>
-            </div>
+            <FadeInUp delay={0.35}>
+              <p className="text-gray-300 text-base leading-relaxed mb-4">
+                Our team of skilled professionals brings experience, precision,
+                and dedication to every project we undertake, ensuring quality
+                results and client satisfaction.
+              </p>
+              <div>
+                <Link href="/projects" className="readmore-btn text-white">
+                  View All Projects
+                </Link>
+              </div>
+            </FadeInUp>
           </div>
         </div>
 
         {/* 4 Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {projectsData.map((project) => (
-            <div
+          {projectsData.map((project, index) => (
+            <FadeInUp
               key={project.id}
-              className="group bg-[#1c3254]/60 rounded-2xl overflow-hidden border border-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg flex flex-col h-full"
+              delay={index * 0.12}
+              duration={0.7}
+              className="h-full"
             >
-              {/* Project Image */}
-              <div className="image-anime relative h-72 w-full overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#FFDB5A] text-[#12223B] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md">
-                  <ArrowUpRight className="w-5 h-5" />
+              <div className="group bg-[#1c3254]/60 rounded-2xl overflow-hidden border border-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg flex flex-col h-full">
+                {/* Project Image */}
+                <div className="image-anime relative h-72 w-full overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#FFDB5A] text-[#12223B] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md">
+                    <ArrowUpRight className="w-5 h-5" />
+                  </div>
+                </div>
+
+                {/* Project Content */}
+                <div className="p-6 flex-1 flex flex-col justify-end">
+                  <p className="text-xs uppercase tracking-widest text-[#FFDB5A] font-semibold mb-1">
+                    {project.category}
+                  </p>
+                  <h3 className="text-xl font-semibold text-white group-hover:text-[#FFDB5A] transition-colors">
+                    <Link href={project.link}>{project.title}</Link>
+                  </h3>
                 </div>
               </div>
-
-              {/* Project Content */}
-              <div className="p-6 flex-1 flex flex-col justify-end">
-                <p className="text-xs uppercase tracking-widest text-[#FFDB5A] font-semibold mb-1">
-                  {project.category}
-                </p>
-                <h3 className="text-xl font-semibold text-white group-hover:text-[#FFDB5A] transition-colors">
-                  <Link href={project.link}>{project.title}</Link>
-                </h3>
-              </div>
-            </div>
+            </FadeInUp>
           ))}
         </div>
 
         {/* Section Footer Banner with Review Stars */}
-        <div className="mt-14 p-6 bg-white/5 rounded-2xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center -space-x-2">
-              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#12223B] relative">
-                <Image
-                  src="/images/author-1.jpg"
-                  alt="Author"
-                  fill
-                  className="object-cover"
-                />
+        <FadeInUp delay={0.3}>
+          <div className="mt-14 p-6 bg-white/5 rounded-2xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center -space-x-2">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#12223B] relative">
+                  <Image
+                    src="/images/author-1.jpg"
+                    alt="Author"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="w-12 h-12 rounded-full bg-[#FFDB5A] flex items-center justify-center p-2.5 border-2 border-[#12223B]">
+                  <Image
+                    src="/images/icon-phone-primary.svg"
+                    alt="Phone"
+                    width={20}
+                    height={20}
+                    className="object-contain"
+                  />
+                </div>
               </div>
-              <div className="w-12 h-12 rounded-full bg-[#FFDB5A] flex items-center justify-center p-2.5 border-2 border-[#12223B]">
-                <Image
-                  src="/images/icon-phone-primary.svg"
-                  alt="Phone"
-                  width={20}
-                  height={20}
-                  className="object-contain"
-                />
-              </div>
+              <p className="text-white text-sm sm:text-base">
+                Let&apos;s connect and start building your project today.{" "}
+                <Link
+                  href="#contact"
+                  className="text-[#FFDB5A] font-bold underline underline-offset-4 hover:text-white transition-colors"
+                >
+                  Get Free Quote
+                </Link>
+              </p>
             </div>
-            <p className="text-white text-sm sm:text-base">
-              Let&apos;s connect and start building your project today.{" "}
-              <Link
-                href="#contact"
-                className="text-[#FFDB5A] font-bold underline underline-offset-4 hover:text-white transition-colors"
-              >
-                Get Free Quote
-              </Link>
-            </p>
-          </div>
 
-          <div className="flex items-center gap-3 bg-white/10 px-4 py-2 rounded-xl border border-white/10">
-            <span className="text-xl font-extrabold text-[#FFDB5A] min-w-[32px]">
-              {countRating.toFixed(1)}
-            </span>
-            <div className="flex items-center text-[#FFDB5A]">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-current text-[#FFDB5A]" />
-              ))}
+            <div className="flex items-center gap-3 bg-white/10 px-4 py-2 rounded-xl border border-white/10">
+              <span className="text-xl font-extrabold text-[#FFDB5A] min-w-[32px]">
+                {countRating.toFixed(1)}
+              </span>
+              <div className="flex items-center text-[#FFDB5A]">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-current text-[#FFDB5A]" />
+                ))}
+              </div>
+              <span className="text-xs text-gray-300 font-medium border-l border-white/20 pl-3">
+                Over {countReviews.toLocaleString()}+ Reviews
+              </span>
             </div>
-            <span className="text-xs text-gray-300 font-medium border-l border-white/20 pl-3">
-              Over {countReviews.toLocaleString()}+ Reviews
-            </span>
           </div>
-        </div>
+        </FadeInUp>
       </div>
     </section>
   );

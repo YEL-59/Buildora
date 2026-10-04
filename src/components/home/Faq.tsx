@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
+import { FadeInUp, TextAnime } from "@/components/animations";
 
 interface FaqItem {
   id: number;
@@ -81,78 +82,90 @@ export default function Faq() {
           <div className="lg:col-span-6 flex flex-col justify-between">
             <div>
               {/* Badge */}
-              <div className="section-sub-title mb-4">
-                Frequently Asked Questions
-              </div>
+              <FadeInUp delay={0.1} direction="down">
+                <div className="section-sub-title mb-4">
+                  Frequently Asked Questions
+                </div>
+              </FadeInUp>
 
               {/* Title */}
-              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-[#12223B] tracking-[-0.03em] leading-[1.12] mb-4">
+              <TextAnime
+                as="h2"
+                className="text-3xl sm:text-4xl lg:text-[46px] font-semibold text-[#12223B] tracking-[-0.03em] leading-[1.12] mb-4"
+                delay={0.2}
+              >
                 Everything you need to <br className="hidden sm:inline" />
                 know about us
-              </h2>
+              </TextAnime>
 
               {/* Description */}
-              <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6] max-w-lg">
-                Find answers to the most common questions about our construction
-                services, project timelines, pricing, and process to help you
-                build with confidence.
-              </p>
+              <FadeInUp delay={0.35}>
+                <p className="text-[#28374D] text-[15px] sm:text-[16px] leading-[1.6] max-w-lg">
+                  Find answers to the most common questions about our construction
+                  services, project timelines, pricing, and process to help you
+                  build with confidence.
+                </p>
+              </FadeInUp>
             </div>
 
             {/* Left Footer: Button & Satisfied Clients Box */}
-            <div className="pt-8 mt-12 sm:mt-16 border-t border-[#12223B]/10 flex flex-wrap items-center gap-6 sm:gap-8">
-              {/* Button */}
-              <Link href="#contact" className="btn-builtex">
-                View All Faqs
-              </Link>
+            <FadeInUp delay={0.5}>
+              <div className="pt-8 mt-12 sm:mt-16 border-t border-[#12223B]/10 flex flex-wrap items-center gap-6 sm:gap-8">
+                {/* Button */}
+                <Link href="#contact" className="btn-builtex">
+                  View All Faqs
+                </Link>
 
-              {/* Satisfied Clients Box */}
-              <div className="flex items-center gap-3.5">
-                <div className="flex items-center -space-x-2.5">
-                  <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white relative shadow-none">
-                    <Image
-                      src="/images/author-1.jpg"
-                      alt="Client 1"
-                      fill
-                      className="object-cover"
-                    />
+                {/* Satisfied Clients Box */}
+                <div className="flex items-center gap-3.5">
+                  <div className="flex items-center -space-x-2.5">
+                    <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white relative shadow-none">
+                      <Image
+                        src="/images/author-1.jpg"
+                        alt="Client 1"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white relative shadow-none">
+                      <Image
+                        src="/images/author-2.jpg"
+                        alt="Client 2"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white relative shadow-none">
+                      <Image
+                        src="/images/author-3.jpg"
+                        alt="Client 3"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
-                  <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white relative shadow-none">
-                    <Image
-                      src="/images/author-2.jpg"
-                      alt="Client 2"
-                      fill
-                      className="object-cover"
-                    />
+                  <div>
+                    <h4 className="text-2xl sm:text-[28px] font-bold text-[#12223B] leading-none">
+                      {count200}+
+                    </h4>
+                    <p className="text-[13px] text-[#28374D] font-normal leading-tight mt-1">
+                      Satisfied Clients
+                    </p>
                   </div>
-                  <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white relative shadow-none">
-                    <Image
-                      src="/images/author-3.jpg"
-                      alt="Client 3"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-2xl sm:text-[28px] font-bold text-[#12223B] leading-none">
-                    {count200}+
-                  </h4>
-                  <p className="text-[13px] text-[#28374D] font-normal leading-tight mt-1">
-                    Satisfied Clients
-                  </p>
                 </div>
               </div>
-            </div>
+            </FadeInUp>
           </div>
 
           {/* Right Column: Flat Accordion List (No Shadow, Clean Borders & Rounded Corners) */}
           <div className="lg:col-span-6 space-y-4">
-            {faqList.map((faq) => {
+            {faqList.map((faq, index) => {
               const isOpen = openId === faq.id;
               return (
-                <div
+                <FadeInUp
                   key={faq.id}
+                  delay={index * 0.08}
+                  duration={0.6}
                   className="bg-[#F6F6F6] rounded-[6px] overflow-hidden transition-colors duration-200 border-0 shadow-none"
                 >
                   <button
@@ -176,7 +189,7 @@ export default function Faq() {
                       <p className="m-0">{faq.answer}</p>
                     </div>
                   )}
-                </div>
+                </FadeInUp>
               );
             })}
           </div>

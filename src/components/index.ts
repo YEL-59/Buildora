@@ -5,3 +5,4 @@ export * from "./projects";
 export * from "./blog";
 export * from "./contact";
 export * from "./not-found";
+export * from "./animations";

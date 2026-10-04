@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
+import { FadeInUp } from "@/components/animations";
 
 export default function OurExpertise() {
   const [isVisible, setIsVisible] = useState(false);
@@ -35,7 +36,7 @@ export default function OurExpertise() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Left Tall Card (Box 1) */}
-          <div className="lg:col-span-5 relative rounded-[6px] overflow-hidden min-h-[500px] lg:min-h-[580px] p-8 sm:p-10 flex flex-col justify-end group">
+          <FadeInUp direction="left" delay={0.1} duration={0.8} className="lg:col-span-5 relative rounded-[6px] overflow-hidden min-h-[500px] lg:min-h-[580px] p-8 sm:p-10 flex flex-col justify-end group">
             {/* Background Image */}
             <Image
               src="/images/expertise-item-image-1.jpg"
@@ -78,12 +79,12 @@ export default function OurExpertise() {
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
-          </div>
+          </FadeInUp>
 
           {/* Right Column (Box 2 + Split Row) */}
           <div className="lg:col-span-7 flex flex-col gap-6">
             {/* Top Card (Box 2) */}
-            <div className="relative rounded-[6px] overflow-hidden min-h-[280px] sm:min-h-[300px] p-8 sm:p-10 flex flex-col justify-end group">
+            <FadeInUp direction="up" delay={0.2} duration={0.8} className="relative rounded-[6px] overflow-hidden min-h-[280px] sm:min-h-[300px] p-8 sm:p-10 flex flex-col justify-end group">
               <Image
                 src="/images/expertise-item-image-2.jpg"
                 alt="Experienced Professionals"
@@ -114,12 +115,12 @@ export default function OurExpertise() {
                   Our skilled architects, engineers, and construction specialists bring years of industry expertise to every build.
                 </p>
               </div>
-            </div>
+            </FadeInUp>
 
             {/* Bottom Row: Info Item (White) + Counter Box (Yellow) */}
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 flex-1">
               {/* White Info Item */}
-              <div className="sm:col-span-7 bg-white rounded-[6px] p-8 sm:p-9 flex flex-col justify-between">
+              <FadeInUp direction="up" delay={0.3} duration={0.7} className="sm:col-span-7 bg-white rounded-[6px] p-8 sm:p-9 flex flex-col justify-between">
                 <div className="w-12 h-12 mb-6 flex items-center justify-start">
                   <Image
                     src="/images/icon-expertise-item-3.svg"
@@ -137,10 +138,10 @@ export default function OurExpertise() {
                     Every project is completed with precision, attention to detail, and the highest construction standards.
                   </p>
                 </div>
-              </div>
+              </FadeInUp>
 
               {/* Yellow Counter Box */}
-              <div className="sm:col-span-5 bg-[#FFDB5A] rounded-[6px] p-6 sm:p-8 flex flex-col justify-center text-center">
+              <FadeInUp direction="up" delay={0.4} duration={0.7} className="sm:col-span-5 bg-[#FFDB5A] rounded-[6px] p-6 sm:p-8 flex flex-col justify-center text-center">
                 <div className="pb-5 mb-5 border-b border-[#12223B]/15">
                   <div className="text-3xl sm:text-[38px] font-semibold text-[#12223B] leading-none mb-1.5">
                     {countExp}+
@@ -157,7 +158,7 @@ export default function OurExpertise() {
                     Projects Completed
                   </p>
                 </div>
-              </div>
+              </FadeInUp>
             </div>
           </div>
         </div>
