@@ -19,6 +19,7 @@ import {
   Info,
   Phone,
 } from "lucide-react";
+import { useTheme, THEME_COLOR_PRESETS } from "@/context/ThemeContext";
 
 interface HeroSlide {
   id: number;
@@ -31,6 +32,7 @@ interface HeroSlide {
 export default function AdminContentCMSPage() {
   const [activeTab, setActiveTab] = useState<string>("hero");
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const { accentColor, setAccentColor } = useTheme();
 
   // Hero slides state
   const [slides, setSlides] = useState<HeroSlide[]>([
@@ -271,19 +273,23 @@ export default function AdminContentCMSPage() {
                   Theme & Accent Color Customizer
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-500">
-                  Select your corporate brand accent. This updates buttons, badges, highlights, and borders instantly across the entire dashboard.
+                  Select your corporate brand accent. This updates buttons, badges, highlights, and borders instantly across the entire dashboard and website.
                 </p>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {colorPalettes.map((c) => (
+                {THEME_COLOR_PRESETS.map((c) => (
                   <button
                     key={c.hex}
                     type="button"
-                    onClick={() => setActiveColor(c.hex)}
+                    onClick={() => {
+                      setAccentColor(c.hex);
+                      setSaveSuccess(true);
+                      setTimeout(() => setSaveSuccess(false), 3000);
+                    }}
                     className={`p-4 rounded-xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between h-28 ${
-                      activeColor === c.hex
-                        ? "border-[#12223B] shadow-md bg-gray-50"
+                      accentColor.toUpperCase() === c.hex.toUpperCase()
+                        ? "border-[#12223B] shadow-md bg-gray-50 ring-2 ring-[#12223B]/10"
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
@@ -291,7 +297,9 @@ export default function AdminContentCMSPage() {
                       className="w-8 h-8 rounded-full shadow-inner border border-black/10 flex items-center justify-center text-white"
                       style={{ backgroundColor: c.hex }}
                     >
-                      {activeColor === c.hex && <Check className="w-4 h-4 text-black" />}
+                      {accentColor.toUpperCase() === c.hex.toUpperCase() && (
+                        <Check className="w-4 h-4 text-black" />
+                      )}
                     </div>
                     <div>
                       <p className="font-bold text-xs sm:text-sm text-[#12223B]">
@@ -307,21 +315,11 @@ export default function AdminContentCMSPage() {
 
               <div className="p-4 bg-gray-50 rounded-xl border border-gray-100 flex items-center justify-between">
                 <span className="text-xs sm:text-sm text-gray-600">
-                  Active Brand Accent: <strong className="text-[#12223B]">{activeColor}</strong>
+                  Active Brand Accent: <strong className="text-[#12223B] font-mono">{accentColor}</strong>
                 </span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (typeof window !== "undefined") {
-                      document.documentElement.style.setProperty("--accent", activeColor);
-                    }
-                    setSaveSuccess(true);
-                    setTimeout(() => setSaveSuccess(false), 3000);
-                  }}
-                  className="px-4 py-2 rounded-lg bg-[#FFDB5A] hover:bg-[#f0cb46] text-[#12223B] font-bold text-xs cursor-pointer"
-                >
-                  Apply Accent Color
-                </button>
+                <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">
+                  ✓ Active Everywhere
+                </span>
               </div>
             </div>
           )}

@@ -10,6 +10,7 @@
     --text-muted: #64748b;
     --accent: #FFDB5A;
     --accent-hover: #f0cb46;
+    --accent-contrast: #12223B;
     --white: #FFFFFF;
     --divider: rgba(18, 34, 59, 0.1);
     --dark-divider: rgba(255, 255, 255, 0.12);
@@ -142,8 +143,8 @@
   font-weight: 600;
   line-height: 1em;
   text-transform: capitalize;
-  color: #12223B;
-  background: #FFDB5A;
+  color: var(--accent-contrast, #12223B) !important;
+  background: var(--accent, #FFDB5A) !important;
   border-radius: 4px;
   border: none;
   padding: 17px 54px 17px 24px;
@@ -156,7 +157,7 @@
 
 .btn-default:hover,
 .btn-builtex:hover {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 .btn-default::before,
@@ -218,8 +219,8 @@
   font-weight: 600;
   line-height: 1em;
   text-transform: capitalize;
-  color: #12223B;
-  background: #FFDB5A;
+  color: var(--accent-contrast, #12223B) !important;
+  background: var(--accent, #FFDB5A) !important;
   border-radius: 4px;
   border: none;
   padding: 17px 54px 17px 24px;
@@ -266,7 +267,7 @@
 
 .btn-default.btn-highlighted:hover,
 .btn-builtex-highlighted:hover {
-  color: #12223B;
+  color: #12223B !important;
 }
 
 .btn-default.btn-highlighted:hover::after,
@@ -302,7 +303,7 @@
   right: 0;
   width: 32px;
   height: 32px;
-  background-color: #FFDB5A;
+  background-color: var(--accent, #FFDB5A);
   border-radius: 50%;
   transform: translateY(-50%);
   background-image: url('/images/arrow-primary.svg');
@@ -313,7 +314,7 @@
 }
 
 .readmore-btn:hover {
-  color: #FFDB5A;
+  color: var(--accent, #FFDB5A);
 }
 
 .readmore-btn:hover::before {
@@ -325,7 +326,7 @@
 }
 
 .dark-section .readmore-btn:hover {
-  color: #FFDB5A;
+  color: var(--accent, #FFDB5A);
 }
 
 /* Image Hover Shine Effect */
@@ -372,7 +373,7 @@
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  background: #FFDB5A;
+  background: var(--accent, #FFDB5A);
   border-radius: 50%;
   width: 7px;
   height: 7px;
@@ -393,6 +394,96 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FFDB5A;
+  background: var(--accent, #FFDB5A);
   border-radius: 4px;
+}
+
+/* =======================================================
+   GLOBAL DYNAMIC ACCENT SYSTEM & OVERRIDES
+   All buttons, badges, hover animations, pills, and SVG fills
+   automatically transform to the active accent color across the app.
+======================================================= */
+.bg-\[\#FFDB5A\],
+[class*="bg-[#FFDB5A]"]:not([class*="/"]):not([class*="hover"]):not([class*="group-hover"]) {
+  background-color: var(--accent, #FFDB5A) !important;
+}
+
+/* Contrast text calculation for elements that had black text on yellow */
+.bg-\[\#FFDB5A\].text-\[\#12223B\],
+.bg-\[\#FFDB5A\] .text-\[\#12223B\] {
+  color: var(--accent-contrast, #12223B) !important;
+}
+
+.hover\:bg-\[\#FFDB5A\]:hover,
+button.hover\:bg-\[\#FFDB5A\]:hover,
+a.hover\:bg-\[\#FFDB5A\]:hover {
+  background-color: var(--accent, #FFDB5A) !important;
+  color: var(--accent-contrast, #12223B) !important;
+}
+
+.group:hover .group-hover\:bg-\[\#FFDB5A\] {
+  background-color: var(--accent, #FFDB5A) !important;
+  color: var(--accent-contrast, #12223B) !important;
+}
+
+.text-\[\#FFDB5A\],
+[class*="text-[#FFDB5A]"]:not([class*="hover"]):not([class*="group-hover"]) {
+  color: var(--accent, #FFDB5A) !important;
+}
+
+.hover\:text-\[\#FFDB5A\]:hover {
+  color: var(--accent, #FFDB5A) !important;
+}
+
+.group:hover .group-hover\:text-\[\#FFDB5A\] {
+  color: var(--accent, #FFDB5A) !important;
+}
+
+.border-\[\#FFDB5A\],
+[class*="border-[#FFDB5A]"]:not([class*="/"]):not([class*="hover"]):not([class*="group-hover"]) {
+  border-color: var(--accent, #FFDB5A) !important;
+}
+
+.hover\:border-\[\#FFDB5A\]:hover {
+  border-color: var(--accent, #FFDB5A) !important;
+}
+
+.group:hover .group-hover\:border-\[\#FFDB5A\] {
+  border-color: var(--accent, #FFDB5A) !important;
+}
+
+.fill-\[\#FFDB5A\] {
+  fill: var(--accent, #FFDB5A) !important;
+}
+
+.stroke-\[\#FFDB5A\] {
+  stroke: var(--accent, #FFDB5A) !important;
+}
+
+.focus\:border-\[\#FFDB5A\]:focus {
+  border-color: var(--accent, #FFDB5A) !important;
+}
+
+.focus\:ring-\[\#FFDB5A\]:focus {
+  --tw-ring-color: var(--accent, #FFDB5A) !important;
+}
+
+/* Translucent badges and tints */
+.bg-\[\#FFDB5A\]\/10 {
+  background-color: color-mix(in srgb, var(--accent, #FFDB5A) 10%, transparent) !important;
+}
+.bg-\[\#FFDB5A\]\/15 {
+  background-color: color-mix(in srgb, var(--accent, #FFDB5A) 15%, transparent) !important;
+}
+.bg-\[\#FFDB5A\]\/20 {
+  background-color: color-mix(in srgb, var(--accent, #FFDB5A) 20%, transparent) !important;
+}
+.border-\[\#FFDB5A\]\/20 {
+  border-color: color-mix(in srgb, var(--accent, #FFDB5A) 20%, transparent) !important;
+}
+.border-\[\#FFDB5A\]\/30 {
+  border-color: color-mix(in srgb, var(--accent, #FFDB5A) 30%, transparent) !important;
+}
+.border-\[\#FFDB5A\]\/50 {
+  border-color: color-mix(in srgb, var(--accent, #FFDB5A) 50%, transparent) !important;
 }
