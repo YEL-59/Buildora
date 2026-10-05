@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useCountUp } from "@/hooks/useCountUp";
 import { FadeInUp, TextAnime } from "@/components/animations";
+import ArchitecturalShapesBg from "@/components/common/ArchitecturalShapesBg";
 
 export default function WhyChooseUs() {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,9 +35,12 @@ export default function WhyChooseUs() {
     <section
       ref={sectionRef}
       id="why-choose-us"
-      className="py-20 lg:pt-24 lg:pb-0 bg-[#EFEFEF] overflow-hidden"
+      className="py-20 lg:pt-24 lg:pb-0 bg-[#EFEFEF] relative overflow-hidden"
     >
-      <div className="container mx-auto px-4 sm:px-6">
+      {/* Background Building & Tower Crane Architectural Shapes */}
+      <ArchitecturalShapesBg variant="whyChooseUs" />
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-end justify-between gap-8 lg:gap-6">
           {/* Left / Main Content: Heading & 3 Flat White Cards */}
           <div className="w-full lg:w-[73%] xl:w-[74%] space-y-10 pb-16">

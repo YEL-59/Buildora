@@ -7,6 +7,7 @@ import { Play } from "lucide-react";
 import VideoModal from "@/components/layout/VideoModal";
 import { useCountUp } from "@/hooks/useCountUp";
 import { FadeInUp, TextAnime } from "@/components/animations";
+import ArchitecturalShapesBg from "@/components/common/ArchitecturalShapesBg";
 
 export default function AboutUs() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -39,9 +40,12 @@ export default function AboutUs() {
     <section
       ref={sectionRef}
       id="about"
-      className="py-20 lg:py-28 bg-[#EFEFEF]"
+      className="py-20 lg:py-28 bg-[#EFEFEF] relative overflow-hidden"
     >
-      <div className="container mx-auto px-4 sm:px-6">
+      {/* Background Building & Tower Crane Architectural Shapes */}
+      <ArchitecturalShapesBg variant="about" />
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Overlapping Dual Image Composition */}
           <div className="lg:col-span-6 relative pr-0 lg:pr-10">

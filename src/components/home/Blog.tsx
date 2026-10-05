@@ -5,11 +5,15 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { blogPosts } from "@/data/blogData";
 import { FadeInUp, TextAnime } from "@/components/animations";
+import ArchitecturalShapesBg from "@/components/common/ArchitecturalShapesBg";
 
 export default function Blog() {
   return (
-    <section id="blog" className="py-20 lg:py-28 bg-[#EFEFEF]">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section id="blog" className="py-20 lg:py-28 bg-[#EFEFEF] relative overflow-hidden">
+      {/* Background Building & Tower Crane Architectural Shapes */}
+      <ArchitecturalShapesBg variant="general" />
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Title */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <FadeInUp delay={0.1} direction="down">
