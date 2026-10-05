@@ -6,7 +6,6 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
 import { FadeInUp, TextAnime } from "@/components/animations";
-import ArchitecturalShapesBg from "@/components/common/ArchitecturalShapesBg";
 
 interface FaqItem {
   id: number;
@@ -76,11 +75,8 @@ export default function Faq() {
   };
 
   return (
-    <section ref={sectionRef} id="faqs" className="py-20 lg:py-28 bg-[#EFEFEF] relative overflow-hidden">
-      {/* Background Building & Tower Crane Architectural Shapes */}
-      <ArchitecturalShapesBg variant="faq" />
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+    <section ref={sectionRef} id="faqs" className="py-20 lg:py-28 bg-[#EFEFEF]">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
           {/* Left Column: FAQ Content */}
           <div className="lg:col-span-6 flex flex-col justify-between">

@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { FadeInUp, TextAnime } from "@/components/animations";
-import ArchitecturalShapesBg from "@/components/common/ArchitecturalShapesBg";
 import {
   FacebookIcon,
   TwitterIcon,
@@ -53,11 +52,8 @@ const teamMembers: TeamMember[] = [
 
 export default function Team() {
   return (
-    <section id="team" className="py-20 lg:py-28 bg-[#EFEFEF] relative overflow-hidden">
-      {/* Background Building & Tower Crane Architectural Shapes */}
-      <ArchitecturalShapesBg variant="general" />
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+    <section id="team" className="py-20 lg:py-28 bg-[#EFEFEF]">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16">
           <div className="lg:col-span-6">
