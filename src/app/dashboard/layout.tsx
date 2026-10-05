@@ -6,16 +6,14 @@ import DashboardHeader from "@/components/dashboard/DashboardHeader";
 
 export default function DashboardLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params?: Promise<Record<string, string>>;
 }) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#08101E] text-slate-100 flex flex-col lg:flex-row antialiased">
+    <div className="min-h-screen bg-[#EFEFEF] text-[#28374D] flex antialiased">
       {/* Dynamic Role-Aware Sidebar */}
       <DashboardSidebar
         collapsed={collapsed}
@@ -25,14 +23,18 @@ export default function DashboardLayout({
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div
+        className={`flex-1 flex flex-col min-w-0 transition-[padding] duration-500 ease-in-out ${
+          collapsed ? "lg:pl-20" : "lg:pl-72"
+        }`}
+      >
         <DashboardHeader
           collapsed={collapsed}
           setCollapsed={setCollapsed}
           setMobileOpen={setMobileOpen}
         />
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1600px] w-full mx-auto space-y-8">
           {children}
         </main>
       </div>
