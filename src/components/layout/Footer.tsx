@@ -11,6 +11,7 @@ import {
   PinterestIcon,
 } from "./SocialIcons";
 import { FadeInUp } from "@/components/animations";
+import FooterSkyline from "./FooterSkyline";
 
 export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
@@ -28,8 +29,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#12223B] text-white pt-20 pb-10 border-t border-white/10 dark-section">
-      <div className="container mx-auto px-4 sm:px-6">
+    <footer className="relative bg-[#12223B] text-white pt-20 pb-10 border-t border-white/10 dark-section overflow-hidden">
+      {/* Background Architectural Skyline & Tower Cranes Vector Shapes */}
+      <FooterSkyline />
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Footer Top: Logo & Social Links */}
         <FadeInUp delay={0.1} direction="up" distance={20}>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pb-12 border-b border-white/10">
