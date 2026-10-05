@@ -35,10 +35,11 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pb-12 border-b border-white/10">
             <Link href="/" className="inline-block">
               <Image
-                src="/images/logo.svg"
+                src="/images/logo.gif"
                 alt="Buildora Logo"
                 width={210}
                 height={48}
+                unoptimized
                 className="h-10 sm:h-12 w-auto"
               />
             </Link>

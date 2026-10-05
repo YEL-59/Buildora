@@ -46,10 +46,11 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="inline-block flex-shrink-0">
             <Image
-              src="/images/logo.svg"
+              src="/images/logo.gif"
               alt="Buildora Logo"
               width={210}
               height={48}
+              unoptimized
               priority
               className="h-10 sm:h-12 w-auto"
             />
