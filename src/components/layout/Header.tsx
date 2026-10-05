@@ -1,15 +1,26 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowUpRight,
+  ChevronDown,
+  ShieldCheck,
+  UserCheck,
+  HardHat,
+} from "lucide-react";
 
 export default function Header() {
   const pathname = usePathname();
   const [isSticky, setIsSticky] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dashboardDropdownOpen, setDashboardDropdownOpen] = useState(false);
+  const [mobileDashboardOpen, setMobileDashboardOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const isHomeActive = pathname === "/";
   const isAboutActive = pathname === "/about" || pathname === "/about-us";
@@ -19,6 +30,21 @@ export default function Header() {
     pathname === "/projects" || pathname.startsWith("/projects/");
   const isBlogActive = pathname === "/blog" || pathname.startsWith("/blog/");
   const isContactActive = pathname === "/contact" || pathname === "/contact-us";
+  const isDashboardActive = pathname.startsWith("/dashboard");
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDashboardDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -133,6 +159,105 @@ export default function Header() {
               )}
             </Link>
 
+            {/* Dashboard Dropdown Portal */}
+            <div
+              ref={dropdownRef}
+              className="relative"
+              onMouseEnter={() => setDashboardDropdownOpen(true)}
+              onMouseLeave={() => setDashboardDropdownOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setDashboardDropdownOpen(!dashboardDropdownOpen)}
+                className={`relative inline-flex items-center gap-1.5 px-3.5 py-2 text-[15px] font-semibold transition-all duration-200 cursor-pointer ${
+                  isDashboardActive || dashboardDropdownOpen
+                    ? "text-[#FFDB5A]"
+                    : "text-white hover:text-[#FFDB5A]"
+                }`}
+                aria-expanded={dashboardDropdownOpen}
+              >
+                <span>Dashboard</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    dashboardDropdownOpen
+                      ? "rotate-180 text-[#FFDB5A]"
+                      : "text-white/70"
+                  }`}
+                />
+                {isDashboardActive && (
+                  <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-[#FFDB5A] rounded-full shadow-[0_0_8px_#FFDB5A]" />
+                )}
+              </button>
+
+              {/* Dropdown Menu Popup Matching User's Image 1 */}
+              {dashboardDropdownOpen && (
+                <div className="absolute top-full right-0 lg:left-0 lg:right-auto mt-1 w-80 bg-[#12223B]/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50">
+                  <div className="text-[10px] font-bold text-gray-400 tracking-wider uppercase px-2 pb-2.5 border-b border-white/10">
+                    SELECT DASHBOARD PORTAL
+                  </div>
+
+                  <div className="space-y-1.5 pt-2.5">
+                    {/* Admin Dashboard */}
+                    <Link
+                      href="/dashboard/admin"
+                      onClick={() => setDashboardDropdownOpen(false)}
+                      className="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-white/10 transition-all duration-200 group"
+                    >
+                      <div className="w-11 h-11 rounded-xl bg-[#FFDB5A] text-[#12223B] flex items-center justify-center flex-shrink-0 shadow-sm transition-transform group-hover:scale-105">
+                        <ShieldCheck className="w-6 h-6 stroke-[2.2]" />
+                      </div>
+                      <div>
+                        <div className="text-white font-bold text-sm tracking-tight group-hover:text-[#FFDB5A] transition-colors">
+                          Admin Dashboard
+                        </div>
+                        <div className="text-gray-400 text-xs mt-0.5">
+                          Operations, leads &amp; CMS
+                        </div>
+                      </div>
+                    </Link>
+
+                    {/* Client Dashboard */}
+                    <Link
+                      href="/dashboard/client"
+                      onClick={() => setDashboardDropdownOpen(false)}
+                      className="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-white/10 transition-all duration-200 group"
+                    >
+                      <div className="w-11 h-11 rounded-xl bg-[#00C975] text-white flex items-center justify-center flex-shrink-0 shadow-sm transition-transform group-hover:scale-105">
+                        <UserCheck className="w-6 h-6 stroke-[2.2]" />
+                      </div>
+                      <div>
+                        <div className="text-white font-bold text-sm tracking-tight group-hover:text-[#00C975] transition-colors">
+                          Client Dashboard
+                        </div>
+                        <div className="text-gray-400 text-xs mt-0.5">
+                          Live site &amp; progress tracking
+                        </div>
+                      </div>
+                    </Link>
+
+                    {/* Engineer Portal */}
+                    <Link
+                      href="/dashboard/engineer"
+                      onClick={() => setDashboardDropdownOpen(false)}
+                      className="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-white/10 transition-all duration-200 group"
+                    >
+                      <div className="w-11 h-11 rounded-xl bg-[#2563EB] text-white flex items-center justify-center flex-shrink-0 shadow-sm transition-transform group-hover:scale-105">
+                        <HardHat className="w-6 h-6 stroke-[2.2]" />
+                      </div>
+                      <div>
+                        <div className="text-white font-bold text-sm tracking-tight group-hover:text-[#60A5FA] transition-colors">
+                          Engineer Portal
+                        </div>
+                        <div className="text-gray-400 text-xs mt-0.5">
+                          Field logs &amp; site safety
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* Contact Us */}
             <Link
               href="/contact"
@@ -244,6 +369,78 @@ export default function Header() {
               >
                 Blog
               </Link>
+
+              {/* Dashboard Dropdown in Mobile Drawer */}
+              <div className="border-t border-b border-white/10 py-2 my-1">
+                <button
+                  type="button"
+                  onClick={() => setMobileDashboardOpen(!mobileDashboardOpen)}
+                  className={`w-full py-2 font-semibold transition-colors flex items-center justify-between text-left cursor-pointer ${
+                    isDashboardActive
+                      ? "text-[#FFDB5A] border-l-2 border-[#FFDB5A] pl-3"
+                      : "text-white hover:text-[#FFDB5A]"
+                  }`}
+                >
+                  <span className="flex items-center gap-2">Dashboard</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      mobileDashboardOpen ? "rotate-180 text-[#FFDB5A]" : ""
+                    }`}
+                  />
+                </button>
+
+                {mobileDashboardOpen && (
+                  <div className="pl-3 pr-1 pt-2 space-y-2">
+                    <Link
+                      href="/dashboard/admin"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-3 p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-[#FFDB5A] text-[#12223B] flex items-center justify-center flex-shrink-0">
+                        <ShieldCheck className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-xs">Admin Dashboard</div>
+                        <div className="text-[10px] text-gray-400">
+                          Operations, leads &amp; CMS
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/dashboard/client"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-3 p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-[#00C975] text-white flex items-center justify-center flex-shrink-0">
+                        <UserCheck className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-xs">Client Dashboard</div>
+                        <div className="text-[10px] text-gray-400">
+                          Live site &amp; progress
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/dashboard/engineer"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-3 p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-[#2563EB] text-white flex items-center justify-center flex-shrink-0">
+                        <HardHat className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-xs">Engineer Portal</div>
+                        <div className="text-[10px] text-gray-400">
+                          Field logs &amp; safety
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                )}
+              </div>
 
               {/* Contact Us */}
               <Link
