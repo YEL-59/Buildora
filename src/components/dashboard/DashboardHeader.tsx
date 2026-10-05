@@ -16,7 +16,9 @@ import {
   CheckCircle2,
   Clock,
   AlertTriangle,
+  Command,
 } from "lucide-react";
+import CommandPalette from "./CommandPalette";
 
 interface DashboardHeaderProps {
   collapsed: boolean;
@@ -31,6 +33,7 @@ export default function DashboardHeader({
 }: DashboardHeaderProps) {
   const pathname = usePathname();
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
 
   const currentRole = pathname.includes("/dashboard/client")
     ? "client"
@@ -90,15 +93,20 @@ export default function DashboardHeader({
           </button>
         )}
 
-        {/* Search Bar */}
-        <div className="relative w-full max-w-md hidden sm:block">
-          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search projects, blueprints, orders, logs..."
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-white/[0.06] border border-white/10 text-white text-xs placeholder-gray-400 focus:outline-none focus:border-[#FFDB5A] focus:bg-white/[0.1] transition-all"
-          />
-        </div>
+        {/* Search Bar - Triggers Command Palette */}
+        <button
+          onClick={() => setCommandPaletteOpen(true)}
+          className="relative w-full max-w-md hidden sm:flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 hover:border-white/20 text-xs text-gray-400 transition-all cursor-pointer text-left group"
+        >
+          <div className="flex items-center gap-2">
+            <Search className="w-4 h-4 text-gray-400 group-hover:text-[#FFDB5A] transition-colors" />
+            <span className="truncate">Search projects, blueprints, orders, logs...</span>
+          </div>
+          <kbd className="hidden md:inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 bg-white/10 px-1.5 py-0.5 rounded border border-white/10">
+            <span>Ctrl</span>
+            <span>K</span>
+          </kbd>
+        </button>
       </div>
 
       {/* Right: Site Status Badge, Notifications, Role CTA & Profile */}
@@ -172,6 +180,9 @@ export default function DashboardHeader({
           <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
       </div>
+
+      {/* Global Command Palette (Ctrl+K) */}
+      <CommandPalette open={commandPaletteOpen} setOpen={setCommandPaletteOpen} />
     </header>
   );
 }
