@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 
 interface ArchitecturalShapesBgProps {
-  variant?: "faq" | "about" | "whyChooseUs" | "general";
+  variant?: "faq" | "about" | "whyChooseUs" | "testimonials" | "general";
   className?: string;
 }
 
@@ -90,6 +90,97 @@ export default function ArchitecturalShapesBg({
             <line x1="280" y1="375" x2="280" y2="385" />
             <line x1="435" y1="160" x2="445" y2="160" />
             <line x1="440" y1="155" x2="440" y2="165" />
+          </g>
+        </svg>
+      </div>
+    );
+  }
+
+  if (variant === "testimonials") {
+    return (
+      <div
+        aria-hidden="true"
+        className={`absolute inset-0 pointer-events-none select-none z-0 overflow-hidden ${className}`}
+      >
+        {/* 1. BIG Realistic Construction Tower Crane (Left Side - Dominant Presence) */}
+        <div className="absolute -left-24 sm:-left-16 lg:-left-20 bottom-0 w-[720px] sm:w-[920px] lg:w-[1150px] h-[580px] sm:h-[720px] lg:h-[860px] opacity-[0.30] sm:opacity-[0.38] hover:opacity-55 transition-opacity duration-700 pointer-events-none select-none z-0">
+          <Image
+            src="/images/realistic-crane.webp"
+            alt="Big Realistic Construction Tower Crane Left"
+            fill
+            sizes="(max-width: 768px) 720px, (max-width: 1200px) 920px, 1150px"
+            className="object-contain object-left-bottom"
+          />
+        </div>
+
+        {/* 2. Realistic Skyscraper Under Active Construction (Right Side Empty Space Coverage) */}
+        <div className="absolute -right-16 sm:-right-8 lg:right-0 bottom-0 w-[460px] sm:w-[580px] lg:w-[700px] h-[520px] sm:h-[650px] lg:h-[750px] opacity-[0.24] sm:opacity-[0.30] hover:opacity-45 transition-opacity duration-700 pointer-events-none select-none z-0">
+          <Image
+            src="/images/realistic-building.webp"
+            alt="Realistic Skyscraper Right"
+            fill
+            sizes="(max-width: 768px) 460px, (max-width: 1200px) 580px, 700px"
+            className="object-contain object-right-bottom"
+          />
+        </div>
+
+        {/* 3. Upper-Right Crane Boom (Covering Upper Right Empty Space) */}
+        <div className="absolute -right-20 sm:-right-10 top-0 w-[480px] sm:w-[600px] lg:w-[720px] h-[360px] sm:h-[450px] lg:h-[540px] opacity-[0.18] sm:opacity-[0.24] hover:opacity-35 scale-x-[-1] transition-opacity duration-700 pointer-events-none select-none z-0">
+          <Image
+            src="/images/realistic-crane.webp"
+            alt="Upper Right Tower Crane"
+            fill
+            sizes="(max-width: 768px) 480px, (max-width: 1200px) 600px, 720px"
+            className="object-contain object-left-top"
+          />
+        </div>
+
+        {/* 4. Architectural Drafting Blueprint Grid & Coordinates */}
+        <svg
+          viewBox="0 0 1440 850"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice"
+          className="w-full h-full opacity-[0.11] sm:opacity-[0.14] transition-opacity duration-700"
+        >
+          <defs>
+            <pattern
+              id="testDotGrid"
+              x="0"
+              y="0"
+              width="42"
+              height="42"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle cx="2" cy="2" r="1.1" fill="#12223B" opacity="0.3" />
+            </pattern>
+          </defs>
+
+          {/* Dot Grid */}
+          <rect width="1440" height="850" fill="url(#testDotGrid)" />
+
+          {/* Technical Axis Lines & Elevation Marks */}
+          <g stroke="#12223B" strokeWidth="1">
+            <line x1="140" y1="50" x2="140" y2="800" strokeDasharray="6 8" strokeOpacity="0.3" />
+            <line x1="320" y1="50" x2="320" y2="800" strokeDasharray="6 8" strokeOpacity="0.3" />
+            <line x1="1120" y1="50" x2="1120" y2="800" strokeDasharray="6 8" strokeOpacity="0.3" />
+            <line x1="1300" y1="50" x2="1300" y2="800" strokeDasharray="6 8" strokeOpacity="0.3" />
+            <line x1="80" y1="180" x2="1360" y2="180" strokeDasharray="4 6" strokeOpacity="0.25" />
+            <line x1="80" y1="620" x2="1360" y2="620" strokeDasharray="4 6" strokeOpacity="0.25" />
+
+            <text x="145" y="80" fill="#12223B" fontSize="9" fontFamily="monospace" fontWeight="600" opacity="0.6">AXIS T-01</text>
+            <text x="325" y="80" fill="#12223B" fontSize="9" fontFamily="monospace" fontWeight="600" opacity="0.6">AXIS T-02</text>
+            <text x="1125" y="80" fill="#12223B" fontSize="9" fontFamily="monospace" fontWeight="600" opacity="0.6">AXIS T-03</text>
+            <text x="85" y="175" fill="#FFDB5A" fontSize="9" fontFamily="monospace" fontWeight="bold">ELEV. +195.00m</text>
+            <text x="85" y="615" fill="#12223B" fontSize="9" fontFamily="monospace" fontWeight="600" opacity="0.6">ELEV. +65.00m</text>
+          </g>
+
+          {/* Technical Crosshairs */}
+          <g stroke="#FFDB5A" strokeWidth="1" opacity="0.6">
+            <line x1="135" y1="180" x2="145" y2="180" />
+            <line x1="140" y1="175" x2="140" y2="185" />
+            <line x1="1115" y1="180" x2="1125" y2="180" />
+            <line x1="1120" y1="175" x2="1120" y2="185" />
           </g>
         </svg>
       </div>

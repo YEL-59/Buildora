@@ -12,6 +12,7 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import { useCountUp } from "@/hooks/useCountUp";
 import { FadeInUp, TextAnime } from "@/components/animations";
+import ArchitecturalShapesBg from "@/components/common/ArchitecturalShapesBg";
 
 interface TestimonialItem {
   id: number;
@@ -90,9 +91,12 @@ export default function Testimonials() {
     <section
       ref={sectionRef}
       id="testimonials"
-      className="py-20 lg:py-28 bg-[#EFEFEF] overflow-hidden"
+      className="py-20 lg:py-28 bg-[#EFEFEF] overflow-hidden relative"
     >
-      <div className="container mx-auto px-4 sm:px-6">
+      {/* Background Big Crane (Left) and Skyscraper / Crane (Right) */}
+      <ArchitecturalShapesBg variant="testimonials" />
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <FadeInUp delay={0.1} direction="down">
