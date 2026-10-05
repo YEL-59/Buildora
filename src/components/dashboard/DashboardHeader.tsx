@@ -68,9 +68,9 @@ export default function DashboardHeader({
     }
     if (pathname.includes("/dashboard/admin/content")) {
       return {
-        title: "Hero Banner & Slider CMS",
+        title: "Content & Visual CMS Manager",
         subtitle:
-          "Manage front-end content, hero banners, project showcases, and brand assets.",
+          "Edit headlines, descriptions, media assets (images/videos), and catalogues across all website pages",
       };
     }
     if (pathname.includes("/dashboard/admin/settings")) {
