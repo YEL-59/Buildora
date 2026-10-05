@@ -1,7 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const sharp = require('sharp');
-const { execSync } = require('child_process');
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { execSync } from "node:child_process";
+import sharp from "sharp";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 // 1. Build the animated SVG (with both CSS keyframes and SMIL fallback)
 function generateAnimatedSvg() {
