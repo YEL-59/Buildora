@@ -26,9 +26,13 @@ import {
   Compass,
   Briefcase,
   CheckCircle2,
+  Truck,
+  ShoppingBag,
+  Package,
+  Award,
 } from "lucide-react";
 
-export type PortalRole = "admin" | "client" | "engineer" | "subcontractor";
+export type PortalRole = "admin" | "client" | "engineer" | "subcontractor" | "supplier";
 
 interface DashboardSidebarProps {
   collapsed: boolean;
@@ -52,6 +56,8 @@ export default function DashboardSidebar({
     ? "engineer"
     : pathname.includes("/dashboard/subcontractor")
     ? "subcontractor"
+    : pathname.includes("/dashboard/supplier")
+    ? "supplier"
     : "admin";
 
   const adminMenu = [
@@ -182,6 +188,39 @@ export default function DashboardSidebar({
     },
   ];
 
+  const supplierMenu = [
+    { label: "Supply Overview", href: "/dashboard/supplier", icon: LayoutDashboard },
+    {
+      label: "Purchase Orders",
+      href: "/dashboard/supplier/orders",
+      icon: ShoppingBag,
+      badge: "2 New",
+    },
+    {
+      label: "Fleet & Deliveries",
+      href: "/dashboard/supplier/deliveries",
+      icon: Truck,
+      badge: "In Transit",
+    },
+    {
+      label: "Material Catalog",
+      href: "/dashboard/supplier/inventory",
+      icon: Package,
+    },
+    {
+      label: "Quality & MTRs",
+      href: "/dashboard/supplier/quality",
+      icon: Award,
+      badge: "ASTM Pass",
+    },
+    {
+      label: "Vendor Invoices",
+      href: "/dashboard/supplier/invoices",
+      icon: Receipt,
+      badge: "$46.8k",
+    },
+  ];
+
   const menuItems =
     currentRole === "client"
       ? clientMenu
@@ -189,6 +228,8 @@ export default function DashboardSidebar({
       ? engineerMenu
       : currentRole === "subcontractor"
       ? subcontractorMenu
+      : currentRole === "supplier"
+      ? supplierMenu
       : adminMenu;
 
   const roleMeta = {
@@ -215,6 +256,12 @@ export default function DashboardSidebar({
       title: "Apex Millwork LLC",
       section: "SUB-TRADE CONTRACTOR PORTAL",
       icon: Briefcase,
+    },
+    supplier: {
+      subtitle: "VND-APX-7719 • Tier 1",
+      title: "Apex Industrial Supply",
+      section: "MATERIAL SUPPLIER PORTAL",
+      icon: Truck,
     },
   }[currentRole];
 
@@ -369,6 +416,8 @@ export default function DashboardSidebar({
                   ? pathname === "/dashboard/engineer"
                   : item.href === "/dashboard/subcontractor"
                   ? pathname === "/dashboard/subcontractor"
+                  : item.href === "/dashboard/supplier"
+                  ? pathname === "/dashboard/supplier"
                   : pathname.startsWith(item.href) ||
                     (item.href === "/dashboard/admin/billing" &&
                       pathname.startsWith("/dashboard/admin/revenue")) ||
@@ -476,6 +525,16 @@ export default function DashboardSidebar({
                   >
                     <span className="flex items-center gap-1.5">
                       <Briefcase className="w-4 h-4 text-[#FFDB5A]" /> Sub-Trade
+                    </span>
+                  </Link>
+                )}
+                {currentRole !== "supplier" && (
+                  <Link
+                    href="/dashboard/supplier"
+                    className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15 text-gray-200 flex items-center justify-between transition-colors duration-200 col-span-2 sm:col-span-1"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <Truck className="w-4 h-4 text-[#FFDB5A]" /> Supplier
                     </span>
                   </Link>
                 )}

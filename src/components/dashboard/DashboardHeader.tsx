@@ -211,6 +211,48 @@ export default function DashboardHeader({
           "Apex Millwork & Architectural Finishes LLC • Contract Division 06",
       };
     }
+    if (pathname.includes("/dashboard/supplier/orders")) {
+      return {
+        title: "Purchase Orders & Requisitions",
+        subtitle:
+          "Fulfill incoming GC material requisitions, lock unit prices, and schedule dispatch batches.",
+      };
+    }
+    if (pathname.includes("/dashboard/supplier/deliveries")) {
+      return {
+        title: "Fleet Tracking & Proof of Delivery",
+        subtitle:
+          "Live GPS fleet dispatch, delivery notes (DNs), electronic Proof of Delivery (e-POD), and site receiver sign-offs.",
+      };
+    }
+    if (pathname.includes("/dashboard/supplier/inventory")) {
+      return {
+        title: "Material Catalog & Inventory",
+        subtitle:
+          "Stock reserves, ASTM/ACI technical specifications, live unit pricing, and lead-time schedules.",
+      };
+    }
+    if (pathname.includes("/dashboard/supplier/quality")) {
+      return {
+        title: "Quality Assurance & Mill Test Reports",
+        subtitle:
+          "AASHTO/ASTM certified laboratory test reports (MTRs), concrete break tests, and metallurgical analysis.",
+      };
+    }
+    if (pathname.includes("/dashboard/supplier/invoices")) {
+      return {
+        title: "Vendor Billing & Invoices",
+        subtitle:
+          "Net 30 commercial invoices, proof of delivery cross-referencing, and remittance tracking.",
+      };
+    }
+    if (pathname.includes("/dashboard/supplier")) {
+      return {
+        title: "Material Supplier & Logistics Command",
+        subtitle:
+          "Fulfill purchase orders, dispatch heavy fleet trucks, issue Mill Test Reports (MTRs), and track Net 30 billing.",
+      };
+    }
     return {
       title: "Executive Operations Dashboard",
       subtitle:
@@ -355,6 +397,7 @@ export default function DashboardHeader({
             const isClient = pathname.includes("/dashboard/client");
             const isEngineer = pathname.includes("/dashboard/engineer");
             const isSubcontractor = pathname.includes("/dashboard/subcontractor");
+            const isSupplier = pathname.includes("/dashboard/supplier");
             const user = isClient
               ? {
                   name: "David Miller",
@@ -372,6 +415,12 @@ export default function DashboardHeader({
                   name: "Marcus Vance",
                   role: "Superintendent (Apex Millwork)",
                   avatar: "/images/author-2.jpg",
+                }
+              : isSupplier
+              ? {
+                  name: "Viktor Petrov",
+                  role: "Commercial Director (Apex Supply)",
+                  avatar: "/images/author-1.jpg",
                 }
               : {
                   name: "Michael Anderson",
