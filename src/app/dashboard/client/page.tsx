@@ -14,300 +14,321 @@ import {
   Calendar,
   Phone,
   Mail,
-  Download,
-  AlertTriangle,
-  Check,
-  ArrowRight,
-  ShieldCheck,
+  ArrowUpRight,
   FileText,
+  MessageSquare,
+  AlertCircle,
+  FileCheck,
+  FolderLock,
+  ChevronRight,
 } from "lucide-react";
 
 export default function ClientDashboardPage() {
-  const [changeOrderApproved, setChangeOrderApproved] = useState(false);
-
   const phases = [
     {
-      phase: "Phase 1",
-      name: "Site Excavation & Foundation",
-      status: "Completed",
-      date: "Jul 15, 2026",
-      desc: "Deep earth excavation, seismic soil compaction, reinforced rebar footings, and waterproof membrane foundation poured.",
+      stage: "Stage 1",
+      name: "Phase 1: Site Excavation & Foundation",
+      status: "100% Done",
+      completed: true,
+      desc: "Deep earth excavation, seismic soil compaction, reinforced rebar cage grid, and 4500 PSI waterproof concrete slab pour.",
       progress: 100,
     },
     {
-      phase: "Phase 2",
-      name: "Structural Steel & Timber Framing",
-      status: "Completed",
-      date: "Aug 28, 2026",
-      desc: "Glulam beam trusses, second-story subfloor framing, and shear wall structural anchors installed and inspected.",
+      stage: "Stage 2",
+      name: "Phase 2: Structural Steel & Timber Framing",
+      status: "100% Done",
+      completed: true,
+      desc: "Structural steel H-beam framing, exterior shear wall plywood sheathing, roof truss rigging, and high-performance weatherwrap.",
       progress: 100,
     },
     {
-      phase: "Phase 3",
-      name: "MEP & Insulation Rough-In",
-      status: "Completed",
-      date: "Sep 20, 2026",
-      desc: "Hydronic radiant floor heating circuits, 400A electrical service, plumbing rough-in, and R-30 spray foam insulation.",
+      stage: "Stage 3",
+      name: "Phase 3: MEP & Insulation Rough-In",
+      status: "100% Done",
+      completed: true,
+      desc: "PEX plumbing manifold lines, 400A smart electrical wiring panel, multi-zone ducted HVAC heat pump, and rockwool sound insulation.",
       progress: 100,
     },
     {
-      phase: "Phase 4",
-      name: "Interior Finishing & Architectural Glass",
-      status: "In Progress",
-      date: "Nov 15, 2026",
-      desc: "Floor-to-ceiling panoramic Low-E glazing installed; bespoke white oak hardwood and Italian marble tiling ongoing.",
+      stage: "Stage 4",
+      name: "Phase 4: Interior Finishing & Architectural Glass",
+      status: "78% In Progress",
+      active: true,
+      desc: "Level 5 drywall mud & skim, custom European white oak hardwood floors, panoramic floor-to-ceiling double-glazed doors, and bespoke kitchen cabinetry.",
       progress: 78,
     },
     {
-      phase: "Phase 5",
-      name: "Exterior Landscaping & Key Handover",
-      status: "Scheduled",
-      date: "Nov 25, 2026",
-      desc: "Drought-tolerant native landscaping, infinity plunge pool deck, smart home automation commissioning, and turnkey delivery.",
+      stage: "Stage 5",
+      name: "Phase 5: Exterior Landscaping & Key Handover",
+      status: "Upcoming",
+      upcoming: true,
+      desc: "Infinity plunge pool travertine coping, architectural exterior LED uplighting, perimeter drought-tolerant landscaping, city occupancy permit, and white-glove handover ceremony.",
       progress: 0,
     },
   ];
 
-  const photos = [
+  const recentPhotos = [
     {
       title: "Panoramic Glass Window Wall Installed",
-      date: "Oct 03, 2026",
-      desc: "Triple-glazed acoustic glass facade framed with matte black architectural aluminum.",
-      img: "/images/expertise-item-image-1.jpg",
+      time: "Today at 09:15 AM",
+      img: "/images/project-1.jpg",
+      tag: "Interior Glass",
     },
     {
       title: "Custom White Oak Hardwood Flooring Laid",
-      date: "Sep 29, 2026",
-      desc: "Wide-plank quarter-sawn white oak flooring with zero-VOC natural matte seal.",
+      time: "Yesterday at 04:30 PM",
       img: "/images/expertise-item-image-2.jpg",
+      tag: "Flooring",
     },
     {
       title: "Exterior Facade Cedar Cladding Completed",
-      date: "Sep 24, 2026",
-      desc: "Western red cedar rainscreen siding treated with eco-friendly fire-retardant finish.",
+      time: "Oct 02, 2026",
       img: "/images/service-image-1.jpg",
+      tag: "Exterior",
     },
   ];
 
   return (
-    <div className="space-y-8">
-      {/* Client Property Hero Banner */}
-      <div className="bg-white p-6 rounded-xl border border-gray-200/80 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-mono font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
-              PRJ-901
-            </span>
-            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
-              On Schedule (Ahead of Target)
-            </span>
+    <div className="space-y-6 sm:space-y-8">
+      {/* Property Hero Header Banner */}
+      <div className="bg-[#12223B] text-white p-6 sm:p-7 rounded-2xl relative overflow-hidden border border-white/10 shadow-xs">
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-mono font-bold text-[#12223B] bg-[#FFDB5A] px-2.5 py-0.5 rounded">
+                PRJ-901
+              </span>
+              <span className="text-xs text-gray-300 font-medium">
+                Lot #42 Oakridge Estates
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              Modern Family Villa
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-300 flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-[#FFDB5A]" />
+              <span>Jobsite: Central Valley, CA</span>
+              <span>•</span>
+              <span>Supervised by Sophia Bennett (Lead PE)</span>
+            </p>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#12223B]">
-            Modern Family Villa
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-500 flex items-center gap-1.5 mt-1">
-            <MapPin className="w-4 h-4 text-gray-400" />
-            <span>Jobsite: Central Valley, CA (Lot #42 Oakridge Estates)</span>
+
+          <div className="flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-md px-5 py-3 rounded-xl border border-white/10 text-center">
+              <span className="text-xs text-gray-300 uppercase font-semibold">
+                Total Completion
+              </span>
+              <h4 className="text-2xl sm:text-3xl font-extrabold text-[#FFDB5A] mt-0.5">
+                78%
+              </h4>
+              <span className="text-[10px] text-gray-300">Phase 4 Active</span>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md px-5 py-3 rounded-xl border border-white/10 text-center">
+              <span className="text-xs text-gray-300 uppercase font-semibold">
+                Target Handover
+              </span>
+              <h4 className="text-2xl sm:text-3xl font-extrabold text-white mt-0.5">
+                52 Days
+              </h4>
+              <span className="text-[10px] text-gray-300">Nov 25, 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 6 Quick Metrics Cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        {/* Total Completion */}
+        <div className="bg-white p-4 rounded-xl border border-gray-200/80 shadow-2xs">
+          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">
+            Total Completion
+          </span>
+          <h3 className="text-xl sm:text-2xl font-extrabold text-[#12223B] mt-1">
+            78%
+          </h3>
+          <p className="text-[11px] text-emerald-600 font-semibold mt-1">
+            Phase 4 Active
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => window.print()}
-            className="px-4 py-2.5 rounded-lg bg-[#12223B] hover:bg-[#1c3254] text-white text-xs sm:text-sm font-semibold transition-colors flex items-center gap-2 cursor-pointer"
-          >
-            <Download className="w-4 h-4 text-[#FFDB5A]" />
-            <span>Download Progress Summary</span>
-          </button>
-        </div>
-      </div>
-
-      {/* 5 KPI Stat Cards matching Builtex */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-        <div className="bg-white p-4 sm:p-5 rounded-xl border border-gray-200/80 shadow-xs">
-          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider block">
-            Total Completion
-          </span>
-          <div className="flex items-baseline gap-1 mt-1">
-            <span className="text-2xl sm:text-3xl font-bold text-[#12223B]">
-              78
-            </span>
-            <span className="text-lg font-semibold text-[#12223B]">%</span>
-          </div>
-          <span className="text-xs text-emerald-600 font-medium mt-1 block">
-            Phase 4 Active
-          </span>
-        </div>
-
-        <div className="bg-white p-4 sm:p-5 rounded-xl border border-gray-200/80 shadow-xs">
-          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider block">
+        {/* Target Handover */}
+        <div className="bg-white p-4 rounded-xl border border-gray-200/80 shadow-2xs">
+          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">
             Target Handover
           </span>
-          <div className="flex items-baseline gap-1 mt-1">
-            <span className="text-2xl sm:text-3xl font-bold text-[#12223B]">
-              52
-            </span>
-            <span className="text-xs text-gray-500">Days</span>
-          </div>
-          <span className="text-xs text-gray-500 font-medium mt-1 block">
-            Nov 25, 2026
-          </span>
+          <h3 className="text-xl sm:text-2xl font-extrabold text-[#12223B] mt-1">
+            52 Days
+          </h3>
+          <p className="text-[11px] text-gray-500 mt-1">Nov 25, 2026</p>
         </div>
 
-        <div className="bg-white p-4 sm:p-5 rounded-xl border border-gray-200/80 shadow-xs">
-          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider block">
+        {/* Total Contract */}
+        <div className="bg-white p-4 rounded-xl border border-gray-200/80 shadow-2xs">
+          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">
             Total Contract
           </span>
-          <div className="flex items-baseline gap-1 mt-1">
-            <span className="text-xl sm:text-2xl font-bold text-[#12223B]">
-              $850
-            </span>
-            <span className="text-sm font-semibold text-gray-500">k</span>
-          </div>
-          <span className="text-xs text-gray-400 font-medium mt-1 block truncate">
-            Fixed-price agreement
-          </span>
+          <h3 className="text-xl sm:text-2xl font-extrabold text-[#12223B] mt-1">
+            $850k
+          </h3>
+          <p className="text-[11px] text-gray-500 mt-1">Fixed-price agreement</p>
         </div>
 
-        <div className="bg-white p-4 sm:p-5 rounded-xl border border-gray-200/80 shadow-xs">
-          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider block">
+        {/* Paid to Date */}
+        <div className="bg-white p-4 rounded-xl border border-gray-200/80 shadow-2xs">
+          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">
             Paid to Date
           </span>
-          <div className="flex items-baseline gap-1 mt-1">
-            <span className="text-xl sm:text-2xl font-bold text-emerald-700">
-              $663
-            </span>
-            <span className="text-sm font-semibold text-emerald-700">k</span>
-          </div>
-          <span className="text-xs text-gray-400 font-medium mt-1 block truncate">
-            3 of 5 settled
-          </span>
+          <h3 className="text-xl sm:text-2xl font-extrabold text-emerald-600 mt-1">
+            $663k
+          </h3>
+          <p className="text-[11px] text-gray-500 mt-1">3 of 5 settled</p>
         </div>
 
-        <div className="bg-white p-4 sm:p-5 rounded-xl border border-gray-200/80 shadow-xs col-span-2 sm:col-span-1">
-          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider block">
+        {/* Next Due Milestone */}
+        <div className="bg-white p-4 rounded-xl border border-gray-200/80 shadow-2xs">
+          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">
+            Next Due Milestone
+          </span>
+          <h3 className="text-xl sm:text-2xl font-extrabold text-amber-600 mt-1">
+            $119k
+          </h3>
+          <p className="text-[11px] text-gray-500 mt-1">Due Oct 15, 2026</p>
+        </div>
+
+        {/* Site Weather */}
+        <div className="bg-white p-4 rounded-xl border border-gray-200/80 shadow-2xs">
+          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">
             Site Weather
           </span>
-          <div className="flex items-baseline gap-1 mt-1">
-            <span className="text-2xl sm:text-3xl font-bold text-[#12223B]">
-              72°F
-            </span>
-            <span className="text-xs text-emerald-600 font-bold ml-1">● Active</span>
-          </div>
-          <span className="text-xs text-gray-500 font-medium mt-1 block truncate">
-            Sunny & Clear • 6 mph
-          </span>
+          <h3 className="text-xl sm:text-2xl font-extrabold text-[#12223B] mt-1 flex items-center gap-1.5">
+            <CloudSun className="w-5 h-5 text-amber-500" />
+            <span>72°F</span>
+          </h3>
+          <p className="text-[11px] text-gray-500 mt-1">Sunny & Clear</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left 2 Cols: Construction Phases & Milestones */}
+      {/* Main 2-Column Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left Column: Phases & Photo Journal (2 Cols) */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white rounded-xl border border-gray-200/80 p-6 shadow-xs space-y-5">
+          {/* Construction Phases & Milestones */}
+          <div className="bg-white p-6 sm:p-7 rounded-2xl border border-gray-200/80 shadow-2xs space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-gray-100">
               <div>
                 <h3 className="text-lg sm:text-xl font-bold text-[#12223B]">
                   Construction Phases & Milestones
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-500">
+                <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
                   Engineering signoffs tracked by site supervisors
                 </p>
               </div>
-              <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">
-                Verified On-Chain & Signed
-              </span>
+              <Link
+                href="/dashboard/client/projects"
+                className="text-xs font-bold text-[#12223B] hover:text-amber-600 flex items-center gap-1 transition-colors"
+              >
+                <span>View Live Feed</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
             </div>
 
             <div className="space-y-4">
-              {phases.map((p, idx) => {
-                const statusStyles = {
-                  Completed: "bg-emerald-100 text-emerald-800",
-                  "In Progress": "bg-[#FFDB5A] text-[#12223B]",
-                  Scheduled: "bg-gray-100 text-gray-600",
-                }[p.status];
-
-                return (
-                  <div
-                    key={idx}
-                    className="p-4 rounded-xl bg-gray-50 border border-gray-200/60 space-y-2 hover:border-[#12223B]/30 transition-all"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-gray-500 uppercase">
-                          {p.phase}
-                        </span>
-                        <strong className="text-sm sm:text-base font-bold text-[#12223B]">
-                          {p.name}
-                        </strong>
-                      </div>
-                      <span
-                        className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${statusStyles}`}
-                      >
-                        {p.status}
-                      </span>
-                    </div>
-
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                      {p.desc}
-                    </p>
-
-                    <div className="flex items-center justify-between pt-1 text-xs">
-                      <span className="text-gray-400">
-                        {p.status === "Completed"
-                          ? `Completed on ${p.date}`
-                          : `Target date: ${p.date}`}
-                      </span>
-                      <span className="font-mono font-bold text-[#12223B]">
-                        {p.progress}%
-                      </span>
-                    </div>
-
-                    <div className="w-full h-2 rounded-full bg-gray-200 overflow-hidden">
-                      <div
-                        className="h-full bg-[#12223B] rounded-full transition-all duration-1000"
-                        style={{ width: `${p.progress}%` }}
-                      />
-                    </div>
+              {phases.map((p, idx) => (
+                <div
+                  key={idx}
+                  className={`p-4 rounded-xl border transition-all ${
+                    p.active
+                      ? "border-[#FFDB5A] bg-amber-50/20 shadow-2xs"
+                      : p.completed
+                      ? "border-gray-200/80 bg-white"
+                      : "border-gray-200/60 bg-gray-50/60 opacity-80"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                      {p.stage}
+                    </span>
+                    <span
+                      className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full ${
+                        p.completed
+                          ? "bg-emerald-100 text-emerald-800"
+                          : p.active
+                          ? "bg-[#FFDB5A] text-[#12223B]"
+                          : "bg-gray-100 text-gray-600"
+                      }`}
+                    >
+                      {p.status}
+                    </span>
                   </div>
-                );
-              })}
+
+                  <h4 className="text-sm sm:text-base font-bold text-[#12223B]">
+                    {p.name}
+                  </h4>
+                  <p className="text-xs text-gray-600 mt-1 leading-relaxed">
+                    {p.desc}
+                  </p>
+
+                  <div className="w-full h-2 rounded-full bg-gray-100 overflow-hidden mt-3">
+                    <div
+                      className={`h-full rounded-full transition-all duration-700 ${
+                        p.completed
+                          ? "bg-emerald-500"
+                          : p.active
+                          ? "bg-[#FFDB5A]"
+                          : "bg-gray-300"
+                      }`}
+                      style={{ width: `${p.progress}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Photo Journal */}
-          <div className="bg-white rounded-xl border border-gray-200/80 p-6 shadow-xs space-y-4">
-            <h3 className="text-lg sm:text-xl font-bold text-[#12223B]">
-              Recent On-Site Photo Journal
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-500">
-              Photographs captured and logged during daily engineering inspections
-            </p>
+          {/* Recent On-Site Photo Journal */}
+          <div className="bg-white p-6 sm:p-7 rounded-2xl border border-gray-200/80 shadow-2xs space-y-5">
+            <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-[#12223B]">
+                  Recent On-Site Photo Journal
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+                  Uploaded directly by Lead Engineer Sophia Bennett
+                </p>
+              </div>
+              <Link
+                href="/dashboard/client/projects"
+                className="text-xs font-bold text-[#12223B] hover:text-amber-600 flex items-center gap-1 transition-colors"
+              >
+                <span>Full Photo Log</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-              {photos.map((item, idx) => (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {recentPhotos.map((photo, i) => (
                 <div
-                  key={idx}
-                  className="rounded-xl border border-gray-200/80 overflow-hidden bg-gray-50 group hover:border-[#FFDB5A] transition-all"
+                  key={i}
+                  className="group rounded-xl overflow-hidden border border-gray-200/80 bg-white shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between"
                 >
-                  <div className="relative aspect-4/3 w-full overflow-hidden bg-gray-200">
+                  <div className="relative h-40 w-full overflow-hidden bg-gray-100">
                     <Image
-                      src={item.img}
-                      alt={item.title}
+                      src={photo.img}
+                      alt={photo.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute top-2 right-2 bg-black/60 text-white text-[10px] font-semibold px-2 py-0.5 rounded">
-                      {item.date}
+                    <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-xs text-white text-[10px] font-semibold px-2 py-0.5 rounded">
+                      {photo.tag}
                     </div>
                   </div>
-                  <div className="p-3">
-                    <h4 className="font-semibold text-xs sm:text-sm text-[#12223B] leading-snug line-clamp-2">
-                      {item.title}
-                    </h4>
-                    <p className="text-[11px] text-gray-500 mt-1 line-clamp-2">
-                      {item.desc}
-                    </p>
+                  <div className="p-3.5 space-y-1">
+                    <span className="text-[10px] text-gray-400 font-medium block">
+                      {photo.time}
+                    </span>
+                    <h5 className="text-xs sm:text-sm font-bold text-[#12223B] line-clamp-2 leading-snug">
+                      {photo.title}
+                    </h5>
                   </div>
                 </div>
               ))}
@@ -315,21 +336,16 @@ export default function ClientDashboardPage() {
           </div>
         </div>
 
-        {/* Right Col: Engineer Card, Change Order, Shortcuts */}
+        {/* Right Column: Engineer, Change Order & Shortcuts (1 Col) */}
         <div className="space-y-6">
           {/* Lead Site Engineer Card */}
-          <div className="bg-white rounded-xl border border-gray-200/80 p-5 shadow-xs space-y-4">
-            <div className="flex items-center justify-between pb-2 border-b border-gray-100">
-              <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                Lead Site Engineer
-              </span>
-              <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                ● On Duty
-              </span>
-            </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-2xs space-y-4">
+            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+              Lead Site Engineer
+            </h4>
 
             <div className="flex items-center gap-3">
-              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#FFDB5A]">
+              <div className="relative w-14 h-14 rounded-2xl overflow-hidden border-2 border-[#12223B] flex-shrink-0">
                 <Image
                   src="/images/author-2.jpg"
                   alt="Sophia Bennett"
@@ -338,99 +354,102 @@ export default function ClientDashboardPage() {
                 />
               </div>
               <div>
-                <h4 className="font-bold text-[#12223B] text-base">
-                  Sophia Bennett, PE
+                <h4 className="text-base font-bold text-[#12223B]">
+                  Sophia Bennett
                 </h4>
-                <p className="text-xs text-amber-600 font-semibold">
-                  Lead Structural Supervisor
+                <p className="text-xs text-gray-500 font-medium">
+                  Licensed Lead Site Engineer (PE #88412)
                 </p>
-                <p className="text-[11px] text-gray-400">Buildora Engineering Ops</p>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[11px] text-emerald-600 font-semibold">
+                    On Jobsite Today
+                  </span>
+                </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 pt-2 border-t border-gray-100">
+            <div className="space-y-2 text-xs pt-2 border-t border-gray-100">
               <a
-                href="tel:+15554321098"
-                className="py-2 px-3 rounded-lg bg-[#12223B] hover:bg-[#1c3254] text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                href="tel:+1(555)349-8120"
+                className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-gray-50 text-gray-700 transition-colors"
               >
-                <Phone className="w-3.5 h-3.5 text-[#FFDB5A]" />
-                <span>Direct Call</span>
+                <Phone className="w-4 h-4 text-gray-400" />
+                <span>+1 (555) 349-8120</span>
               </a>
               <a
-                href="mailto:sophia.b@buildora.com"
-                className="py-2 px-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                href="mailto:s.bennett@buildora.com"
+                className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-gray-50 text-gray-700 transition-colors"
               >
-                <Mail className="w-3.5 h-3.5 text-gray-500" />
-                <span>Message</span>
+                <Mail className="w-4 h-4 text-gray-400" />
+                <span>s.bennett@buildora.com</span>
               </a>
             </div>
+
+            <Link
+              href="/dashboard/client/messages"
+              className="w-full py-2.5 px-4 rounded-xl bg-[#12223B] hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors shadow-xs"
+            >
+              <MessageSquare className="w-4 h-4 text-[#FFDB5A]" />
+              <span>Open Live Engineer Chat</span>
+            </Link>
           </div>
 
-          {/* Change Order Card */}
-          <div className="bg-white rounded-xl border border-gray-200/80 p-5 shadow-xs space-y-3">
+          {/* Change Order Awaiting Signoff Card */}
+          <div className="bg-amber-50/40 p-6 rounded-2xl border border-amber-300/80 shadow-2xs space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#12223B] uppercase tracking-wider">
-                Change Order Signoff
+              <span className="text-xs font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
+                <AlertCircle className="w-4 h-4 text-amber-600" />
+                <span>Pending Approval</span>
               </span>
-              <span className="text-[11px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">
-                Pending
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-200 text-amber-900">
+                CO-02
               </span>
             </div>
 
-            <div className="p-3 bg-gray-50 rounded-xl space-y-1 border border-gray-100">
-              <div className="flex justify-between items-center text-xs font-semibold text-[#12223B]">
-                <span>Smart HVAC Dual-Zone Heat Pump</span>
-                <strong className="text-emerald-700">+$14,200</strong>
-              </div>
-              <p className="text-[11px] text-gray-500">
-                Upgrade to ultra-quiet inverter variable refrigerant flow system with smart zoning.
-              </p>
-            </div>
+            <h4 className="text-sm font-bold text-[#12223B]">
+              Solar Roof Array & Tesla Powerwall 3 Battery Backup
+            </h4>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              12.4 kW concealed solar panels paired with 2x Tesla Powerwall 3 units. +$18,500 budget impact, 0 days schedule impact.
+            </p>
 
-            {changeOrderApproved ? (
-              <div className="p-2.5 bg-emerald-100 text-emerald-800 rounded-lg text-xs font-semibold flex items-center gap-1.5">
-                <Check className="w-4 h-4 text-emerald-600" />
-                <span>Change order signed & released to engineering!</span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setChangeOrderApproved(true)}
-                  className="flex-1 py-2 bg-[#FFDB5A] hover:bg-[#f0cb46] text-[#12223B] font-bold text-xs rounded-lg transition-colors cursor-pointer"
-                >
-                  Approve Signoff
-                </button>
-                <button
-                  type="button"
-                  className="py-2 px-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold text-xs rounded-lg transition-colors cursor-pointer"
-                >
-                  Review Details
-                </button>
-              </div>
-            )}
+            <Link
+              href="/dashboard/client/change-orders"
+              className="w-full py-2.5 px-4 rounded-xl bg-[#FFDB5A] hover:bg-amber-400 text-[#12223B] text-xs font-bold flex items-center justify-center gap-2 transition-colors shadow-xs"
+            >
+              <FileCheck className="w-4 h-4" />
+              <span>Review & Approve Change Order</span>
+            </Link>
           </div>
 
-          {/* Quick Shortcuts */}
-          <div className="bg-white rounded-xl border border-gray-200/80 p-5 shadow-xs space-y-3">
-            <h4 className="font-bold text-xs text-gray-400 uppercase tracking-wider">
+          {/* Quick Portal Shortcuts */}
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-2xs space-y-3">
+            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">
               Quick Portal Shortcuts
             </h4>
-            <div className="space-y-2 text-xs font-semibold">
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="w-full p-2.5 rounded-lg bg-gray-50 hover:bg-gray-100 text-[#12223B] flex items-center justify-between cursor-pointer"
-              >
-                <span>Download Architectural Blueprints PDF</span>
-                <Download className="w-3.5 h-3.5 text-gray-400" />
-              </button>
+
+            <div className="space-y-2">
               <Link
-                href="/dashboard/admin/billing"
-                className="w-full p-2.5 rounded-lg bg-gray-50 hover:bg-gray-100 text-[#12223B] flex items-center justify-between"
+                href="/dashboard/client/payments"
+                className="flex items-center justify-between p-3 rounded-xl border border-gray-200 hover:border-[#FFDB5A] hover:bg-amber-50/20 transition-all text-xs font-bold text-[#12223B]"
               >
-                <span>View Full Payment Schedule</span>
-                <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
+                <div className="flex items-center gap-2.5">
+                  <DollarSign className="w-4 h-4 text-amber-600" />
+                  <span>Milestone Invoices & Receipts</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-gray-400" />
+              </Link>
+
+              <Link
+                href="/dashboard/client/documents"
+                className="flex items-center justify-between p-3 rounded-xl border border-gray-200 hover:border-[#FFDB5A] hover:bg-amber-50/20 transition-all text-xs font-bold text-[#12223B]"
+              >
+                <div className="flex items-center gap-2.5">
+                  <FolderLock className="w-4 h-4 text-blue-600" />
+                  <span>Blueprints & Permits Vault</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-gray-400" />
               </Link>
             </div>
           </div>
