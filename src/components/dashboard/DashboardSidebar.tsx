@@ -24,9 +24,11 @@ import {
   ClipboardList,
   Boxes,
   Compass,
+  Briefcase,
+  CheckCircle2,
 } from "lucide-react";
 
-export type PortalRole = "admin" | "client" | "engineer";
+export type PortalRole = "admin" | "client" | "engineer" | "subcontractor";
 
 interface DashboardSidebarProps {
   collapsed: boolean;
@@ -48,6 +50,8 @@ export default function DashboardSidebar({
     ? "client"
     : pathname.includes("/dashboard/engineer")
     ? "engineer"
+    : pathname.includes("/dashboard/subcontractor")
+    ? "subcontractor"
     : "admin";
 
   const adminMenu = [
@@ -144,11 +148,47 @@ export default function DashboardSidebar({
     },
   ];
 
+  const subcontractorMenu = [
+    { label: "Trade Overview", href: "/dashboard/subcontractor", icon: LayoutDashboard },
+    {
+      label: "Work Packages & Scope",
+      href: "/dashboard/subcontractor/work-orders",
+      icon: Briefcase,
+      badge: "4 Active",
+    },
+    {
+      label: "Daily Crew Logs",
+      href: "/dashboard/subcontractor/crew-logs",
+      icon: Users,
+      badge: "Today",
+    },
+    {
+      label: "Pay Apps & Invoices",
+      href: "/dashboard/subcontractor/invoices",
+      icon: Receipt,
+      badge: "1 In Review",
+    },
+    {
+      label: "Safety & Compliance",
+      href: "/dashboard/subcontractor/safety",
+      icon: ShieldCheck,
+      badge: "COI Valid",
+    },
+    {
+      label: "Punch List & QA",
+      href: "/dashboard/subcontractor/punch-list",
+      icon: CheckCircle2,
+      badge: "1 Open",
+    },
+  ];
+
   const menuItems =
     currentRole === "client"
       ? clientMenu
       : currentRole === "engineer"
       ? engineerMenu
+      : currentRole === "subcontractor"
+      ? subcontractorMenu
       : adminMenu;
 
   const roleMeta = {
@@ -169,6 +209,12 @@ export default function DashboardSidebar({
       title: "Sophia Bennett (PE)",
       section: "ENGINEERING OPS PORTAL",
       icon: HardHat,
+    },
+    subcontractor: {
+      subtitle: "CA-CSLB-994812 (C-6)",
+      title: "Apex Millwork LLC",
+      section: "SUB-TRADE CONTRACTOR PORTAL",
+      icon: Briefcase,
     },
   }[currentRole];
 
@@ -321,6 +367,8 @@ export default function DashboardSidebar({
                   ? pathname === "/dashboard/client"
                   : item.href === "/dashboard/engineer"
                   ? pathname === "/dashboard/engineer"
+                  : item.href === "/dashboard/subcontractor"
+                  ? pathname === "/dashboard/subcontractor"
                   : pathname.startsWith(item.href) ||
                     (item.href === "/dashboard/admin/billing" &&
                       pathname.startsWith("/dashboard/admin/revenue")) ||
@@ -418,6 +466,16 @@ export default function DashboardSidebar({
                   >
                     <span className="flex items-center gap-1.5">
                       <UserCheck className="w-4 h-4 text-[#FFDB5A]" /> Client
+                    </span>
+                  </Link>
+                )}
+                {currentRole !== "subcontractor" && (
+                  <Link
+                    href="/dashboard/subcontractor"
+                    className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15 text-gray-200 flex items-center justify-between transition-colors duration-200"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <Briefcase className="w-4 h-4 text-[#FFDB5A]" /> Sub-Trade
                     </span>
                   </Link>
                 )}
