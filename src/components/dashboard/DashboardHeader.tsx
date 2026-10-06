@@ -128,11 +128,45 @@ export default function DashboardHeader({
           "Real-time construction milestones, financial progress, and jobsite inspection logs",
       };
     }
+    if (
+      pathname.includes("/dashboard/engineer/logs") ||
+      pathname.includes("/dashboard/engineer/site-logs")
+    ) {
+      return {
+        title: "Daily Site Logs (PRJ-901)",
+        subtitle:
+          "Logged by Sophia Bennett (PE) • Certified records synchronized with Head Office and Property Owner.",
+      };
+    }
+    if (
+      pathname.includes("/dashboard/engineer/materials") ||
+      pathname.includes("/dashboard/engineer/requisition")
+    ) {
+      return {
+        title: "Material Requisition & PO Tracker",
+        subtitle:
+          "All structural concrete, timber, and electrical shipments tracked with certified supplier documentation.",
+      };
+    }
+    if (pathname.includes("/dashboard/engineer/safety")) {
+      return {
+        title: "Safety & PPE Audits (OSHA 30)",
+        subtitle:
+          "240 Consecutive Days Incident-Free • Active compliance audits, tailgates & PPE enforcement.",
+      };
+    }
+    if (pathname.includes("/dashboard/engineer/blueprints")) {
+      return {
+        title: "Modern Family Villa — Full Drawing Set",
+        subtitle:
+          "PE Stamped & Issued For Construction (IFC) certified architectural, structural and MEP drawings.",
+      };
+    }
     if (pathname.includes("/dashboard/engineer")) {
       return {
-        title: "Field Engineer Portal",
+        title: "Site Operations & Engineering Hub",
         subtitle:
-          "Daily OSHA safety compliance, site inspections, and contractor progress logs.",
+          "Field inspection status, active trades, critical material alerts, and punch-list items.",
       };
     }
     return {
