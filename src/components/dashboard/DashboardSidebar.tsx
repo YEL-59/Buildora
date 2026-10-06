@@ -22,6 +22,8 @@ import {
   FileCheck,
   Camera,
   ClipboardList,
+  Boxes,
+  Compass,
 } from "lucide-react";
 
 export type PortalRole = "admin" | "client" | "engineer";
@@ -118,17 +120,27 @@ export default function DashboardSidebar({
   ];
 
   const engineerMenu = [
-    { label: "Field Overview", href: "/dashboard/engineer", icon: LayoutDashboard },
+    { label: "Engineer Portal", href: "/dashboard/engineer", icon: LayoutDashboard },
     {
-      label: "Daily Site Log",
-      href: "/dashboard/engineer",
+      label: "Daily Site Logs",
+      href: "/dashboard/engineer/logs",
       icon: ClipboardList,
-      badge: "Today",
+      badge: "Pending",
     },
     {
-      label: "Safety Inspection",
-      href: "/dashboard/engineer",
-      icon: HardHat,
+      label: "Material Requisition",
+      href: "/dashboard/engineer/materials",
+      icon: Boxes,
+    },
+    {
+      label: "Safety & PPE Audits",
+      href: "/dashboard/engineer/safety",
+      icon: ShieldCheck,
+    },
+    {
+      label: "Field Blueprints",
+      href: "/dashboard/engineer/blueprints",
+      icon: Compass,
     },
   ];
 
@@ -153,8 +165,8 @@ export default function DashboardSidebar({
       icon: UserCheck,
     },
     engineer: {
-      subtitle: "Lead Structural (ENG-01)",
-      title: "Site Engineer",
+      subtitle: "CA-PE #98421",
+      title: "Sophia Bennett (PE)",
       section: "ENGINEERING OPS PORTAL",
       icon: HardHat,
     },
@@ -315,7 +327,11 @@ export default function DashboardSidebar({
                     (item.href === "/dashboard/client/projects" &&
                       pathname.startsWith("/dashboard/client/progress")) ||
                     (item.href === "/dashboard/client/documents" &&
-                      pathname.startsWith("/dashboard/client/blueprints"));
+                      pathname.startsWith("/dashboard/client/blueprints")) ||
+                    (item.href === "/dashboard/engineer/logs" &&
+                      pathname.startsWith("/dashboard/engineer/site-logs")) ||
+                    (item.href === "/dashboard/engineer/materials" &&
+                      pathname.startsWith("/dashboard/engineer/requisition"));
 
               return (
                 <div key={item.label} className="relative group">
