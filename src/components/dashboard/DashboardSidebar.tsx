@@ -17,6 +17,9 @@ import {
   X,
   UserCheck,
   LogOut,
+  FolderLock,
+  MessageSquare,
+  FileCheck,
   Camera,
   ClipboardList,
 } from "lucide-react";
@@ -85,15 +88,32 @@ export default function DashboardSidebar({
     { label: "My Overview", href: "/dashboard/client", icon: LayoutDashboard },
     {
       label: "Live Site & Progress",
-      href: "/dashboard/client",
+      href: "/dashboard/client/projects",
       icon: Camera,
       badge: "78%",
     },
     {
-      label: "Milestones & Payment",
-      href: "/dashboard/client",
+      label: "Milestones & Payments",
+      href: "/dashboard/client/payments",
       icon: Receipt,
       badge: "1 Due",
+    },
+    {
+      label: "Change Orders",
+      href: "/dashboard/client/change-orders",
+      icon: FileCheck,
+      badge: "2",
+    },
+    {
+      label: "Blueprints & Files",
+      href: "/dashboard/client/documents",
+      icon: FolderLock,
+    },
+    {
+      label: "Engineer Messages",
+      href: "/dashboard/client/messages",
+      icon: MessageSquare,
+      badge: "3",
     },
   ];
 
@@ -285,9 +305,17 @@ export default function DashboardSidebar({
               const isActive =
                 item.href === "/dashboard/admin"
                   ? pathname === "/dashboard/admin"
+                  : item.href === "/dashboard/client"
+                  ? pathname === "/dashboard/client"
+                  : item.href === "/dashboard/engineer"
+                  ? pathname === "/dashboard/engineer"
                   : pathname.startsWith(item.href) ||
                     (item.href === "/dashboard/admin/billing" &&
-                      pathname.startsWith("/dashboard/admin/revenue"));
+                      pathname.startsWith("/dashboard/admin/revenue")) ||
+                    (item.href === "/dashboard/client/projects" &&
+                      pathname.startsWith("/dashboard/client/progress")) ||
+                    (item.href === "/dashboard/client/documents" &&
+                      pathname.startsWith("/dashboard/client/blueprints"));
 
               return (
                 <div key={item.label} className="relative group">
