@@ -80,18 +80,59 @@ export default function DashboardHeader({
           "Configure corporate profiles, safety compliance thresholds, notification preferences, and security access.",
       };
     }
+    if (
+      pathname.includes("/dashboard/client/projects") ||
+      pathname.includes("/dashboard/client/progress")
+    ) {
+      return {
+        title: "Live Site & Progress Gallery",
+        subtitle:
+          "Inspect photographic journals, verified engineering phases, and live jobsite milestones in real time.",
+      };
+    }
+    if (pathname.includes("/dashboard/client/payments")) {
+      return {
+        title: "Milestone Invoices & Payments",
+        subtitle:
+          "Transparent progress-based billing ledger, verified milestone sign-offs, and secure payment portal.",
+      };
+    }
+    if (pathname.includes("/dashboard/client/change-orders")) {
+      return {
+        title: "Change Orders & Variations",
+        subtitle:
+          "Request design modifications, review engineering cost impacts, and approve project variation orders.",
+      };
+    }
+    if (
+      pathname.includes("/dashboard/client/documents") ||
+      pathname.includes("/dashboard/client/blueprints")
+    ) {
+      return {
+        title: "Blueprints & Document Vault",
+        subtitle:
+          "Encrypted repository of certified architectural blueprints, municipal permits, warranties, and contracts.",
+      };
+    }
+    if (pathname.includes("/dashboard/client/messages")) {
+      return {
+        title: "Field Engineer Messages",
+        subtitle:
+          "Direct line of communication with Lead Engineer Sophia Bennett & Senior Project Manager Marcus Vance.",
+      };
+    }
+    if (pathname.includes("/dashboard/client")) {
+      return {
+        title: "Property Owner Portal",
+        subtitle:
+          "Real-time construction milestones, financial progress, and jobsite inspection logs",
+      };
+    }
     if (pathname.includes("/dashboard/engineer")) {
       return {
         title: "Field Engineer Portal",
         subtitle:
           "Daily OSHA safety compliance, site inspections, and contractor progress logs.",
-      };
-    }
-    if (pathname.includes("/dashboard/client")) {
-      return {
-        title: "Client Property Portal",
-        subtitle:
-          "Real-time construction milestones, photos, and payment approvals for Villa Horizon.",
       };
     }
     return {
@@ -234,24 +275,48 @@ export default function DashboardHeader({
           </div>
 
           {/* User Profile */}
-          <div className="flex items-center gap-3 pl-2 border-l border-gray-200">
-            <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#12223B]">
-              <Image
-                src="/images/author-1.jpg"
-                alt="Michael Anderson"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="hidden xl:block text-left">
-              <p className="text-sm sm:text-base font-semibold text-[#12223B] leading-none">
-                Michael Anderson
-              </p>
-              <p className="text-xs text-gray-500 font-medium mt-1">
-                Principal Executive
-              </p>
-            </div>
-          </div>
+          {(() => {
+            const isClient = pathname.includes("/dashboard/client");
+            const isEngineer = pathname.includes("/dashboard/engineer");
+            const user = isClient
+              ? {
+                  name: "David Miller",
+                  role: "Villa Owner (PRJ-901)",
+                  avatar: "/images/author-1.jpg",
+                }
+              : isEngineer
+              ? {
+                  name: "Sophia Bennett",
+                  role: "Lead Site Engineer (PE #88412)",
+                  avatar: "/images/author-2.jpg",
+                }
+              : {
+                  name: "Michael Anderson",
+                  role: "Principal Executive",
+                  avatar: "/images/author-1.jpg",
+                };
+
+            return (
+              <div className="flex items-center gap-3 pl-2 border-l border-gray-200">
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#12223B]">
+                  <Image
+                    src={user.avatar}
+                    alt={user.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="hidden xl:block text-left">
+                  <p className="text-sm sm:text-base font-semibold text-[#12223B] leading-none">
+                    {user.name}
+                  </p>
+                  <p className="text-xs text-gray-500 font-medium mt-1">
+                    {user.role}
+                  </p>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </div>
 

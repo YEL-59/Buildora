@@ -1,0 +1,27 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "feature/client-portal",
+    "feature/engineer-portal",
+    "feature/subcontractor-portal",
+    "feature/supplier-portal",
+    "main",
+    "origin"
+  ],
+  "parent": {
+    "feature/client-portal": "main",
+    "feature/engineer-portal": "main",
+    "feature/subcontractor-portal": "main",
+    "feature/supplier-portal": "main",
+    "main": null,
+    "origin": "main"
+  },
+  "order": [
+    "main",
+    "feature/client-portal",
+    "feature/engineer-portal",
+    "feature/subcontractor-portal",
+    "feature/supplier-portal",
+    "origin"
+  ]
+}
