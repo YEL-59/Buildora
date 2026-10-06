@@ -169,6 +169,48 @@ export default function DashboardHeader({
           "Field inspection status, active trades, critical material alerts, and punch-list items.",
       };
     }
+    if (pathname.includes("/dashboard/subcontractor/work-orders")) {
+      return {
+        title: "Work Packages & Scope Specifications",
+        subtitle:
+          "Division 06 contracted scope progress, deliverables checklist, and milestone sign-offs.",
+      };
+    }
+    if (pathname.includes("/dashboard/subcontractor/crew-logs")) {
+      return {
+        title: "Daily Shift Reports & Headcount",
+        subtitle:
+          "Daily labor logs, craftsman headcount, and on-site jobsite photo documentation.",
+      };
+    }
+    if (pathname.includes("/dashboard/subcontractor/invoices")) {
+      return {
+        title: "AIA Pay Applications & Retainage",
+        subtitle:
+          "AIA G702 progress billing schedule, earned milestones, and 10% retainage tracking.",
+      };
+    }
+    if (pathname.includes("/dashboard/subcontractor/safety")) {
+      return {
+        title: "Safety Credentials & Insurance Vault",
+        subtitle:
+          "Valid COI, OSHA 30 certifications, and Daily Jobsite Hazard Analysis (JHA).",
+      };
+    }
+    if (pathname.includes("/dashboard/subcontractor/punch-list")) {
+      return {
+        title: "Trade Punch List & Quality Assurance",
+        subtitle:
+          "Architectural snag items, corrective action plans, and GC close-out signoffs.",
+      };
+    }
+    if (pathname.includes("/dashboard/subcontractor")) {
+      return {
+        title: "Sub-Trade Contractor Operations",
+        subtitle:
+          "Apex Millwork & Architectural Finishes LLC • Contract Division 06",
+      };
+    }
     return {
       title: "Executive Operations Dashboard",
       subtitle:
@@ -312,6 +354,7 @@ export default function DashboardHeader({
           {(() => {
             const isClient = pathname.includes("/dashboard/client");
             const isEngineer = pathname.includes("/dashboard/engineer");
+            const isSubcontractor = pathname.includes("/dashboard/subcontractor");
             const user = isClient
               ? {
                   name: "David Miller",
@@ -322,6 +365,12 @@ export default function DashboardHeader({
               ? {
                   name: "Sophia Bennett",
                   role: "Lead Site Engineer (PE #88412)",
+                  avatar: "/images/author-2.jpg",
+                }
+              : isSubcontractor
+              ? {
+                  name: "Marcus Vance",
+                  role: "Superintendent (Apex Millwork)",
                   avatar: "/images/author-2.jpg",
                 }
               : {
