@@ -17,6 +17,8 @@ import {
   Camera,
   ArrowRight,
   Sparkles,
+  Briefcase,
+  Truck,
 } from "lucide-react";
 
 interface CommandPaletteProps {
@@ -26,7 +28,13 @@ interface CommandPaletteProps {
 
 interface CommandItem {
   id: string;
-  category: "Portals" | "Projects" | "Client Tools" | "Engineering Operations";
+  category:
+    | "Portals"
+    | "Projects"
+    | "Client Tools"
+    | "Engineering Operations"
+    | "Subcontractor Operations"
+    | "Supplier Logistics";
   title: string;
   subtitle: string;
   href: string;
@@ -70,6 +78,26 @@ export default function CommandPalette({ open, setOpen }: CommandPaletteProps) {
       icon: HardHat,
       badge: "Engineer",
       badgeBg: "bg-[#2563EB] text-white",
+    },
+    {
+      id: "portal-subcontractor",
+      category: "Portals",
+      title: "Subcontractor Operations Portal",
+      subtitle: "Apex Millwork LLC • Work orders, crew & pay apps",
+      href: "/dashboard/subcontractor",
+      icon: Briefcase,
+      badge: "Sub-Trade",
+      badgeBg: "bg-[#F97316] text-white",
+    },
+    {
+      id: "portal-supplier",
+      category: "Portals",
+      title: "Material Supplier & Logistics Portal",
+      subtitle: "Apex Industrial Supply • Purchase orders, fleet & MTRs",
+      href: "/dashboard/supplier",
+      icon: Truck,
+      badge: "Supplier",
+      badgeBg: "bg-[#06B6D4] text-white",
     },
 
     // Projects
@@ -166,6 +194,70 @@ export default function CommandPalette({ open, setOpen }: CommandPaletteProps) {
       icon: FolderArchive,
       badge: "DWG-C101",
       badgeBg: "bg-white/10 text-white",
+    },
+
+    // Subcontractor Operations
+    {
+      id: "sub-work-orders",
+      category: "Subcontractor Operations",
+      title: "Division 06 Millwork Work Orders",
+      subtitle: "4 Active packages • Custom cabinetry & architectural timber",
+      href: "/dashboard/subcontractor/work-orders",
+      icon: Briefcase,
+      badge: "Active",
+      badgeBg: "bg-[#F97316]/20 text-[#F97316]",
+    },
+    {
+      id: "sub-crew-logs",
+      category: "Subcontractor Operations",
+      title: "Daily Crew & Labor Logs",
+      subtitle: "Record shift headcounts, craftsman trades & photo journals",
+      href: "/dashboard/subcontractor/crew-logs",
+      icon: ClipboardList,
+      badge: "Today",
+      badgeBg: "bg-amber-500/20 text-amber-400",
+    },
+    {
+      id: "sub-invoices",
+      category: "Subcontractor Operations",
+      title: "AIA G702 Pay Applications",
+      subtitle: "Progress billing schedule & 10% retainage ledger",
+      href: "/dashboard/subcontractor/invoices",
+      icon: Receipt,
+      badge: "AIA G702",
+      badgeBg: "bg-emerald-500/20 text-emerald-400",
+    },
+
+    // Supplier Logistics
+    {
+      id: "sup-orders",
+      category: "Supplier Logistics",
+      title: "Purchase Orders & Bulk Delivery",
+      subtitle: "Fulfill incoming GC material orders & dispatch batches",
+      href: "/dashboard/supplier/orders",
+      icon: Boxes,
+      badge: "PO Vault",
+      badgeBg: "bg-[#06B6D4]/20 text-[#06B6D4]",
+    },
+    {
+      id: "sup-fleet",
+      category: "Supplier Logistics",
+      title: "Fleet Tracking & Proof of Delivery (e-POD)",
+      subtitle: "Live GPS dispatch with digital signature verification",
+      href: "/dashboard/supplier/deliveries",
+      icon: Truck,
+      badge: "Fleet GPS",
+      badgeBg: "bg-cyan-500/20 text-cyan-400",
+    },
+    {
+      id: "sup-quality",
+      category: "Supplier Logistics",
+      title: "ASTM / ACI Mill Test Reports (MTRs)",
+      subtitle: "Certified laboratory metallurgical test results & break logs",
+      href: "/dashboard/supplier/quality",
+      icon: FileCheck,
+      badge: "Certified",
+      badgeBg: "bg-blue-500/20 text-blue-400",
     },
   ];
 

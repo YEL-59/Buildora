@@ -26,9 +26,13 @@ import {
   Compass,
   Briefcase,
   CheckCircle2,
+  Truck,
+  ShoppingBag,
+  Package,
+  Award,
 } from "lucide-react";
 
-export type PortalRole = "admin" | "client" | "engineer" | "subcontractor";
+export type PortalRole = "admin" | "client" | "engineer" | "subcontractor" | "supplier";
 
 interface DashboardSidebarProps {
   collapsed: boolean;
@@ -52,6 +56,8 @@ export default function DashboardSidebar({
     ? "engineer"
     : pathname.includes("/dashboard/subcontractor")
     ? "subcontractor"
+    : pathname.includes("/dashboard/supplier")
+    ? "supplier"
     : "admin";
 
   const adminMenu = [
@@ -182,6 +188,39 @@ export default function DashboardSidebar({
     },
   ];
 
+  const supplierMenu = [
+    { label: "Supply Overview", href: "/dashboard/supplier", icon: LayoutDashboard },
+    {
+      label: "Purchase Orders",
+      href: "/dashboard/supplier/orders",
+      icon: ShoppingBag,
+      badge: "2 New",
+    },
+    {
+      label: "Fleet & Deliveries",
+      href: "/dashboard/supplier/deliveries",
+      icon: Truck,
+      badge: "In Transit",
+    },
+    {
+      label: "Material Catalog",
+      href: "/dashboard/supplier/inventory",
+      icon: Package,
+    },
+    {
+      label: "Quality & MTRs",
+      href: "/dashboard/supplier/quality",
+      icon: Award,
+      badge: "ASTM Pass",
+    },
+    {
+      label: "Vendor Invoices",
+      href: "/dashboard/supplier/invoices",
+      icon: Receipt,
+      badge: "$46.8k",
+    },
+  ];
+
   const menuItems =
     currentRole === "client"
       ? clientMenu
@@ -189,6 +228,8 @@ export default function DashboardSidebar({
       ? engineerMenu
       : currentRole === "subcontractor"
       ? subcontractorMenu
+      : currentRole === "supplier"
+      ? supplierMenu
       : adminMenu;
 
   const roleMeta = {
@@ -216,9 +257,22 @@ export default function DashboardSidebar({
       section: "SUB-TRADE CONTRACTOR PORTAL",
       icon: Briefcase,
     },
+    supplier: {
+      subtitle: "VND-APX-7719 • Tier 1",
+      title: "Apex Industrial Supply",
+      section: "MATERIAL SUPPLIER PORTAL",
+      icon: Truck,
+    },
   }[currentRole];
 
   const RoleIcon = roleMeta.icon;
+  const roleBadgeBg = {
+    admin: "bg-white text-[#12223B]",
+    client: "bg-[#00C975] text-white",
+    engineer: "bg-[#2563EB] text-white",
+    subcontractor: "bg-[#F97316] text-white",
+    supplier: "bg-[#06B6D4] text-white",
+  }[currentRole];
 
   return (
     <>
@@ -319,7 +373,9 @@ export default function DashboardSidebar({
           {/* Current Role Identity Banner */}
           <div className="border-b border-white/5 bg-[#1c3254]/40 px-5 py-3.5 flex items-center justify-between transition-all duration-500 overflow-hidden relative group">
             <div className="flex items-center min-w-0">
-              <div className="w-10 h-10 rounded-xl bg-[#FFDB5A] text-[#12223B] flex items-center justify-center font-semibold text-sm flex-shrink-0 shadow-xs">
+              <div
+                className={`w-10 h-10 rounded-xl ${roleBadgeBg} flex items-center justify-center font-semibold text-sm flex-shrink-0 shadow-xs`}
+              >
                 <RoleIcon className="w-5 h-5" />
               </div>
               <div
@@ -369,6 +425,8 @@ export default function DashboardSidebar({
                   ? pathname === "/dashboard/engineer"
                   : item.href === "/dashboard/subcontractor"
                   ? pathname === "/dashboard/subcontractor"
+                  : item.href === "/dashboard/supplier"
+                  ? pathname === "/dashboard/supplier"
                   : pathname.startsWith(item.href) ||
                     (item.href === "/dashboard/admin/billing" &&
                       pathname.startsWith("/dashboard/admin/revenue")) ||
@@ -445,17 +503,7 @@ export default function DashboardSidebar({
                     className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15 text-gray-200 flex items-center justify-between transition-colors duration-200"
                   >
                     <span className="flex items-center gap-1.5">
-                      <ShieldCheck className="w-4 h-4 text-[#FFDB5A]" /> Admin
-                    </span>
-                  </Link>
-                )}
-                {currentRole !== "engineer" && (
-                  <Link
-                    href="/dashboard/engineer"
-                    className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15 text-gray-200 flex items-center justify-between transition-colors duration-200"
-                  >
-                    <span className="flex items-center gap-1.5">
-                      <HardHat className="w-4 h-4 text-[#FFDB5A]" /> Engineer
+                      <ShieldCheck className="w-4 h-4 text-white" /> Admin
                     </span>
                   </Link>
                 )}
@@ -465,7 +513,17 @@ export default function DashboardSidebar({
                     className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15 text-gray-200 flex items-center justify-between transition-colors duration-200"
                   >
                     <span className="flex items-center gap-1.5">
-                      <UserCheck className="w-4 h-4 text-[#FFDB5A]" /> Client
+                      <UserCheck className="w-4 h-4 text-[#00C975]" /> Client
+                    </span>
+                  </Link>
+                )}
+                {currentRole !== "engineer" && (
+                  <Link
+                    href="/dashboard/engineer"
+                    className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15 text-gray-200 flex items-center justify-between transition-colors duration-200"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <HardHat className="w-4 h-4 text-[#60A5FA]" /> Engineer
                     </span>
                   </Link>
                 )}
@@ -475,7 +533,17 @@ export default function DashboardSidebar({
                     className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15 text-gray-200 flex items-center justify-between transition-colors duration-200"
                   >
                     <span className="flex items-center gap-1.5">
-                      <Briefcase className="w-4 h-4 text-[#FFDB5A]" /> Sub-Trade
+                      <Briefcase className="w-4 h-4 text-[#FB923C]" /> Sub-Trade
+                    </span>
+                  </Link>
+                )}
+                {currentRole !== "supplier" && (
+                  <Link
+                    href="/dashboard/supplier"
+                    className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/15 text-gray-200 flex items-center justify-between transition-colors duration-200 col-span-2 sm:col-span-1"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <Truck className="w-4 h-4 text-[#22D3EE]" /> Supplier
                     </span>
                   </Link>
                 )}
