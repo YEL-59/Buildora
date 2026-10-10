@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -250,12 +250,14 @@ export default function ContentCMSManagerPage() {
   // =========================================================================
   const { accentColor, setAccentColor, resetDefault } = useTheme();
   const [customThemeHex, setCustomThemeHex] = useState(accentColor);
+  const [prevAccentColor, setPrevAccentColor] = useState(accentColor);
   const [copiedHex, setCopiedHex] = useState(false);
 
-  // Sync custom hex when accentColor changes externally
-  useEffect(() => {
+  // Sync custom hex when accentColor changes externally (render-phase sync avoiding cascading renders)
+  if (accentColor !== prevAccentColor) {
+    setPrevAccentColor(accentColor);
     setCustomThemeHex(accentColor);
-  }, [accentColor]);
+  }
 
   // Image Assignment Handlers
   const handleOpenPresets = (fieldKey: string) => {
@@ -1802,6 +1804,7 @@ export default function ContentCMSManagerPage() {
                 type="button"
                 onClick={() => {
                   resetDefault();
+                  setCustomThemeHex(DEFAULT_ACCENT_COLOR);
                   showToast("Reset global primary color to Buildora Gold (#FFDB5A)");
                 }}
                 className="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-semibold cursor-pointer flex items-center gap-1.5"
@@ -1827,6 +1830,7 @@ export default function ContentCMSManagerPage() {
                     type="button"
                     onClick={() => {
                       setAccentColor(p.hex);
+                      setCustomThemeHex(p.hex);
                       showToast(`Applied ${p.name} (${p.hex}) across full website!`);
                     }}
                     className={`p-3 rounded-xl border text-left cursor-pointer transition-all flex flex-col justify-between h-24 ${
