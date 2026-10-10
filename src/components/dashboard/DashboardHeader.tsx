@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -14,6 +14,13 @@ import {
   AlertTriangle,
   X,
   ExternalLink,
+  ChevronDown,
+  ShieldCheck,
+  UserCheck,
+  HardHat,
+  Briefcase,
+  Truck,
+  Lock,
 } from "lucide-react";
 import CommandPalette from "./CommandPalette";
 
@@ -32,6 +39,33 @@ export default function DashboardHeader({
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [portalDropdownOpen, setPortalDropdownOpen] = useState(false);
+  const portalDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        portalDropdownRef.current &&
+        !portalDropdownRef.current.contains(event.target as Node)
+      ) {
+        setPortalDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const currentPortal = pathname.includes("/dashboard/client")
+    ? { name: "Client Dashboard", short: "Client", badge: "bg-[#00C975] text-white", icon: UserCheck }
+    : pathname.includes("/dashboard/engineer")
+    ? { name: "Engineer Portal", short: "Engineer", badge: "bg-[#2563EB] text-white", icon: HardHat }
+    : pathname.includes("/dashboard/subcontractor")
+    ? { name: "Subcontractor Portal", short: "Subcontractor", badge: "bg-[#F97316] text-white", icon: Briefcase }
+    : pathname.includes("/dashboard/supplier")
+    ? { name: "Supplier Portal", short: "Supplier", badge: "bg-[#06B6D4] text-white", icon: Truck }
+    : { name: "Admin Dashboard", short: "Admin", badge: "bg-white text-[#12223B] border border-gray-300", icon: ShieldCheck };
+
+  const CurrentPortalIcon = currentPortal.icon;
 
   // Determine current page title and subtitle based on route
   const getPageInfo = () => {
@@ -299,6 +333,136 @@ export default function DashboardHeader({
               className="w-full h-10 pl-10 pr-4 rounded-lg bg-[#F6F6F6] border border-transparent focus:border-[#FFDB5A] focus:bg-white text-xs sm:text-sm text-[#12223B] placeholder-gray-400 focus:outline-none transition-all cursor-pointer"
               readOnly
             />
+          </div>
+
+          {/* Quick Portal Switcher (Matching User Screenshot Dropdown) */}
+          <div className="relative" ref={portalDropdownRef}>
+            <button
+              type="button"
+              onClick={() => setPortalDropdownOpen(!portalDropdownOpen)}
+              className="inline-flex items-center gap-2 h-10 px-3 rounded-lg bg-[#F6F6F6] hover:bg-gray-200 text-[#12223B] transition-colors cursor-pointer border border-transparent hover:border-gray-300 shadow-xs"
+              title="Switch Dashboard Portal Role"
+            >
+              <div
+                className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 text-xs ${currentPortal.badge}`}
+              >
+                <CurrentPortalIcon className="w-3.5 h-3.5" />
+              </div>
+              <span className="hidden lg:inline text-xs font-bold text-[#12223B]">
+                {currentPortal.short}
+              </span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 text-gray-500 transition-transform duration-200 ${
+                  portalDropdownOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {/* Dropdown Menu Popup Matching User Screenshot */}
+            {portalDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-84 bg-[#111e33]/98 backdrop-blur-2xl border border-white/15 rounded-2xl p-3 shadow-[0_25px_60px_rgba(0,0,0,0.6)] z-50 animate-in fade-in zoom-in-95">
+                <div className="text-[10px] font-bold text-gray-400 tracking-wider uppercase px-2.5 pb-2.5 border-b border-white/10">
+                  SELECT DASHBOARD PORTAL
+                </div>
+
+                <div className="space-y-1.5 pt-2">
+                  {/* 1. Admin Dashboard */}
+                  <Link
+                    href="/dashboard/admin"
+                    onClick={() => setPortalDropdownOpen(false)}
+                    className="flex items-center gap-3.5 p-2 rounded-xl hover:bg-white/10 transition-all duration-200 group"
+                  >
+                    <div className="w-11 h-11 rounded-xl bg-white text-[#12223B] flex items-center justify-center flex-shrink-0 shadow-sm transition-transform duration-200 group-hover:scale-105">
+                      <ShieldCheck className="w-6 h-6 stroke-[2.2]" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold text-sm tracking-tight group-hover:text-[#FFDB5A] transition-colors leading-tight">
+                        Admin Dashboard
+                      </div>
+                      <div className="text-gray-400 text-xs mt-0.5 leading-snug">
+                        Operations, leads &amp; CMS
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* 2. Client Dashboard */}
+                  <Link
+                    href="/dashboard/client"
+                    onClick={() => setPortalDropdownOpen(false)}
+                    className="flex items-center gap-3.5 p-2 rounded-xl hover:bg-white/10 transition-all duration-200 group"
+                  >
+                    <div className="w-11 h-11 rounded-xl bg-[#00C975] text-white flex items-center justify-center flex-shrink-0 shadow-sm transition-transform duration-200 group-hover:scale-105">
+                      <UserCheck className="w-6 h-6 stroke-[2.2]" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold text-sm tracking-tight group-hover:text-[#00C975] transition-colors leading-tight">
+                        Client Dashboard
+                      </div>
+                      <div className="text-gray-400 text-xs mt-0.5 leading-snug">
+                        Live site &amp; progress tracking
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* 3. Engineer Portal */}
+                  <Link
+                    href="/dashboard/engineer"
+                    onClick={() => setPortalDropdownOpen(false)}
+                    className="flex items-center gap-3.5 p-2 rounded-xl hover:bg-white/10 transition-all duration-200 group"
+                  >
+                    <div className="w-11 h-11 rounded-xl bg-[#2563EB] text-white flex items-center justify-center flex-shrink-0 shadow-sm transition-transform duration-200 group-hover:scale-105">
+                      <HardHat className="w-6 h-6 stroke-[2.2]" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold text-sm tracking-tight group-hover:text-[#60A5FA] transition-colors leading-tight">
+                        Engineer Portal
+                      </div>
+                      <div className="text-gray-400 text-xs mt-0.5 leading-snug">
+                        Field logs &amp; site safety
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* 4. Subcontractor Portal */}
+                  <Link
+                    href="/dashboard/subcontractor"
+                    onClick={() => setPortalDropdownOpen(false)}
+                    className="flex items-center gap-3.5 p-2 rounded-xl hover:bg-white/10 transition-all duration-200 group"
+                  >
+                    <div className="w-11 h-11 rounded-xl bg-[#F97316] text-white flex items-center justify-center flex-shrink-0 shadow-sm transition-transform duration-200 group-hover:scale-105">
+                      <Briefcase className="w-6 h-6 stroke-[2.2]" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold text-sm tracking-tight group-hover:text-[#FB923C] transition-colors leading-tight">
+                        Subcontractor Portal
+                      </div>
+                      <div className="text-gray-400 text-xs mt-0.5 leading-snug">
+                        Work orders, crew &amp; pay apps
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* 5. Supplier Portal */}
+                  <Link
+                    href="/dashboard/supplier"
+                    onClick={() => setPortalDropdownOpen(false)}
+                    className="flex items-center gap-3.5 p-2 rounded-xl hover:bg-white/10 transition-all duration-200 group"
+                  >
+                    <div className="w-11 h-11 rounded-xl bg-[#06B6D4] text-white flex items-center justify-center flex-shrink-0 shadow-sm transition-transform duration-200 group-hover:scale-105">
+                      <Truck className="w-6 h-6 stroke-[2.2]" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold text-sm tracking-tight group-hover:text-[#22D3EE] transition-colors leading-tight">
+                        Supplier Portal
+                      </div>
+                      <div className="text-gray-400 text-xs mt-0.5 leading-snug">
+                        Purchase orders, fleet &amp; MTRs
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* New Project CTA */}
