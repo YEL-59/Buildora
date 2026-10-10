@@ -206,32 +206,239 @@ Buildora implements standard US and international construction industry protocol
 
 ## 📂 Information Architecture & Routes
 
+Buildora is architected around the **Next.js 16 App Router** with **70+ statically pre-rendered routes**. Every route leverages nested layouts, shared navigation contexts, and zero-layout-shift asset delivery.
+
+---
+
+### 🌳 Complete System File Tree
+
 ```
 Buildora
-├── PRD.md                             # Comprehensive Product Requirements Document
-├── CV_PROJECT_SHOWCASE.md             # Resume & Portfolio Bullet Points
-├── README.md                          # Platform Documentation
-├── src
-│   ├── app                            # 70+ Pre-Rendered Routes
-│   │   ├── page.tsx                   # Public Homepage
-│   │   ├── about / about-us           # Company History & Leadership
-│   │   ├── services / [slug]          # Specialized Construction Divisions
-│   │   ├── projects / [slug]          # Portfolio & Case Studies
-│   │   ├── blog / [slug]              # Technical Field Insights & Articles
-│   │   ├── contact / contact-us       # Quote Builder & Inquiries
-│   │   └── dashboard                  # Enterprise 5-Portal Hub
-│   │       ├── admin                  # 🛡️ Super Admin Operations & Visual CMS
-│   │       ├── client                 # 👤 Property Owner Portal & 3D Timeline
-│   │       ├── engineer               # ⛑️ Site Engineering Command & OSHA Hub
-│   │       ├── subcontractor          # 💼 Sub-Trade Work Orders & AIA Pay Apps
-│   │       └── supplier               # 🚚 Fleet Logistics, GPS & ASTM MTRs
-│   ├── components
-│   │   ├── layout                     # Header, Footer, Navbar, SocialIcons, PortalSwitcher
-│   │   ├── home                       # Hero, About, Services, Projects, Team, FAQ, Testimonials
-│   │   └── dashboard                  # DashboardHeader, DashboardSidebar, CommandPalette
-│   ├── context                        # ThemeContext (12 Curated Palettes & Custom Hex)
-│   └── data                           # Schemas, CMS seed fixtures, and service records
-└── public                             # Architectural SVG icons, blueprints, and media assets
+├── PRD.md                                   # Comprehensive Product Requirements Document
+├── CV_PROJECT_SHOWCASE.md                   # Resume & Portfolio Bullet Points
+├── README.md                                # Platform Documentation
+├── api.js                                   # Local Mock Services & API Integration Hub
+├── next.config.ts                           # Next.js 16 Configuration & Turbopack Rules
+├── tsconfig.json                            # Strict TypeScript 5 Configuration
+├── postcss.config.mjs                       # Tailwind CSS PostCSS Processing
+├── public/                                  # Static Media, Vector Logos & Blueprints
+│   ├── favicon.svg                          # Brand Monogram Favicon
+│   └── images/                              # 70+ Optimized WebP/JPEG Assets & SVG Icons
+├── src/
+│   ├── app/                                 # Next.js App Router (48 Route Files + Slugs)
+│   │   ├── layout.tsx                       # Root Layout (Fonts, Global Theme, Smooth Scroll)
+│   │   ├── not-found.tsx                    # Global 404 Error Boundary
+│   │   ├── page.tsx                         # 🌐 Public Marketing Homepage
+│   │   ├── 404/page.tsx                     # Architectural Custom 404 Error Page
+│   │   ├── about/page.tsx                   # Corporate History, Mission & Credentials
+│   │   ├── about-us/page.tsx                # Canonical Alias Route for About
+│   │   ├── services/page.tsx                # Construction Divisions Index
+│   │   ├── services/[slug]/page.tsx         # Dynamic Service Division Deep Dives (8 Slugs)
+│   │   ├── projects/page.tsx                # Verified Project Portfolio Index
+│   │   ├── projects/[slug]/page.tsx         # Dynamic Project Case Studies (6 Slugs)
+│   │   ├── blog/page.tsx                    # Engineering Thought Leadership Articles
+│   │   ├── blog/[slug]/page.tsx             # Dynamic Technical Insights (Slugs)
+│   │   ├── contact/page.tsx                 # Interactive Cost Estimator & Quote Form
+│   │   ├── contact-us/page.tsx              # Canonical Alias Route for Contact
+│   │   └── dashboard/                       # Enterprise Operations Hub
+│   │       ├── layout.tsx                   # Dashboard Shell (Sidebar, Header, CommandPalette)
+│   │       ├── page.tsx                     # Multi-Role Central Gateway & Portal Switcher
+│   │       │
+│   │       ├── admin/                       # 🛡️ ROLE 1: SUPER ADMIN PORTAL
+│   │       │   ├── page.tsx                 # Executive Command Dashboard
+│   │       │   ├── billing/page.tsx         # Commercial Invoicing & Milestones
+│   │       │   ├── content/page.tsx         # Headless Visual CMS & Live Theme Studio
+│   │       │   ├── engineers/page.tsx       # Licensed PE Engineers Directory
+│   │       │   ├── leads/page.tsx           # CRM Lead Pipeline & Kanban
+│   │       │   ├── projects/page.tsx        # Active Project Budgets & Tracking
+│   │       │   ├── revenue/page.tsx         # Cash Flow Analytics & Margin Metrics
+│   │       │   └── settings/page.tsx        # Enterprise Compliance & Configuration
+│   │       │
+│   │       ├── client/                      # 👤 ROLE 2: PROPERTY OWNER / CLIENT PORTAL
+│   │       │   ├── page.tsx                 # Client Build Overview & Milestone Status
+│   │       │   ├── blueprints/page.tsx      # Stamped Architectural Floor Plans
+│   │       │   ├── change-orders/page.tsx   # Scope Variation & Cost Approvals
+│   │       │   ├── documents/page.tsx       # Encrypted Vault (Permits, Warranties, COI)
+│   │       │   ├── messages/page.tsx        # Direct Engineer & Superintendent Chat
+│   │       │   ├── payments/page.tsx        # Milestone Escrow Invoices & Tax Receipts
+│   │       │   ├── progress/page.tsx        # 3D Drone Scans & Photographic Timeline
+│   │       │   └── projects/page.tsx        # Client Project Portfolio Overview
+│   │       │
+│   │       ├── engineer/                    # ⛑️ ROLE 3: SITE ENGINEERING COMMAND HUB
+│   │       │   ├── page.tsx                 # Field Operations Overview & Incident Clock
+│   │       │   ├── blueprints/page.tsx      # Issued For Construction (IFC) CAD Viewer
+│   │       │   ├── logs/page.tsx            # Daily Shift, Weather & Manpower Logs
+│   │       │   ├── materials/page.tsx       # Material Requisition & Ready-Mix Orders
+│   │       │   ├── requisition/page.tsx     # Canonical Material Purchase Approval
+│   │       │   ├── safety/page.tsx          # OSHA 30 Audits, PPE Checks & Incident Logs
+│   │       │   └── site-logs/page.tsx       # Canonical Historical Site Logs
+│   │       │
+│   │       ├── subcontractor/               # 💼 ROLE 4: SUBCONTRACTOR PORTAL
+│   │       │   ├── page.tsx                 # Trade Operations & Retainage Overview
+│   │       │   ├── crew-logs/page.tsx       # Journeyman & Apprentice Shift Headcounts
+│   │       │   ├── invoices/page.tsx        # AIA G702 Progress Billing & 10% Retainage
+│   │       │   ├── punch-list/page.tsx      # Snag Items & Corrective Action Checklists
+│   │       │   ├── safety/page.tsx          # Certificate of Insurance (COI) & JHA Matrix
+│   │       │   └── work-orders/page.tsx     # Division 06 Finish Carpentry Work Packages
+│   │       │
+│   │       └── supplier/                    # 🚚 ROLE 5: MATERIAL SUPPLIER PORTAL
+│   │           ├── page.tsx                 # Logistics Command & Active PO Tracker
+│   │           ├── deliveries/page.tsx      # Fleet GPS Transit & e-POD Signatures
+│   │           ├── inventory/page.tsx       # Ready-Mix, Rebar & ASTM Stock Catalog
+│   │           ├── invoices/page.tsx        # Net 30 Commercial Billing Matched to DNs
+│   │           ├── orders/page.tsx          # GC Purchase Order Batch Staging
+│   │           └── quality/page.tsx         # Certified Mill Test Reports & Break Tests
+│   │
+│   ├── components/                          # Modular Component Design System
+│   │   ├── layout/                          # Header, Footer, Skyline, SmoothScroll, Preloader
+│   │   ├── home/                            # Hero, AboutUs, Services, Projects, Team, FAQ, CTA
+│   │   ├── dashboard/                       # DashboardHeader, DashboardSidebar, CommandPalette
+│   │   ├── animations/                      # FadeInUp, TextAnime motion wrappers
+│   │   ├── blog/                            # PageBlog, BlogDetails
+│   │   ├── contact/                         # PageContact (Cost Estimator, Form)
+│   │   ├── projects/                        # PageProjects, ProjectDetails
+│   │   ├── services/                        # PageServices, ServiceDetails
+│   │   └── not-found/                       # NotFoundPage component
+│   │
+│   ├── context/                             # Global Theme & Accent State
+│   │   └── ThemeContext.tsx                 # 12 Curated Brand Palettes + Custom Studio
+│   │
+│   └── data/                                # Structured CMS Fixtures & Datasets
+│       ├── serviceData.ts                   # 8 Construction Divisions & Overviews
+│       ├── projectData.ts                   # 6 Verified Construction Case Studies
+│       └── blogData.ts                      # Industry Technical Insights & Articles
+```
+
+---
+
+### 🗺️ Master Route Directory (All 48 Route Files + Dynamic Slugs)
+
+The table below outlines every single accessible route in Buildora, its source code file, target audience persona, and primary functional responsibilities:
+
+| # | Route URL | Source File Path | Role / Audience | Module & Functional Capabilities |
+|---|---|---|---|---|
+| 1 | `/` | `src/app/page.tsx` | Public Visitor | **Flagship Marketing Homepage**: 12 sections including Hero, Stats counters, Why Choose Us, Video modal, Team, Reviews, and Skyline Footer. |
+| 2 | `/about` | `src/app/about/page.tsx` | Public Visitor | **Corporate Heritage & Leadership**: 25-year company milestone timeline, executive board, ISO quality certifications, and core values. |
+| 3 | `/about-us` | `src/app/about-us/page.tsx` | Public Visitor | **Canonical About Route**: Seamless alias to `/about` preserving SEO canonical link standards. |
+| 4 | `/services` | `src/app/services/page.tsx` | Public Visitor | **Construction Divisions Index**: Grid of 8 specialized disciplines, capability checklists, and direct project inquiry hooks. |
+| 5 | `/services/[slug]` | `src/app/services/[slug]/page.tsx` | Public Visitor | **Dynamic Service Deep Dive**: SSG pre-rendered service specifications, methodologies, blueprint samples, and FAQs (8 dynamic slugs). |
+| 6 | `/projects` | `src/app/projects/page.tsx` | Public Visitor | **Project Showcase Gallery**: Category filterable portfolio (Residential, Commercial, Renovation, Industrial) with specs and badges. |
+| 7 | `/projects/[slug]` | `src/app/projects/[slug]/page.tsx` | Public Visitor | **Dynamic Case Study**: Detailed project review, client challenge, geotechnical engineering solution, before/after gallery (6 dynamic slugs). |
+| 8 | `/blog` | `src/app/blog/page.tsx` | Public Visitor | **Engineering Insights Index**: Articles on building materials, green construction, BIM methodologies, and structural innovations. |
+| 9 | `/blog/[slug]` | `src/app/blog/[slug]/page.tsx` | Public Visitor | **Dynamic Technical Article**: Long-form article with author profile, quote highlights, sustainability insights, and related topics. |
+| 10 | `/contact` | `src/app/contact/page.tsx` | Public Visitor | **Interactive Quote Estimator**: Budget calculator, project scope selector, direct inquiry form, office locations, and maps. |
+| 11 | `/contact-us` | `src/app/contact-us/page.tsx` | Public Visitor | **Canonical Contact Route**: Seamless alias to `/contact` maintaining URL symmetry. |
+| 12 | `/404` | `src/app/404/page.tsx` | All Users | **Architectural 404 Screen**: Custom illustrated error recovery page with quick navigation back to the portal hub or homepage. |
+| 13 | `not-found.tsx` | `src/app/not-found.tsx` | All Users | **Global Route Fallback**: Next.js App Router root catch-all handler for nonexistent paths. |
+| 14 | `/dashboard` | `src/app/dashboard/page.tsx` | All Roles | **Central Operations Gateway Hub**: Interactive 5-tile portal selector with direct routing, permission overviews, and live role switching. |
+| 15 | `/dashboard/admin` | `src/app/dashboard/admin/page.tsx` | 🛡️ Super Admin | **Executive Operations Command**: Revenue run-rates, live project velocity, pending bid volume, and high-priority site safety warnings. |
+| 16 | `/dashboard/admin/billing` | `src/app/dashboard/admin/billing/page.tsx` | 🛡️ Super Admin | **Commercial Invoicing & Accounts**: Milestone invoice authorization, escrow draw releases, client tax receipts, and payment logs. |
+| 17 | `/dashboard/admin/content` | `src/app/dashboard/admin/content/page.tsx` | 🛡️ Super Admin | **Headless Visual CMS & Theme Studio**: Live markdown preview, hero banner editor, media asset picker, and 12-palette color studio. |
+| 18 | `/dashboard/admin/engineers` | `src/app/dashboard/admin/engineers/page.tsx` | 🛡️ Super Admin | **Site Engineers Directory**: Engineering credentials (CA-PE, SE, OSHA 30), assigned job sites, and direct communications. |
+| 19 | `/dashboard/admin/leads` | `src/app/dashboard/admin/leads/page.tsx` | 🛡️ Super Admin | **CRM Lead Pipeline**: Interactive Kanban board (New, Estimating, Bid Sent, Contracted), budget sizes, and estimator assignments. |
+| 20 | `/dashboard/admin/projects` | `src/app/dashboard/admin/projects/page.tsx` | 🛡️ Super Admin | **Master Project Portfolio Tracker**: Completion percentages, supervising PE engineers, budget vs. actual costs, and timeline status. |
+| 21 | `/dashboard/admin/revenue` | `src/app/dashboard/admin/revenue/page.tsx` | 🛡️ Super Admin | **Financial Analytics**: Monthly billing trends, cash flow forecasts, trade division margin breakdown, and expense ledgers. |
+| 22 | `/dashboard/admin/settings` | `src/app/dashboard/admin/settings/page.tsx` | 🛡️ Super Admin | **Enterprise Settings & Compliance**: Corporate tax IDs, security audit trails, notification rules, and system-wide default themes. |
+| 23 | `/dashboard/client` | `src/app/dashboard/client/page.tsx` | 👤 Property Owner | **Client Build Overview**: Primary residence/facility build status (e.g. Modern Family Villa PRJ-901), phase completion, and next payment. |
+| 24 | `/dashboard/client/blueprints` | `src/app/dashboard/client/blueprints/page.tsx` | 👤 Property Owner | **Architectural Blueprint Vault**: High-resolution floor plans, foundation layouts, and electrical drawings with download permissions. |
+| 25 | `/dashboard/client/change-orders` | `src/app/dashboard/client/change-orders/page.tsx` | 👤 Property Owner | **Scope Variation Requests**: Cost and schedule impact breakdowns, engineering approvals, and one-click digital client signature. |
+| 26 | `/dashboard/client/documents` | `src/app/dashboard/client/documents/page.tsx` | 👤 Property Owner | **Encrypted Documents Vault**: Municipal building permits, soil geotechnical reports, insurance certificates, and warranties. |
+| 27 | `/dashboard/client/messages` | `src/app/dashboard/client/messages/page.tsx` | 👤 Property Owner | **Direct Engineer Communication**: Secure messaging thread connecting client directly to the assigned Lead PE and Superintendent. |
+| 28 | `/dashboard/client/payments` | `src/app/dashboard/client/payments/page.tsx` | 👤 Property Owner | **Milestone Escrow Billing**: Transparent billing tied to verified physical construction milestones with official downloadable receipts. |
+| 29 | `/dashboard/client/progress` | `src/app/dashboard/client/progress/page.tsx` | 👤 Property Owner | **3D & Photo Site Timeline**: Timestamped site photos uploaded daily by field engineers, drone orthomosaics, and milestone gates. |
+| 30 | `/dashboard/client/projects` | `src/app/dashboard/client/projects/page.tsx` | 👤 Property Owner | **Client Project Directory**: Multi-property view for investors managing multiple simultaneous custom construction projects. |
+| 31 | `/dashboard/engineer` | `src/app/dashboard/engineer/page.tsx` | ⛑️ Site Engineer | **Field Command Hub**: Zero-incident milestone counter (240+ days), active trade subcontractor headcounts, and daily pour briefing. |
+| 32 | `/dashboard/engineer/blueprints` | `src/app/dashboard/engineer/blueprints/page.tsx` | ⛑️ Site Engineer | **Issued For Construction (IFC) CAD Viewer**: PE-stamped architectural, structural, and MEP drawings with revision markup logs. |
+| 33 | `/dashboard/engineer/logs` | `src/app/dashboard/engineer/logs/page.tsx` | ⛑️ Site Engineer | **Daily Field Shift Logs**: Weather telemetry (temperature, wind, rain delays), manpower counts, equipment hours, and field notes. |
+| 34 | `/dashboard/engineer/materials` | `src/app/dashboard/engineer/materials/page.tsx` | ⛑️ Site Engineer | **Material Requisitions**: Purchase requisitions for Grade 60 rebar, 4000 PSI ready-mix, structural timber, and live supplier status. |
+| 35 | `/dashboard/engineer/requisition` | `src/app/dashboard/engineer/requisition/page.tsx` | ⛑️ Site Engineer | **Canonical Requisition Workflow**: Material batch approvals, batch ticket validations, and supplier dispatch confirmations. |
+| 36 | `/dashboard/engineer/safety` | `src/app/dashboard/engineer/safety/page.tsx` | ⛑️ Site Engineer | **OSHA 30 Safety & PPE Audits**: Daily mandatory safety inspections, toolbox talk topics, PPE audit matrix, and incident log filing. |
+| 37 | `/dashboard/engineer/site-logs` | `src/app/dashboard/engineer/site-logs/page.tsx` | ⛑️ Site Engineer | **Canonical Historical Site Logs**: Searchable archive of all shift inspection logs, concrete batch tickets, and weather anomalies. |
+| 38 | `/dashboard/subcontractor` | `src/app/dashboard/subcontractor/page.tsx` | 💼 Subcontractor | **Trade Operations Command**: Subcontractor profile (Apex Millwork LLC, CSLB C-6), contract value, earned progress, retainage held. |
+| 39 | `/dashboard/subcontractor/crew-logs` | `src/app/dashboard/subcontractor/crew-logs/page.tsx` | 💼 Subcontractor | **Daily Craftsmen Crew Logs**: Headcount breakdown of journeymen, apprentices, total labor hours worked, and site photo uploads. |
+| 40 | `/dashboard/subcontractor/invoices` | `src/app/dashboard/subcontractor/invoices/page.tsx` | 💼 Subcontractor | **AIA G702 Progress Billing**: Standard AIA G702/G703 payment application schedules, 10% retainage tracking, and GC review status. |
+| 41 | `/dashboard/subcontractor/punch-list` | `src/app/dashboard/subcontractor/punch-list/page.tsx` | 💼 Subcontractor | **Punch List & Snag Management**: Corrective action checklists, photo proofs of completed snags, and GC engineer sign-offs. |
+| 42 | `/dashboard/subcontractor/safety` | `src/app/dashboard/subcontractor/safety/page.tsx` | 💼 Subcontractor | **Trade Safety & Insurance Vault**: Certificate of Insurance (COI) expiration tracker, Jobsite Hazard Analysis (JHA), and crew sign-offs. |
+| 43 | `/dashboard/subcontractor/work-orders` | `src/app/dashboard/subcontractor/work-orders/page.tsx` | 💼 Subcontractor | **Division 06 Scope Packages**: Contracted scope deliverables (Finish Carpentry, Architectural Millwork), task checklists, and status. |
+| 44 | `/dashboard/supplier` | `src/app/dashboard/supplier/page.tsx` | 🚚 Material Supplier | **Logistics Command Overview**: Active purchase orders, fleet trucks in transit, ASTM lab certificates issued, and pending invoices. |
+| 45 | `/dashboard/supplier/deliveries` | `src/app/dashboard/supplier/deliveries/page.tsx` | 🚚 Material Supplier | **Fleet GPS Tracking & e-POD**: Real-time vehicle telemetry, delivery notes (DN), and electronic Proof of Delivery with signature capture. |
+| 46 | `/dashboard/supplier/inventory` | `src/app/dashboard/supplier/inventory/page.tsx` | 🚚 Material Supplier | **Material Catalog & Inventory**: Live warehouse stock of ready-mix concrete, steel rebar, lumber, masonry, and technical spec sheets. |
+| 47 | `/dashboard/supplier/invoices` | `src/app/dashboard/supplier/invoices/page.tsx` | 🚚 Material Supplier | **Commercial Billing (Net 30)**: Commercial billing matched to signed e-POD delivery receipts, payment terms, and remittance status. |
+| 48 | `/dashboard/supplier/orders` | `src/app/dashboard/supplier/orders/page.tsx` | 🚚 Material Supplier | **GC Purchase Orders (PO)**: Fulfillment workflow for General Contractor purchase orders, line-item pricing, batch staging, and tickets. |
+| 49 | `/dashboard/supplier/quality` | `src/app/dashboard/supplier/quality/page.tsx` | 🚚 Material Supplier | **Quality Assurance & Mill Test Reports**: ASTM/ACI certified Mill Test Reports (MTRs), 7-day and 28-day concrete cylinder break tests. |
+
+---
+
+### 📦 Dynamic Slug Route Manifest
+
+Buildora pre-renders all dynamic routes at build time using static parameters (`generateStaticParams`). Below are the pre-rendered dynamic slugs available in the production bundle:
+
+#### 1. Specialized Construction Divisions (`/services/[slug]`)
+- `/services/residential-construction`: Custom estate and modern home building from foundation to bespoke finishes.
+- `/services/commercial-construction`: Corporate office buildings, business headquarters, and retail facilities.
+- `/services/industrial-construction`: High-bay logistics warehouses, manufacturing plants, and heavy distribution centers.
+- `/services/infrastructure-construction`: Municipal civil infrastructure, bridges, highways, and drainage networks.
+- `/services/building-renovation`: Historic architectural preservation, seismic retrofitting, and modernization.
+- `/services/home-remodeling`: Kitchen, bathroom, and structural residential space redesigns.
+- `/services/structural-engineering`: 3D BIM structural analysis, foundation calculation, and seismic engineering.
+- `/services/interior-design`: Luxury interior architecture, spatial planning, bespoke lighting, and custom fixtures.
+
+#### 2. Verified Case Studies & Project Portfolio (`/projects/[slug]`)
+- `/projects/modern-family-villa`: Contemporary residential villa in Central Valley, California with energy-efficient systems.
+- `/projects/building-restoration`: 18-month historical landmark renovation in Manhattan, New York with carbon-fiber retrofits.
+- `/projects/metro-business-center`: Multi-story commercial corporate facility with structural steel frames and smart HVAC.
+- `/projects/luxury-skyline-tower`: High-rise luxury residential condominium with post-tensioned concrete slabs.
+- `/projects/eco-friendly-corporate-park`: LEED Platinum commercial complex featuring solar arrays and recycled structural timber.
+- `/projects/industrial-logistics-hub`: 350,000 sq ft automated distribution facility with heavy-load slab foundations.
+
+#### 3. Engineering Thought Leadership (`/blog/[slug]`)
+- `/blog/expert-insights-and-latest-trends-in-construction-industry`: Comprehensive report on emerging technologies, BIM modeling, drone site scanning, and sustainable materials.
+
+---
+
+### 🧩 Component Architecture Breakdown
+
+The user interface follows atomic design principles and clean separation of concerns:
+
+```
+src/components/
+├── animations/           # Hardware-accelerated entrance and micro-interaction wrappers
+│   ├── FadeInUp.tsx      # Smooth viewport intersection fade-and-slide
+│   └── TextAnime.tsx     # Typography letter-by-letter reveal
+│
+├── layout/               # Global navigational wrappers and utilities
+│   ├── Header.tsx        # Responsive sticky glassmorphism navigation with role switcher
+│   ├── Footer.tsx        # Multi-column directory, newsletter, and company credentials
+│   ├── FooterSkyline.tsx # Custom architectural skyline vector backdrop
+│   ├── SmoothScroll.tsx  # Global Lenis smooth scrolling orchestrator
+│   ├── Preloader.tsx     # Polished SVG brand loading indicator
+│   ├── PageHeader.tsx    # Standardized inner page hero banner with breadcrumbs
+│   ├── SocialIcons.tsx   # Verified corporate social media links
+│   └── VideoModal.tsx    # Accessible modal player for jobsite drone footage
+│
+├── dashboard/            # Dedicated operational hub components
+│   ├── DashboardHeader.tsx   # Breadcrumb navigation, role badge, quick search, notification bell
+│   ├── DashboardSidebar.tsx  # Dynamic role-tailored sidebar with active route highlights
+│   └── CommandPalette.tsx    # Universal keyboard-accessible (Ctrl+K) search and action runner
+│
+├── home/                 # 12 Modular Homepage Sections
+│   ├── Hero.tsx          # Cinematic video background, consultation CTA, and key metrics
+│   ├── AboutUs.tsx       # 25-year legacy overview with ISO credentials
+│   ├── OurExpertise.tsx  # Core craftsmanship pillars and engineering standards
+│   ├── CoreValues.tsx    # Integrity, precision, safety, and sustainable building values
+│   ├── Approach.tsx      # 4-stage construction process walkthrough (Consult -> Plan -> Build -> Handover)
+│   ├── Services.tsx      # Filterable service card grid with dynamic routing
+│   ├── WhyChooseUs.tsx   # Value proposition with drone scanning and transparent billing
+│   ├── Projects.tsx      # Featured case studies with before/after imagery
+│   ├── Team.tsx          # Principal architects and licensed PE leadership
+│   ├── VideoBanner.tsx   # Full-width cinematic jobsite machinery showcase
+│   ├── Testimonials.tsx  # Touch-enabled Swiper slider with verified property owner reviews
+│   ├── Faq.tsx           # Accordion addressing timelines, escrow, permits, and change orders
+│   ├── CtaSection.tsx    # High-converting project consultation booking banner
+│   └── Blog.tsx          # Latest technical engineering field insights
+│
+└── context/
+    └── ThemeContext.tsx  # Centralized theme provider supporting 12 curated industry color palettes
 ```
 
 ---
